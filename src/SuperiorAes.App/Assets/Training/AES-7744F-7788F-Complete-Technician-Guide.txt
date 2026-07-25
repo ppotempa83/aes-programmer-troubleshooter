@@ -1,0 +1,1285 @@
+PAGE 1 OF 26
+========================================================================
+AES IntelliNet
+7744F / 7788F
+Complete Technician Guide
+Programming, timing, zones, diagnostics, routing,
+serial wiring, monitor decoding and commissioning
+FIELD SCOPE
+- AES 7744F and 7788F legacy fire subscribers
+- AES 7041 handheld programmer and PC/Tera Term equivalents
+- Verified US232R / DB9 breakout connection
+- Based on AES Rev 6 installation and operation manuals
+Technician edition | July 24, 2026
+Field reference - retain with service documentation
+
+PAGE 2 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 2
+1. Scope, safety and how to use this guide
+This manual is a field reference for AES IntelliNet 7744F and 7788F legacy subscriber units. It covers the AES 7041 handheld
+programmer key functions and their PC/Tera Term equivalents. The programming language is similar on both models, but the
+physical behavior of several zone inputs differs.
+Life-safety warning
+Before powering, resetting, programming, keying or testing an installed subscriber, notify the central station and place the
+account on test. A subscriber can transmit immediately after power-up or reset. Programming must conform to the
+approved system design, current code requirements, the authority having jurisdiction and the central station's AES
+network requirements.
+What this guide includes
+- Verified US232R and DB9-breakout wiring to radio connector J1.
+ 
+- Complete handheld-to-PC command conversion.
+ 
+- Every documented programming, monitor and diagnostic command for these models.
+ 
+- Timer ranges, defaults and the practical effect of each timer.
+ 
+- 7788F EOL-zone behavior and 7744F EOL/reversing-voltage differences.
+ 
+- Status, self-test codes, monitor-packet fields, routing entries and signal-quality interpretation.
+ 
+- A full commissioning, troubleshooting and closeout sequence.
+ 
+Contents
+ Section
+ Subject
+1
+Scope, safety and usage conventions
+2
+Serial connection and verified wiring
+3
+Complete command map and data-entry rules
+4
+Subscriber identity: ID and cipher
+5
+Timing parameters: check-in and reporting delays
+6
+Zone programming and model differences
+7
+Operating modes and report suppression
+8
+Reset RAM, physical reset and factory defaults
+9
+Local status, self-test codes and LEDs
+10
+RX, TX and Monitor All diagnostics
+11
+Key transmitter, zone status and routing table
+12
+Text messages
+13
+Troubleshooting and commissioning
+14
+Quick-reference sheets and official sources
+
+PAGE 3 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 3
+2. Serial connection and verified wiring
+Tera Term configuration
+ Setting
+ Required value
+ Reason
+Port
+COM1
+The FTDI US232R port used during the verified field test.
+Speed
+4800 baud
+AES programmer-port data rate.
+Data bits
+8
+Required serial word length.
+Parity
+None
+No parity bit is used.
+Stop bits
+1
+Required framing.
+Flow control
+None
+AES explicitly requires RTS/CTS flow control OFF.
+Local echo
+Normally OFF
+The subscriber echoes prompts and responses; local echo can duplicate characters.
+Backspace
+Destructive, if available
+Erases the deleted character from the terminal display.
+Verified J1-to-DB9 pinout
+Connector orientation is critical: view the 6P6C modular plug at the copper-contact end with the contacts facing you. Read
+physical J1 pins from left to right. The J1 pin functions remain fixed even when the cable colors are reversed.
+Physical J1 pin functions - authoritative for both cable versions
+ Physical J1 pin
+ Function
+ DB9 terminal
+1
+GND
+Pin 5 GND
+2
+TXD
+Pin 3 TXD
+3
+RXD
+Pin 2 RXD
+4
+DTR
+Pin 4 DTR
+5
+DSR
+Pin 6 DSR
+6
++12 V from radio
+DO NOT CONNECT
+-
+RTS/CTS local jumper
+Pin 7 RTS to Pin 8 CTS
+
+PAGE 4 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 4
+2. Standard-color RJ cable wiring
+Case A - verified cable order: BLUE, YELLOW, GREEN, RED, BLACK, WHITE
+Copper contacts facing you, left to right:
+PIN 1
+PIN 2
+PIN 3
+PIN 4
+PIN 5
+PIN 6
+BLUE
+YELLOW
+GREEN
+RED
+BLACK
+WHITE
+GND
+TXD
+RXD
+DTR
+DSR
++12 V
+ J1 pin
+ Wire color
+ DB9 terminal
+ Function
+1
+Blue
+Pin 5 GND
+Signal ground
+2
+Yellow
+Pin 3 TXD
+PC/adapter transmit path
+3
+Green
+Pin 2 RXD
+PC/adapter receive path
+4
+Red
+Pin 4 DTR
+Programmer control line
+5
+Black
+Pin 6 DSR
+Programmer status line
+6
+White
+DO NOT CONNECT
++12 V supplied by the radio
+-
+-
+Pin 7 RTS to Pin 8 CTS
+Local jumper at breakout
+
+PAGE 5 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 5
+2. Reversed-color RJ cable wiring
+Use this case only when the plug at radio J1 is viewed at the copper contacts and the colors read WHITE, BLACK, RED,
+GREEN, YELLOW, BLUE from physical pin 1 through pin 6.
+Case B - reversed cable order: WHITE, BLACK, RED, GREEN, YELLOW, BLUE
+Copper contacts facing you, left to right:
+PIN 1
+PIN 2
+PIN 3
+PIN 4
+PIN 5
+PIN 6
+WHITE
+BLACK
+RED
+GREEN
+YELLOW
+BLUE
+GND
+TXD
+RXD
+DTR
+DSR
++12 V
+ J1 pin
+ Wire color
+ DB9 terminal
+ Function
+1
+White
+Pin 5 GND
+Signal ground
+2
+Black
+Pin 3 TXD
+PC/adapter transmit path
+3
+Red
+Pin 2 RXD
+PC/adapter receive path
+4
+Green
+Pin 4 DTR
+Programmer control line
+5
+Yellow
+Pin 6 DSR
+Programmer status line
+6
+Blue
+DO NOT CONNECT
++12 V supplied by the radio
+-
+-
+Pin 7 RTS to Pin 8 CTS
+Local jumper at breakout
+J1 pin 6 is always the dangerous conductor
+Physical J1 pin 6 is approximately +12 V from the radio. In Case A it is WHITE; in the reversed Case B it is BLUE. Insulate
+it. Connecting physical pin 6 to a DB9 or FTDI signal terminal can damage the adapter, computer or subscriber.
+Do not trust color without verifying orientation
+Identify the copper-contact face and physical pin numbers first. Before connecting an unfamiliar cable, use continuity
+testing and confirm the radio's +12 V conductor with a meter. Never energize the adapter while the pin-6 identity is
+uncertain.
+FT_PROG polarity
+Use standard FT232R polarity. Leave every FT_PROG signal-inversion option OFF. The working COM1 test produced
+readable SETUP UNIT and ENTER ID prompts with standard polarity.
+
+PAGE 6 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 6
+Case A verified wiring diagram
+This image applies only when the copper-contact order is BLUE, YELLOW, GREEN, RED, BLACK, WHITE. For the reversed
+WHITE, BLACK, RED, GREEN, YELLOW, BLUE order, use the Case B table on the preceding page.
+If the terminal receives readable prompts but cannot send commands, recheck TXD/RXD, confirm flow control is None, and verify the pin 7-to-pin 8
+jumper. If all text is unreadable, reconfirm 4800 8-N-1 and that FT_PROG inversion is off.
+
+PAGE 7 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 7
+3. Complete command map
+The handheld key name and the PC key are not always the same. For example, handheld Ctrl+F1 is a single lower-case f on a
+PC terminal. Letter commands execute as soon as the character is received. Press Enter only when the subscriber requests a
+value.
+ Handheld key
+ PC / Tera Term
+ Function
+Ctrl+F1
+f
+Program subscriber ID and cipher
+Ctrl+F2
+g
+Program check-in, AC delay and report spacing
+Ctrl+F3
+h
+Program Fire/Trouble packets, zones and restorals
+Ctrl+F4
+i
+Program repeating and fault-report suppression
+Ctrl+F5
+j
+Reset configuration RAM; retains ID and cipher
+Shift+F1
+a
+RX Monitor toggle
+Shift+F2
+b
+TX Monitor toggle
+Shift+F3
+c
+Monitor All toggle; RX Monitor must already be ON
+Shift+F4
+d
+Local Status Check
+Shift+F5
+e
+Key transmitter for approximately 5 seconds
+F1
+Ctrl+Q
+Key equivalent; no standalone quick action documented
+F2
+Ctrl+R
+Key equivalent; no standalone quick action documented
+F3
+Ctrl+S
+Key equivalent; no standalone quick action documented
+F4
+Ctrl+T
+Display routing table
+F5
+Ctrl+U
+Send a text message to the central station
+Ctrl+Z
+Ctrl+Z
+Display current zone status
+Data-entry rules
+- Use upper-case A-F when entering hexadecimal IDs or cipher values.
+ 
+- At most programming prompts, pressing Enter without entering a new value preserves the old value.
+ 
+- The subscriber normally displays OLD and NEW fields. Verify the old value before changing it.
+ 
+- Programming functions normally time out after approximately 65 seconds.
+ 
+- If Tera Term appears not to show what you type, remember that local echo is normally off; watch for the subscriber response.
+ 
+- Use the physical Reset button after zone-programming changes and after completing monitor work.
+ 
+F1 through F3
+The AES manuals provide the PC equivalents Ctrl+Q, Ctrl+R and Ctrl+S but do not assign separate standalone field
+functions to handheld F1, F2 or F3 for the 7744F/7788F. Do not invent a function based on another AES model.
+
+PAGE 8 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 8
+4. f - Program subscriber ID and cipher
+SETUP UNIT-OLD: NEW
+ENTER ID#-1234:....
+CPHR CODE-XXXX:....
+OK
+Subscriber ID
+The ID is the subscriber's unique four-digit hexadecimal network address. Valid characters are 0-9 and upper-case A-F.
+Examples include 4923, 12AF and B804. Every subscriber on the AES network must have a unique ID.
+- Entering a new value overwrites the stored ID.
+ 
+- Pressing Enter at a blank ID prompt preserves the current ID.
+ 
+- A reused ID can send signals under the wrong account and create serious dispatch or reporting problems.
+ 
+System cipher
+The cipher is a four-digit hexadecimal network security code assigned by the AES network administrator. It must match the
+cipher used by the central receiver or the IP-Link through which the subscriber communicates.
+- The old cipher is intentionally displayed as XXXX.
+ 
+- Pressing Enter without a new cipher preserves the stored cipher.
+ 
+- A wrong cipher prevents normal network enrollment and communication.
+ 
+Symptoms of an incorrect cipher or invalid network identity
+- WA indicator continues flashing.
+ 
+- The subscriber does not receive packet acknowledgements.
+ 
+- Local status may show RT1:XXXX or LEVEL:255.
+ 
+- The radio may transmit, but the unit never becomes a healthy network participant.
+ 
+Local-only programming
+ID and cipher can only be changed with a programmer or PC terminal attached directly to J1. Remote programming of
+these two values is not permitted. A RAM reset does not erase them.
+
+PAGE 9 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 9
+5. g - Timing parameters
+The Timing Parameters menu programs three independent values.
+ Parameter
+ Range / choices
+ Factory default
+ Primary purpose
+Check-in
+Up to 24 hours; 00:00 illegal
+24:00
+Periodic subscriber-alive supervision
+AC report delay
+00-60 minutes or RM
+RM
+Disperse AC fail/restore traffic
+NTR report delay
+0-330 seconds
+10 seconds
+Space the subscriber's own transmissions
+Check-in interval
+CHKIN TIME--OLD:NEW
+ENTER HRS----24:..
+ENTER MINS---00:..
+A check-in is a periodic supervisory data message confirming that the subscriber is alive and participating in the network. It is not
+an alarm. Shorter intervals permit quicker recognition of a missing subscriber but increase RF and central-station traffic.
+- A 24-hour interval is typical except in higher-security applications.
+ 
+- 00 hours, 00 minutes is illegal.
+ 
+- Do not program a total interval greater than 24 hours.
+ 
+- The central automation missing-check-in threshold must agree with the programmed interval.
+ 
+Manual range wording
+The display documents hours as 00-24, while the explanatory text says 1-24 and separately states that 00:00 is illegal.
+This indicates zero hours can be used with a nonzero minute value on compatible firmware. Use only the interval
+approved for the network and installation.
+AC report delay
+AC RPT TIME-OLD:NEW [RM] or [00-60]
+ENTER MINS---RM:..
+This value is applied after the subscriber recognizes an AC failure or AC restore. The subscriber requires approximately 100
+minutes of continuous AC loss to recognize a failure, and approximately 100 minutes of restored AC to recognize a restore.
+ Setting
+ Effect
+RM
+Random additional delay from 0 to 60 minutes; factory default
+00
+No additional delay after the approximately 100-minute detection period
+01-60
+Fixed additional delay in minutes
+With RM, an AC event is normally reported approximately 100-160 minutes after the physical condition begins. Random delay
+prevents large numbers of subscribers from transmitting simultaneously during an area-wide outage.
+
+PAGE 10 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 10
+5. Timing parameters - continued
+NTR report delay
+NTR RPT DLY-NNN:... [0-330 seconds]
+This is the minimum spacing applied to the subscriber's own reports. The default and recommended setting is 10 seconds. It
+meters multiple events so the subscriber does not continuously occupy the network.
+- Range: 0 to 330 seconds.
+ 
+- Default: 10 seconds.
+ 
+- Zero removes the spacing delay and is not recommended.
+ 
+- Commercial fire and applicable UL burglary installations require no more than 20 seconds.
+ 
+- If the previous delay has already expired, a newly generated event can begin transmission immediately.
+ 
+Delay versus suppression
+AC report delay determines when an AC event is transmitted. AC suppression in the i menu prevents the event from being
+transmitted at all. Do not confuse these settings.
+Timing examples
+ Example
+ What happens
+Check-in 24:00
+The subscriber creates a check-in about once every 24 hours.
+AC delay RM
+After about 100 minutes of AC loss, an additional random 0-60 minute delay is selected.
+AC delay 00
+After about 100 minutes of AC loss, the AC-fail message is ready without an added delay.
+NTR delay 10
+The subscriber normally spaces its own queued reports by at least 10 seconds.
+AC suppressed Y
+No AC-fail report is sent, regardless of the AC-delay value.
+
+PAGE 11 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 11
+6. h - Zone programming
+Zone programming controls Fire/Trouble packet reporting, the electrical interpretation of every zone and whether each zone
+reports a return to normal.
+Reset required after zone changes
+After completing zone programming, press the physical Reset button. The reset initializes the inputs under their new
+configuration and clears former conditions. Without it, an input changed to Bypass or another type can continue to show a
+confusing old alarm or trouble state.
+Fire/Trouble packet prompt
+FIRE/
+TROUBLE PKT-N: . [Y/N]
+ Selection
+ Behavior
+Y
+Transmit zone-trouble messages. Required for applicable fire/UL installations. Disables normal remote programming.
+N
+Do not transmit zone-trouble messages. Not appropriate for required fire trouble reporting.
+When Fire/Trouble packets are enabled, normal central-station remote programming is disabled. Completing f, g or h through a
+locally connected programmer can temporarily open an approximately 10-minute remote-programming window. The window
+begins after the local function is completed or after its 65-second timeout.
+Zone type entry
+ZONE BANK 0
+SET ZONE (BSF) B0
+OLD SSSSSSSS LOW>HI
+NEW ........
+Enter exactly eight letters, in zone order from 1 through 8. Entering more or fewer than eight values causes the prompt to repeat.
+ Code
+ Name
+ EOL-zone behavior
+B
+Bypassed
+Input is ignored; no normal zone alarm/trouble processing
+S
+Supervised
+Normal at approximately 2.2 kOhm; alarm on open or short
+F
+Fire supervised
+Normal at approximately 2.2 kOhm; trouble on open; alarm on short
+Why S and F are different
+Supervised S identifies both an open and short as an alarm-type abnormal condition. Fire-supervised F distinguishes a
+broken/open circuit as trouble and a short circuit as alarm. This distinction is normally required for fire-service inputs.
+
+PAGE 12 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 12
+6. Zone programming - model differences
+7788F
+All eight 7788F zone inputs are optically isolated 2.2 kOhm EOL inputs. Every input can be configured as B, S or F.
+7744F
+The 7744F uses two different physical input types.
+ Zones
+ Hardware
+ S behavior
+ F behavior
+1-4
+2.2 kOhm EOL
+Alarm on open or short
+Trouble on open; alarm on short
+5-8
+Reversing-voltage
+Alarm on polarity reversal or low/no voltage
+Alarm on reversal; trouble on low/no voltage
+Although both models accept the same eight-letter programming string, the physical meaning of zones 5-8 is different on a
+7744F. Confirm the board model before diagnosing a zone from resistance or voltage readings.
+Restoral programming
+SET RESTORAL (XR) B0
+OLD XXXXXXXX LOW>HI
+NEW ........
+ Code
+ Behavior
+R
+Transmit a report when the zone returns to its programmed normal state.
+X
+Do not transmit a return-to-normal report. Factory default.
+Restoral selection does not control whether the original alarm or trouble is sent. It controls only the later normal transition. For
+example, a short can create an alarm report and the return to 2.2 kOhm creates a restoral only if that zone is R.
+Zone-programming defaults
+ Parameter
+ Factory default
+Fire/Trouble packets
+N - not transmitted
+Zone type
+S on all eight zones
+Restoral
+X on all eight zones - not transmitted
+
+PAGE 13 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 13
+7. i - Operating modes
+SET MODES--OLD:NEW
+ENABLE RPTNG-Y: .
+SPRSS ACFAIL-N: .
+SPRSS CHRGFLT-N: .
+SPRSS GNDFLT-N: .
+Enable repeating
+ Value
+ Behavior
+Y
+Subscriber may receive and relay packets for other AES units. Factory default.
+N
+Subscriber does not serve as a packet repeater for other units.
+Repeating is a core mesh-network function. Disabling it may not prevent the subscriber from reporting its own events, but it
+removes the unit as a possible route for neighboring subscribers and can weaken the surrounding network. Leave repeating
+enabled unless the AES network administrator specifically directs otherwise.
+Suppress AC failure
+Y prevents AC-failure reports from being transmitted. N permits normal AC-failure reporting and is the factory default. UL
+installations require N. Suppression does not change AC detection; it hides the report.
+Suppress charger fault
+Y prevents battery-charger fault reports from being transmitted. N permits reporting and is the factory default. A charger fault can
+indicate that the subscriber is unable to maintain its standby battery. UL installations require N.
+Suppress ground fault
+Y prevents ground-fault reports from being transmitted. N permits reporting and is the factory default. Suppression does not
+correct an unintended connection to chassis/earth ground. UL installations require N.
+Recommended normal mode values
+Repeating Y; suppress AC fail N; suppress charger fault N; suppress ground fault N. Any deviation should be documented
+and approved for the particular installation.
+
+PAGE 14 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 14
+8. j - Reset RAM and the physical Reset button
+Reset RAM command
+j
+Y
+ENTER
+The j command restores most programmable parameters to factory defaults and then starts a self-test. It preserves the
+subscriber ID and cipher.
+ Parameter
+ After RAM reset
+ID and cipher
+Preserved
+Check-in
+24 hours
+AC report delay
+RM - random 0-60 minutes
+NTR report delay
+10 seconds
+Fire/Trouble packets
+N
+Zone types
+S on all zones
+Restorals
+X - not reported
+Repeating
+Y - enabled
+AC, charger and ground-fault suppression
+N - reporting allowed
+Use RAM reset for a previously used unit, an unknown configuration, suspected configuration corruption or a troubleshooting
+procedure specifically requiring defaults. Do not use it casually on a commissioned fire installation because the default zone and
+trouble-reporting values may not meet the approved design.
+Physical Reset button
+The board Reset button restarts the controller, runs the self-test, restarts network enrollment and turns monitor modes off. It
+does not erase normal programming.
+ Operation
+ Normal programming erased?
+ ID/cipher retained?
+ Monitor modes cleared?
+Physical Reset
+No
+Yes
+Yes
+j RAM reset
+Most settings
+Yes
+Yes
+
+PAGE 15 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 15
+9. d - Local Status Check
+SUB [revision] 7788F
+ID#:4923 (C)YYYY AES
+RT1:1234 LEVEL:002
+STAT:000 NETCON:3
+Model and revision
+The first line identifies the subscriber model and firmware revision.
+ID
+The locally programmed four-digit subscriber ID.
+RT1
+RT1 is the first-choice next hop at the top of the subscriber's dynamic routing table.
+ RT1 display
+ Meaning
+Another subscriber ID
+That unit is the current preferred first hop.
+IP-Link ID
+The subscriber is likely communicating directly with that IP-Link.
+0000
+Direct central/receiver-related route, depending on network configuration.
+XXXX
+Subscriber is not currently on the network.
+LEVEL
+ Value
+ Interpretation
+1
+Expected direct communication with the receiver/IP-Link.
+2
+Expected route through one other subscriber.
+3
+Expected route through two other subscribers.
+255
+Not on the network.
+Lower levels are generally preferable, but a stable multi-hop path can be valid. The displayed level can be increased if the top
+route has weak signal quality or reports faults.
+NETCON
+NETCON is an internal Network Connectivity confidence rating based on available routes and their quality; it is not simply a
+received-signal-strength reading.
+- 0 is best.
+ 
+- 0 through 6 are generally usable under these manuals.
+ 
+- 7 can indicate a problem with the subscriber or a unit in its route.
+ 
+- Fire alarm installations require NETCON 0 through 5.
+
+PAGE 16 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 16
+9. Status and self-test interpretation
+STAT and SELFTEST error values
+Status values are additive. A combined number can represent more than one condition.
+ Code
+ Meaning
+ Initial action
+000
+No self-test fault reported
+Continue normal verification
+001
+Low battery
+Check battery voltage, capacity and connections; reset
+002
+RAM checksum failure
+Reset; consider RAM reset if directed
+003
+001 plus 002
+Correct battery issue and investigate RAM
+004 / 006
+EEPROM failure
+Reset; service may be required
+008
+Analog-to-digital converter failure
+Reset; service may be required
+080
+Radio loopback-test failure
+Reset and recheck; service if persistent
+100
+AC not present
+Check transformer, branch circuit and AC wiring
+101
+AC absent plus low battery
+Correct both power conditions
+200
+Battery charger failure
+Inspect battery/charger; service may be required
+300
+100 plus 200
+AC absent and charger fault; battery-only operation may explain it
+400
+Ground fault, where supported
+Locate unwanted ground on zone/input wiring
+Example: 084 equals loopback failure 080 plus EEPROM failure 004. Repeated internal failures after reset may require
+AES-authorized service.
+Board LED interpretation
+ LED
+ Normal diagnostic meaning
+ALM
+Steady periodic blink indicates normal. Other patterns indicate low battery, zone abnormality or self-test failure.
+WA
+On means waiting for acknowledgement; steady blinking means not on network; off is normal.
+TX
+Illuminates while the radio transmitter is active.
+RX
+Illuminates when RF activity opens/uses the receiver. More than about 20 seconds steady can indicate interference.
+ALM blink patterns
+ Pattern
+ Meaning
+Steady single blink pattern
+System OK
+Short-short
+Low battery
+Short-long
+Zone alarm or trouble
+Short-short-long
+Low battery plus zone alarm/trouble
+Steady/no blink
+Self-test failure other than low battery
+
+PAGE 17 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 17
+10. Monitor and traffic diagnostics
+a - RX Monitor
+RX Monitor displays decoded network packets addressed to this subscriber. It proves that the subscriber is receiving and
+decoding traffic intended for it. It does not display every carrier or every packet exchanged by other subscribers.
+b - TX Monitor
+TX Monitor displays decoded protocol messages transmitted by this subscriber, including check-ins, alarms, troubles, text
+messages, retries and network-management packets.
+c - Monitor All
+Monitor All expands receive monitoring to decoded AES network traffic within RF range. RX Monitor must already be enabled.
+a   -> RX MONITOR ON
+c   -> MONITOR ALL ON
+b   -> TX MONITOR ON (optional, adds local transmissions)
+Monitor All does not display every signal that opens squelch. The RX LED can illuminate for interference, another protocol or an
+undecodable signal without producing a terminal line.
+Packet-line format
+<1234 #1A-> 0000 1234 -> FF01 <D_CHKIN>>
+ Field
+ Meaning
+First 1234
+ORIG - subscriber that originally created the packet
+1A
+PN - packet sequence number from 00 through FF
+0000
+DEST - final destination; 0000 commonly represents the central receiver
+Second 1234
+FROM - unit currently transmitting the packet
+FF01
+TO - immediate next-hop recipient
+D_CHKIN
+Packet identifier - in this example, a data check-in
+Common packet identifiers
+ Identifier
+ Meaning
+D_CHKIN
+Subscriber check-in data
+P_ACK
+Packet acknowledgement
+P_RR
+Receiver Ready broadcast used to help maintain routing information
+
+PAGE 18 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 18
+10. Monitor diagnostics - practical use
+What each monitor proves
+ Observation
+ What it proves
+ What it does not prove
+RX Monitor line
+A packet for this subscriber was decoded
+That all traffic in the area is visible
+TX Monitor line
+The subscriber created/transmitted a protocol packet
+That another unit acknowledged it
+Monitor All line
+A nearby AES packet was decoded
+That the packet belongs to this account/network
+RX LED only
+RF energy opened/used the receiver
+That valid AES data was decoded
+TX LED only
+The transmitter keyed
+That a useful packet reached the central station
+Why Monitor All can show ON but remain blank
+- RX Monitor a was not enabled before Monitor All c.
+ 
+- No AES packets are currently being transmitted within usable range.
+ 
+- The antenna, coax or radio receiver path is defective.
+ 
+- The received signal is interference or a different protocol.
+ 
+- Traffic is too weak or corrupted to decode.
+ 
+- The radio frequency/channel does not match the surrounding AES network.
+ 
+Monitor cautions
+- a, b and c are toggles; pressing the same letter again turns that mode off.
+ 
+- Incoming text messages cannot be received while any monitor function is active.
+ 
+- Turn all monitor functions off when finished, or press the physical Reset button.
+ 
+Recommended monitor sequence
+Reset the subscriber, wait for enrollment, press a, then c, then b if local transmit traffic is also required. Record several
+complete packet/acknowledgement pairs before judging the route.
+
+PAGE 19 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 19
+11. e - Key transmitter
+KEYING TX..
+TIMEOUT
+The transmitter is keyed for approximately five seconds and then shuts off automatically. Press Enter during the test to abort
+early; OK is displayed after an early abort. TIMEOUT at the end of the full interval is normal.
+Appropriate uses
+- Measure transmitter output power with an RF wattmeter.
+ 
+- Measure forward and reflected power or antenna-system SWR.
+ 
+- Check coax, connectors, antenna tuning and transmit current draw.
+ 
+- Confirm that the radio and TX indicator key.
+ 
+What the key test does not prove
+- Correct packet modulation.
+ 
+- Correct subscriber ID or cipher.
+ 
+- Network enrollment.
+ 
+- Reception or acknowledgement by another subscriber.
+ 
+- Delivery of an event to the central station.
+ 
+Because this function primarily keys the carrier for RF measurements, it may not create a normal decoded TX Monitor line.
+Ctrl+Z - Display Zone Status
+Zx12,Z1-8:0100-1000
+The hexadecimal value is a bit pattern representing abnormal zone-input conditions. The character string gives the state of
+zones 1 through 8 from left to right, with a hyphen between zones 4 and 5.
+ Character
+ Meaning
+0
+Zone is normal under its current programming
+1
+Faulted, alarm or otherwise not normal
+T
+Trouble
+Use this command immediately after zone programming and reset. An unexpected 1 or T can indicate a wrong zone type,
+missing 2.2 kOhm EOL resistor, open/short circuit, reversed polarity, low/no voltage on a 7744F reversing input, or stale state
+because the unit was not reset after programming.
+
+PAGE 20 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 20
+11. Ctrl+T - Display Routing Table
+4.5678,L:02,N:5,Q:83
+3.7888,L:01,N:5,Q:03
+2.BB12,L:00,N:0,Q:03
+1.AA11,L:00,N:0,Q:03
+The PC terminal can display as many as eight route entries. The handheld's four-line screen normally shows only the
+highest-priority entries. Entries are displayed in reverse visual order so route preference 1 remains visible on the handheld.
+ Field
+ Meaning
+1. through 8.
+Route preference; 1 is the current first choice
+ID
+Subscriber or IP-Link available as a next hop
+L
+That neighbor's Link Layer / Level
+N
+That neighbor's NETCON
+Q
+Received carrier/data quality
+Signal quality Q
+Q has two meaningful characters.
+ Example
+ Interpretation
+03
+Carrier detect was active and all three repeated data copies were decoded; best
+02
+Carrier detect active; two of three copies decoded
+01
+Carrier detect active; only one copy decoded
+83
+Carrier detect was not solid, but all three copies decoded
+82 / 81
+Weak or marginal carrier and only two/one copies decoded
+The first character is 0 when carrier detect was on and 8 when it was not reliably on. The second character is the number of the
+three repeated data copies that were decoded. Therefore 03 is best and 81 is among the poorest usable observations.
+Route changes
+The table is dynamic. If the preferred route repeatedly fails to return a packet acknowledgement, the subscriber can remove that
+entry from preference 1 and promote another route. The manuals describe removal after seven failed attempts.
+
+PAGE 21 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 21
+12. Ctrl+U - Text messages
+ENTER MSG:
+[Enter up to 200 ASCII characters, then press ENTER]
+A text message can be sent from the subscriber to the central station. The subscriber exits text-entry mode if no data is entered
+for approximately 65 seconds.
+- Maximum message length: 200 ASCII characters.
+ 
+- Press Enter to send.
+ 
+- The subscriber cannot perform normal transmit or receive operation while text-entry mode is active.
+ 
+- Incoming central-station text is displayed on the connected programmer/terminal and normally produces a beep.
+ 
+- Incoming text cannot be received while any monitor mode is active.
+ 
+Text message versus event test
+A successful text message demonstrates useful two-way network communication, but it is not a substitute for testing
+every required alarm, trouble and restoral event with the central station.
+13. Troubleshooting
+Readable prompts but commands do not work
+- Verify flow control is None.
+ 
+- Verify DB9 pin 7 is jumpered to pin 8 at the breakout.
+ 
+- Recheck yellow J1 pin 2 to DB9 pin 3 TXD.
+ 
+- Use lower-case a through j, not the handheld key combination on the PC.
+ 
+- Ensure no other program has COM1 open.
+ 
+Unreadable or garbled output
+- Confirm 4800 baud, 8 data bits, no parity and 1 stop bit.
+ 
+- Confirm FT_PROG inversion is OFF for every FT232R signal.
+ 
+- Confirm blue J1 pin 1 reaches DB9 pin 5 ground.
+ 
+- Confirm green J1 pin 3 reaches DB9 pin 2 RXD.
+ 
+- Do not connect physical J1 pin 6: it is white in Case A and blue in reversed Case B.
+ 
+Subscriber transmits but does not enroll
+- Verify the four-digit ID is valid and unique.
+ 
+- Verify the cipher matches the network.
+ 
+- Inspect antenna, coax, connectors and frequency/channel.
+ 
+- Watch WA: continuous blinking means the subscriber is not on the network.
+ 
+- Use d; RT1:XXXX or LEVEL:255 confirms no usable network enrollment.
+
+PAGE 22 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 22
+13. Troubleshooting - continued
+Monitor All is blank
+- Enable a before c.
+ 
+- Confirm nearby network activity exists.
+ 
+- Observe the RX LED; no RX activity suggests no usable RF energy is reaching the receiver.
+ 
+- A steady RX LED for more than about 20 seconds can indicate interference.
+ 
+- Keying with e is a carrier test and may not create decoded traffic.
+ 
+Zone reads alarm or trouble unexpectedly
+- Confirm the correct model: 7744F zones 5-8 are reversing-voltage inputs.
+ 
+- Confirm the zone's B/S/F programming.
+ 
+- Measure the EOL resistance at the subscriber terminals; account for connected-panel loading.
+ 
+- Check for open, short, reversed polarity or low/no voltage.
+ 
+- Press physical Reset after zone changes, then check Ctrl+Z again.
+ 
+Acknowledgement delay
+An acknowledgement delay occurs when a transmitted data packet does not receive its packet acknowledgement within the
+programmed acknowledgement-delay time. The manuals identify a 60-second default acknowledgement delay. Investigate route
+quality, packet retries, WA behavior, the routing table and surrounding network health.
+When a persistent self-test code remains
+- Press physical Reset and record the complete code.
+ 
+- Correct power, battery, charger or ground-fault conditions first.
+ 
+- Use RAM reset only when appropriate and after recording programming.
+ 
+- A persistent EEPROM, ADC or loopback failure may require AES-authorized service.
+
+PAGE 23 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 23
+13. Commissioning and closeout checklist
+ Step
+ Technician action
+ Acceptable result
+1
+Notify central station; place account on test
+Testing authorized and documented
+2
+Verify wiring, antenna, battery and AC
+No unsafe or reversed connections
+3
+Physical Reset
+SELFTEST-PASS or understood power-only code
+4
+Run d Local Status
+Correct model/ID; STAT acceptable; RT1 valid; LEVEL not 255; NETCON
+compliant
+5
+Run Ctrl+T Routing Table
+Multiple healthy routes when available; Q values understood
+6
+Run Ctrl+Z Zone Status
+Every zone agrees with field condition
+7
+Review f identity
+Unique correct ID and correct cipher
+8
+Review g timers
+Check-in/delays match approved requirements
+9
+Review h zones
+Fire/Trouble, B/S/F and restorals match drawings
+10
+Review i modes
+Repeating and suppression settings approved
+11
+Use a/c/b diagnostics as needed
+Packets and acknowledgements observed; monitors then turned off
+12
+Test every required alarm/trouble/restoral
+Correct central-station account, zone and event received
+13
+Restore normal conditions and reset
+No unexplained alarm, trouble or monitor state
+14
+Remove account from test
+Central station confirms normal
+15
+Document final values
+Service record updated and retained
+Do not close the job on RF indication alone
+TX LEDs, Monitor output and a good route are useful diagnostics, but final acceptance requires confirmation that the
+monitoring system received and correctly interpreted every required signal.
+
+PAGE 24 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 24
+Suggested programming record
+ Field
+ Recorded value
+Model / firmware
+____________________________________________
+Subscriber ID
+____________________________________________
+Cipher verified by
+____________________________________________
+Check-in
+____________ hours ____________ minutes
+AC report delay
+____________________________________________
+NTR report delay
+____________________________________________
+Fire/Trouble packets
+Y / N
+Zone types 1-8
+____________________________________________
+Restorals 1-8
+____________________________________________
+Repeating
+Y / N
+AC / charger / ground suppression
+____________________________________________
+RT1 / Level / STAT / NETCON
+____________________________________________
+Central station test confirmation
+____________________________________________
+
+PAGE 25 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 25
+14. Technician quick reference
+ PC key
+ Function
+ Critical note
+f
+ID and cipher
+Upper-case hex; blank Enter preserves value
+g
+Timers
+24 h / RM / 10 s defaults
+h
+Zones
+Reset after changes
+i
+Modes
+Normal: repeating Y; suppression N
+j
+RAM reset
+Erases most settings; keeps ID/cipher
+a
+RX Monitor
+Packets addressed to this subscriber
+b
+TX Monitor
+Packets transmitted by this subscriber
+c
+Monitor All
+Requires a already ON
+d
+Status
+Check RT1, LEVEL, STAT, NETCON
+e
+Key transmitter
+Carrier/power test; not network proof
+Ctrl+T
+Routing table
+Review preference, L, N and Q
+Ctrl+U
+Text message
+Up to 200 characters
+Ctrl+Z
+Zone status
+0 normal, 1 abnormal, T trouble
+Normal serial and FTDI setup
+COM1 | 4800 baud | 8 data bits | no parity | 1 stop bit
+Flow control: None | FT_PROG inversion: all OFF
+DB9 pin 7 RTS jumpered to pin 8 CTS
+Normal monitor sequence
+Physical Reset
+a  RX Monitor ON
+c  Monitor All ON
+b  TX Monitor ON, if needed
+Toggle a/b/c OFF or reset when finished
+Normal key configuration defaults
+Check-in 24:00 | AC delay RM | NTR delay 10 seconds
+Trouble packets N | Zones SSSSSSSS | Restorals XXXXXXXX
+Repeating Y | AC/charger/ground suppression N
+
+PAGE 26 OF 26
+========================================================================
+AES 7744F / 7788F COMPLETE TECHNICIAN GUIDE
+Programming and field diagnostics
+Verify final programming with the central station and applicable installation requirements.
+Page 26
+Official sources and document notes
+AES 7744F Installation and Operation Manual
+Document 40-7744, Revision 6, August 30, 2016
+https://aes-corp.com/wp-content/uploads/2020/07/7744-Install-Manual.pdf
+AES 7788F Installation and Operation Manual
+Document 40-7788, Revision 6, August 30, 2016
+https://aes-corp.com/wp-content/uploads/2020/07/40-7788-Rev-6.pdf
+FTDI FT232R datasheet
+https://ftdichip.com/wp-content/uploads/2020/08/DS_FT232R.pdf
+Known manual typographical issues
+The AES Rev 6 manuals contain a few apparent editing inconsistencies, including a 7744F zone-reset paragraph that
+names the 7788F, and a testing checklist that can confuse Ctrl+T routing-table and Ctrl+Z zone-status usage. The
+detailed command sections are used in this guide: Ctrl+T displays the routing table and Ctrl+Z displays zone status.
+Guide status
+This technician guide consolidates the information required for field programming and diagnostics. It does not replace the full
+AES installation manuals, approved drawings, central-station procedures, listing limitations or applicable code.
+Verified wiring in this guide was tested using an FTDI US232R/FT232R USB-to-serial adapter, a DB9 breakout board and
+COM1. A readable SETUP UNIT / ENTER ID prompt was obtained with standard FTDI signal polarity.
+ Technician
+ Date
+ Site / account
+ Subscriber ID

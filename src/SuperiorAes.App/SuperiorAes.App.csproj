@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SuperiorAes.Programmer</AssemblyName>
+    <RootNamespace>SuperiorAes.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>0.2.0</Version>
+    <Authors>Superior Fire &amp; Security</Authors>
+    <Product>Superior AES Programmer</Product>
+    <Description>Field programming and diagnostic utility for legacy AES 7744F and 7788F subscribers.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperiorAes.Core\SuperiorAes.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Hardware\*.png" />
+    <Resource Include="Assets\Training\*-cover.png" />
+    <Content Include="Assets\Training\*.pdf" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\Training\*.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

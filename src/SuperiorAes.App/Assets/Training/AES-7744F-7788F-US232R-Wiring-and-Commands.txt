@@ -1,0 +1,124 @@
+PAGE 1 OF 2
+========================================================================
+AES IntelliNet 7744F / 7788F
+US232R / DB9 BREAKOUT WIRING
+Verified field wiring | Page 1 of 2
+FINAL WORKING CONNECTION
+6P6C modular plug shown at the copper-contact end, contacts facing you.
+RADIO J1 - RJ11/6P6C
+COPPER CONTACTS FACING YOU
+PIN 1  <---  LEFT TO RIGHT  --->  PIN 6
+1
+ BLUE
+GND
+2
+ YELLOW
+TXD
+3
+ GREEN
+RXD
+4
+ RED
+DTR
+5
+ BLACK
+DSR
+6
+ WHITE
++12 V
+US232R -> DB9 BREAKOUT
+Use terminal labels and pin numbers
+DB9 PIN 5
+GND
+BLUE
+DB9 PIN 3
+TXD
+YELLOW
+DB9 PIN 2
+RXD
+GREEN
+DB9 PIN 4
+DTR
+RED
+DB9 PIN 6
+DSR
+BLACK
+JUMPER: DB9 PIN 7 RTS <-> PIN 8 CTS
+PIN 6 WHITE = +12 V FROM RADIO
+DO NOT CONNECT TO THE DB9 OR FTDI ADAPTER
+Insulate this conductor.
+TERA TERM SERIAL SETTINGS
+Port: COM1
+Speed: 4800 baud
+Data: 8 bits | Parity: none | Stop: 1
+Flow control: none
+FT_PROG: STANDARD POLARITY
+All signal inversion options OFF
+This exact wiring produced readable serial output from the radio during the COM1 test.
+
+PAGE 2 OF 2
+========================================================================
+AES IntelliNet 7744F / 7788F
+HANDHELD KEY EQUIVALENTS
+Verified field wiring | Page 2 of 2
+HANDHELD PROGRAMMER -> PC KEYBOARD COMMANDS
+Use the PC key sequence below in Tera Term. Letter commands are lower-case. The first five rows are complete key equivalents; the AES quick-command chart assigns a named
+standalone action only to F5 / Ctrl+U.
+ Handheld key
+ PC / Tera Term
+ Command or function
+F1
+Ctrl+Q
+Context/menu key equivalent
+F2
+Ctrl+R
+Context/menu key equivalent
+F3
+Ctrl+S
+Context/menu key equivalent
+F4
+Ctrl+T
+Context/menu key equivalent
+F5
+Ctrl+U
+Send Text Message
+Shift+F1
+a
+RX Monitor On / Off (toggle)
+Shift+F2
+b
+TX Monitor On / Off (toggle)
+Shift+F3
+c
+Monitor All On / Off (toggle)
+Shift+F4
+d
+Test Status
+Shift+F5
+e
+Key Transmitter for 5 seconds
+Ctrl+F1
+f
+Setup Unit - ID number and Cipher
+Ctrl+F2
+g
+Set Timers - Check-In Interval and AC Report Delay
+Ctrl+F3
+h
+Set Zones - Supervised / Fire / Bypassed / Restoral
+Ctrl+F4
+i
+Set Modes - Repeating and AC Fail Suppression
+Ctrl+F5
+j
+Reset RAM - Y/N; keeps ID number and Cipher
+Operating notes
+Safe reset / monitor notes
+- Type a through j as lower-case commands.
+- When entering hexadecimal values, use upper-case A-F.
+- Set Tera Term backspace handling to destructive if available.
+- Press Enter after a requested value.
+- Commands a, b, and c toggle monitoring; turn them off when finished.
+- Command j resets RAM/defaults except the ID number and Cipher; answer its Y/N prompt carefully.
+- If a monitor mode is left on, reset the unit after work is complete.
+Reference manuals: AES 7744F Installation Manual - https://aes-corp.com/wp-content/uploads/2020/07/7744-Install-Manual.pdf   |   AES 7788F Installation Manual - https://aes-corp.com/wp-content/uploads/2020/07/40-7788-Rev-6.pdf

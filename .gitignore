@@ -1,0 +1,51 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.tmp
+*.log
+artifacts/
+TestResults/
+
+# Dependencies, generated output, and caches
+node_modules/
+.next/
+.vinext/
+.wrangler/
+dist/
+build/
+coverage/
+test-results/
+outputs/
+work/
+.cache/
+temp/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Generated releases, installers, and transfer archives
+release/
+*.zip
+*.7z
+*.rar
+*.exe
+*.msi
+
+# The simulation-only web demo is a separate Git repository.
+# Its source, history, and existing Sites identity are preserved there.
+/web-demo/
+
+# Editors and operating systems
+.vscode/
+.DS_Store
+Thumbs.db

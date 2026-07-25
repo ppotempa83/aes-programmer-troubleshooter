@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "export_date": "2026-07-25",
+  "source": {
+    "thread_id": "019f963f-b24a-7e90-aa50-dbdc476c4441",
+    "title": "Recall AES USB app discussions",
+    "workspace": "C:\\Users\\Pete Potempa\\OneDrive\\Documents\\SFS AES App"
+  },
+  "project": {
+    "name": "Superior AES Programmer",
+    "desktop_version": "0.2.0",
+    "desktop_package": "artifacts/Superior-AES-Programmer-v0.2.0-win-x64.zip",
+    "desktop_package_sha256": "BD38E95551DF99F95307597CB0F85762E5E1E05E07B654AC06E4DDF858DCB449",
+    "web_directory": "web-demo",
+    "web_commit": "3ea558c2beb8c0c38309f4e6d47041cfe729ed59",
+    "public_url": "https://superior-aes-field-simulator.ppotempa83.chatgpt.site",
+    "sites_project_id": "appgprj_6a64214aac088191bd4aa80a69b98993",
+    "sites_version_id": "appgprj_6a64214aac088191bd4aa80a69b98993~appgver_303c638c41008191a80a43a3dc49eb5d"
+  },
+  "validation": {
+    "desktop_tests": "16/16 passed",
+    "web_tests": "2/2 passed",
+    "desktop_ui_smoke_test": "passed",
+    "web_desktop_viewport": "1440x900 passed",
+    "web_mobile_viewport": "390x844 passed",
+    "page_level_horizontal_overflow": "none"
+  },
+  "security": {
+    "credentials_included": false,
+    "cipher_storage_allowed": false,
+    "google_api_key_storage_allowed": false,
+    "web_hardware_access_allowed": false,
+    "web_rf_transmission_allowed": false,
+    "aes_j1_pin_6_rule": "Do not connect; +12 V"
+  },
+  "import": {
+    "primary_prompt": "transfer/IMPORT-PROMPT.md",
+    "project_summary": "transfer/START-HERE.md",
+    "chat_summary": "transfer/ESSENTIAL-CHAT-HISTORY.md"
+  }
+}

@@ -1,0 +1,1016 @@
+PAGE 1 OF 18
+========================================================================
+AES IntelliNet 7744F / 7788F
+NETCON 6/7
+Signal Survey and Antenna Guide
+Routing-table analysis, RX/TX/Monitor All diagnostics,
+site surveying, antenna choice, coax and RF testing
+FIELD OBJECTIVE
+Determine whether poor NETCON is caused by local RF, antenna/coax,
+interference, subscriber configuration or weak upstream mesh routes.
+Select the lowest-gain antenna and shortest practical coax that produces
+stable fire-compliant routing and verified central-station delivery.
+Technician field edition | July 24, 2026
+Use with the complete 7744F/7788F technician guide
+
+PAGE 2 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 2
+1. Scope, safety and acceptance target
+This guide is for diagnosing persistent NETCON 6 or 7 on AES IntelliNet 7744F and 7788F legacy fire subscribers. It uses the
+subscriber's Local Status, Routing Table, RX Monitor, TX Monitor and Monitor All functions together with controlled
+antenna-location and RF-path tests.
+Fire-system target
+The legacy subscriber manuals describe NETCON 0-6 as generally usable and 7 as a possible problem, but require fire
+installations to achieve NETCON 0-5. Current AES antenna-placement guidance likewise targets NETCON 5 for fire. A
+constant 6 or 7 on a 7744F/7788F fire subscriber requires investigation.
+Safety requirements
+- Notify the central station and place the account on test before reset, keying or event tests.
+ 
+- Never key the transmitter without a correct 50-ohm antenna, dummy load or approved RF test instrument connected.
+ 
+- Keep antennas and installation equipment away from electrical conductors. AES recommends at least 10 feet from external
+ power lines.
+- Use fall protection, lightning safety and qualified personnel for rooftop work.
+ 
+- Remote outdoor antennas require approved surge protection, weatherproofing, grounding and code-compliant installation.
+ 
+- Do not change subscriber frequency, power, cipher or network engineering parameters without authorization.
+ 
+What constitutes a good final result
+ Check
+ Preferred field result
+Local Status
+Correct ID, STAT 000 or fully explained condition, valid RT1, LEVEL not 255
+NETCON
+0-5 for 7744F/7788F fire service
+Routing table
+Stable routes; preferably more than one useful path; Q02/Q03 routes available
+WA indicator
+Off after successful enrollment and acknowledgement
+Packet behavior
+Transmissions followed by acknowledgements without persistent retrying
+Central station
+Every required test event received and interpreted correctly
+Guide sequence
+Do not begin by installing the largest antenna. First determine whether the weakness is local RF, the feed line, interference,
+configuration or the upstream mesh. Then change one variable at a time and record the result after the routing table has had
+time to rebuild.
+
+PAGE 3 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 3
+2. NETCON is not a signal-strength meter
+NETCON is the subscriber's internal Network Connectivity rating. It reflects confidence in available paths through the mesh, not
+a direct measurement in dBm. Antenna work can improve NETCON when local RF links are poor, but an antenna cannot repair
+unhealthy routes farther upstream.
+ Observation
+ Likely implication
+NETCON 6/7 with Q81/Q82/Q83 routes
+Local RF, placement, antenna, coax or interference is a strong suspect
+NETCON 6/7 with several Q03 routes
+Local RF may be good; investigate neighbors' N/LEVEL and upstream mesh health
+RT1:XXXX or LEVEL:255
+Subscriber is not enrolled; check cipher, frequency, identity and usable network coverage
+Route table nearly empty
+Insufficient audible peers, severe attenuation, wrong channel/cipher or receiver-path problem
+RT1 changes repeatedly
+Unstable RF, intermittent interference, poor acknowledgements or unstable neighbors
+Good status outside but poor inside
+Building attenuation or indoor placement problem
+Poor outside and inside
+Network coverage, radio/coax fault or need for an engineered external antenna solution
+NETCON interpretation
+ NETCON
+ Legacy-manual interpretation
+ Field use for these fire subscribers
+0-4
+Increasingly healthy as the number decreases
+Normally favorable; still verify routes and central delivery
+5
+Acceptable and required maximum for fire
+Survey target
+6
+Generally usable in legacy description
+Not fire-compliant target; improve or escalate
+7
+May indicate a problem in the unit or its route
+Unacceptable; isolate cause
+Why a good antenna can still leave NETCON at 6
+- The best-heard neighbors may themselves have high NETCON or high link levels.
+ 
+- All usable neighbors may depend on the same upstream path, providing little route diversity.
+ 
+- A neighboring repeater may have a fault, weak onward RF path or be leaving the network.
+ 
+- The local unit may hear packets well but acknowledgements do not reliably return.
+ 
+- Mesh density near the site may be inadequate even though one strong peer is audible.
+ 
+Core diagnostic rule
+Use Q to judge the local RF link to each routing-table peer. Use the peer's N and L values to judge the quality of the route
+beyond that peer. Use packet acknowledgements to confirm end-to-end behavior.
+
+PAGE 4 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 4
+3. Capture a baseline before changing hardware
+Reset clears monitor modes and forces a fresh enrollment/routing sequence. Record the initial condition first whenever possible.
+Baseline procedure
+ Step
+ Action
+ Record
+1
+Confirm account is on test
+Operator/time/contact
+2
+Inspect antenna, coax, connectors, power and board LEDs
+Visible defects, water, corrosion, loose/crushed cable
+3
+Press physical Reset
+SELFTEST result and WA behavior
+4
+Allow as long as 5 minutes for a stable NETCON/table
+NETCON at 1, 3 and 5 minutes
+5
+Press d
+ID, RT1, LEVEL, STAT, NETCON
+6
+Press Ctrl+T
+Every route: preference, ID, L, N and Q
+7
+Press a, then c; add b if needed
+Unique IDs heard, packet/acknowledgement behavior, retries
+8
+Turn monitors off or reset
+Normal operating state restored
+Status command
+d
+SUB [revision] 7788F
+ID#:4923 (C)YYYY AES
+RT1:1234 LEVEL:002
+STAT:000 NETCON:6
+ Field
+ What to look for
+RT1
+Stable preferred next hop. XXXX means not on network.
+LEVEL
+Expected hops to IP-Link/receiver. 255 means not on network.
+STAT
+Correct power, battery, loopback, EEPROM, charger and ground-fault issues before judging RF.
+NETCON
+Use only after the table has had time to rebuild.
+LED clues
+ LED
+ Diagnostic meaning
+WA
+On: waiting for acknowledgement. Blinking: not on network. Off: normal.
+TX
+Radio transmitter active.
+RX
+Receiver sees RF energy. Steady for about 20 seconds or more can indicate interference.
+ALM
+Normal steady blink pattern or a fault pattern for battery/zone/self-test conditions.
+
+PAGE 5 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 5
+4. Read the routing table as an RF survey instrument
+4.5678,L:02,N:5,Q:83
+3.7888,L:01,N:5,Q:03
+2.BB12,L:00,N:0,Q:03
+1.AA11,L:00,N:0,Q:03
+ Field
+ Meaning
+ Survey use
+Preference
+1 is the current first-choice route
+Watch for constant reshuffling or one-route dependence
+ID
+Subscriber or IP-Link next hop
+Count unique viable peers and identify recurring weak paths
+L
+Peer's Link Layer / LEVEL
+Same or lower than the local unit is normally desirable
+N
+Peer's NETCON
+Shows upstream route confidence beyond the local RF hop
+Q
+Local received carrier/data quality
+Primary local RF comparison between antenna locations
+Decode Q correctly
+Q is a two-character quality code, not an RSSI or dBm reading. The first character indicates whether Carrier Detect was active
+during reception. The second character indicates how many of the three repeated data copies were decoded.
+ Q
+ Carrier/data interpretation
+ Field rating
+03
+Carrier Detect on; all three copies decoded
+Best
+02
+Carrier Detect on; two copies decoded
+Good
+01
+Carrier Detect on; one copy decoded
+Degraded
+83
+Carrier Detect not solid; all three copies decoded
+Usable data but weak carrier indication
+82
+Carrier Detect not solid; two copies decoded
+Marginal
+81
+Carrier Detect not solid; one copy decoded
+Poor
+A useful route
+AES site-survey guidance describes a good route as a peer at the same or lower Link Layer, with NETCON 5 or 6 and Q02 or
+Q03. For the local 7744F/7788F fire subscriber, the completed installation should still achieve local NETCON 5 or better.
+Routing patterns and conclusions
+ Pattern
+ Conclusion
+One Q03 route, no alternatives
+Strong local link but weak redundancy; antenna gain alone may not create mesh density
+Several Q8x routes
+Move antenna, improve height/clearance, inspect coax or test outdoors
+Several Q03 routes with N6/7
+Local RF is likely adequate; escalate upstream network optimization
+Q alternates 03 to 81
+Intermittent obstruction, interference, loose coax/connector or moving RF environment
+Best Q improves outside
+Building penetration is the limiting factor; remote antenna is justified
+
+PAGE 6 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 6
+5. Use RX, TX and Monitor All to verify the path
+Enable monitors in the correct order
+a  -> RX MONITOR ON
+c  -> MONITOR ALL ON
+b  -> TX MONITOR ON, when local transmit visibility is required
+Monitor All requires RX Monitor to be ON. These modes display decoded AES packets, not every RF signal that activates the
+RX LED. Monitor modes prevent incoming text messages; turn them off when finished or press Reset.
+Packet format
+<1234 #1A-> 0000 1234 -> FF01 <D_CHKIN>>
+ Field
+ Meaning
+ORIG 1234
+Subscriber that originally created the packet
+PN 1A
+Packet sequence number from 00 through FF
+DEST 0000
+Final destination, commonly the central receiver
+FROM 1234
+Unit currently transmitting the packet
+TO FF01
+Immediate next hop
+D_CHKIN
+Packet type; this example is check-in data
+Packets useful during troubleshooting
+ Packet
+ Meaning
+ How to use it
+D_CHKIN
+Data check-in
+Confirm origin, selected next hop and network activity
+P_ACK
+Packet acknowledgement
+Verify that an outbound packet received a return acknowledgement
+P_RR
+Receiver Ready broadcast
+Observe peers maintaining routing awareness
+Monitor conclusions
+ Observation
+ Likely interpretation
+TX packet followed quickly by matching P_ACK
+The selected route completed a useful two-way exchange
+Repeated TX packet number with no P_ACK
+Acknowledgement path failure, weak route, congestion or remote peer issue
+WA remains on after TX
+Subscriber is waiting for acknowledgement
+Monitor All hears many IDs but table remains
+poor
+Traffic is audible, but peers may not qualify as good routes
+RX LED active but no decoded lines
+Interference, other protocol, wrong frequency traffic or undecodable AES signal
+No RX LED and no Monitor All traffic
+No audible RF energy; inspect receiver path, location, antenna and network coverage
+
+PAGE 7 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 7
+6. Decision process for constant NETCON 6/7
+ Decision
+ If YES
+ If NO
+STAT is 000 or the displayed condition is fully explained?
+Continue to enrollment check
+Correct power, battery, loopback, charger or
+ground fault first
+RT1 is valid and LEVEL is not 255?
+Continue to routing-table analysis
+Verify ID, cipher, frequency, antenna and network
+availability
+At least two routes have Q02/Q03?
+Judge peers' N and L values
+Treat as local RF/placement/feed-line problem
+Peers' N and L indicate healthy onward paths?
+Analyze acknowledgements and stability
+Escalate upstream mesh density/neighbor health
+Packets receive consistent P_ACK responses?
+Repeat survey at alternate locations
+Investigate chosen route, interference and
+two-way RF balance
+Outside free-air test reaches NETCON 5?
+Building attenuation; design remote antenna
+Test higher antenna/gain and evaluate network
+coverage
+Wattmeter/coax tests pass?
+Antenna location/network design remains
+Repair radio, coax, connector, surge protector or
+antenna
+Root-cause signatures
+ Root cause
+ Typical signature
+Indoor attenuation
+Outside Q/NETCON clearly better than inside; metal/low-grade location
+Bad coax/connector
+Results worsen when remote cable is added; reflected power high; movement changes reading
+Wrong antenna/frequency
+Poor Q everywhere; no stable improvement from placement
+Interference
+RX LED stays active, decoded traffic sparse, Q unstable across time
+Weak upstream mesh
+Local routes Q03 but peer N/LEVEL poor and local NETCON remains high
+Insufficient local peers
+Routing table has one or very few entries even in clear outdoor location
+Wrong cipher/channel
+No enrollment, RT1 XXXX, LEVEL 255, useful network packets absent
+Low transmit performance
+Others audible, but local packets lack P_ACK; wattmeter or supply test fails
+Do not solve every NETCON problem with gain
+If multiple peers are already Q03 but their N and L values are poor, more antenna gain can create overreach without
+repairing the upstream network. Document the table and involve the network administrator.
+
+PAGE 8 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 8
+7. Isolate antenna/feed line, transceiver or network signal
+Use controlled substitution. Change only one part at a time and use the same location, wait interval and routing-table capture. A
+continuity test alone cannot prove that an antenna or coax works correctly at RF.
+Three controlled reference tests
+ Reference test
+ What it isolates
+Radio into known-good 50-ohm load through wattmeter
+Transmitter output and power supply without the installed antenna/feed line
+Original subscriber with known-good short cable and
+matched antenna
+Installed coax, surge protector, adapters and antenna
+Known-good compatible subscriber/transceiver on
+same authorized frequency at same antenna location
+Original transceiver receive/transmit performance versus external network conditions
+Control conditions
+A comparison transceiver must be authorized, frequency-compatible and connected under central-station test procedures.
+Do not introduce a duplicate active subscriber ID. Record which board, transceiver, ID and antenna are used for every
+trial.
+Antenna or feed-line fault signature
+- Forward power is normal into a known-good dummy load.
+ 
+- Reflected power is excessive only when the installed feed line/antenna is connected.
+ 
+- A known-good short cable and matched antenna produce better Q and NETCON at the same location.
+ 
+- Results change when a connector or cable is moved.
+ 
+- Water, corrosion, loose connectors, braid shorts, crushed coax or an incorrect-frequency antenna is found.
+ 
+- The case-top antenna works, but adding the remote coax/surge/antenna makes the routing table worse.
+ 
+Transceiver or power fault signature
+- Forward power is low into a known-good 50-ohm load.
+ 
+- Supply voltage drops abnormally while e keys the transmitter.
+ 
+- Loopback/status fault 080 persists after reset.
+ 
+- With the same known-good antenna and location, a compatible known-good radio hears substantially more IDs or better Q.
+ 
+- Local TX packets repeatedly receive no P_ACK while a comparison unit at the same location succeeds.
+ 
+- Transmit power can be normal while receiver sensitivity is poor; compare Monitor All and routing tables between radios.
+
+PAGE 9 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 9
+7. Isolation decision table
+ Test result
+ Most likely category
+ Next action
+Low forward power into known-good load
+Transceiver, RF connector or DC supply
+Verify DC under key; inspect radio connection;
+service/replace authorized hardware
+Normal forward; reflected >10% on installed system
+Antenna/feed line mismatch
+Move wattmeter down the path and isolate cable,
+protector, connector or antenna
+Installed system poor; known-good short antenna good
+Permanent antenna/coax/mount
+Repair feed line or select/install correct antenna
+Original radio poor; known-good compatible radio good on same
+antenna
+Original transceiver/receiver path
+Confirm supply and connectors, then service/replace
+transceiver
+Both radios poor on known-good antenna outside
+External coverage, interference or upstream
+mesh
+Review Monitor All, route N/L and involve network
+administrator
+Both hear many Q03 peers but NETCON remains 6/7
+Upstream route quality/topology
+Document peer N/L values; do not add gain blindly
+RX LED steady; both radios decode little traffic
+Interference/noise at site
+Use service monitor, change location and investigate
+interference source
+Good RX/Monitor All; local TX lacks ACK; forward power good
+Two-way imbalance or peer/network issue
+Compare routes and P_ACK behavior; test alternate
+location/route
+Fast A/B sequence
+ Order
+ Configuration
+ Interpretation
+A
+Original radio + installed feed/antenna
+Baseline
+B
+Original radio + known-good short feed/antenna
+Improvement identifies installed feed/antenna problem
+C
+Original radio + known-good short feed/antenna outside
+Improvement over B identifies building attenuation/location
+D
+Known-good compatible radio + same known-good outside antenna
+Improvement over C identifies original transceiver/power path
+E
+Both radios poor in D conditions
+External network signal, interference or upstream topology
+Receiver comparison using Monitor All
+At the same antenna location, reset each radio, enable a then c, use the same capture interval and count unique decoded IDs.
+Compare the full routing table and Q values. A materially weaker result from one radio under identical conditions points to its
+receiver path. Similar weak results from both radios point away from the transceiver and toward location, interference or lack of
+network coverage.
+Do not condemn a receiver from RX LED behavior alone
+The RX LED indicates RF energy, including noise. Receiver performance must be compared by decoded packets,
+route-table Q, and a known-good radio/antenna control.
+
+PAGE 10 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 10
+8. Controlled site-survey procedure
+Phase A - outside free-air reference
+Before committing to an indoor location, establish whether viable mesh coverage exists outside the facility. AES notes that a
+poor result outside will not improve inside the building.
+- Use the correct subscriber ID and network cipher.
+ 
+- Begin with the case-top/rubber-duck antenna or a 7214-EMK test mount.
+ 
+- Keep the temporary antenna clear of vehicles, large metal surfaces and the technician's body.
+ 
+- Reset after every move and allow up to 5 minutes for the final routing table and NETCON.
+ 
+- Record d status, the complete Ctrl+T table and a short a/c Monitor All sample.
+ 
+- If NETCON 5 cannot be reached outside, test an approved higher-gain antenna before quoting a normal indoor installation.
+ 
+Phase B - indoor candidate locations
+Use the 7214-EMK with the rubber-duck antenna to create the needed mounting/radial condition and move the antenna through
+candidate locations using an appropriate 6-, 10- or 25-foot test cable.
+- Test higher locations first.
+ 
+- Prefer an outside wall and a clear view toward the expected network coverage area.
+ 
+- Avoid basements, below-grade rooms, elevator equipment, large metal cabinets and metal roof shielding.
+ 
+- Keep the antenna separated from electrical wiring, motors, transformers and switching power equipment.
+ 
+- Reset after each move. Do not compare a newly moved antenna against a previous fully developed table.
+ 
+Phase C - make each measurement comparable
+ Item
+ Keep constant
+Subscriber
+Same radio, ID, cipher, power source and firmware
+Antenna trial
+Change only location first; then gain after location has been optimized
+Wait time
+Use the same 5-minute stabilization interval
+Data capture
+Status, full table, monitor interval and WA behavior
+Environment
+Note doors, roof equipment, vehicles, occupancy, weather and known interference
+Choose stability, not one lucky reading
+A location that briefly shows NETCON 5 but repeatedly returns to 6/7 or loses its first route is not a strong installation.
+Repeat measurements and favor stable route diversity.
+
+PAGE 11 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 11
+9. Antenna placement
+Indoor placement
+- Use the case-top antenna where it produces compliant and stable routing.
+ 
+- Use a proper mounting kit/ground-plane arrangement when remotely testing a rubber-duck antenna.
+ 
+- Move higher and toward an outside wall before increasing antenna gain.
+ 
+- Keep the radiating element away from large grounded metal, electrical wiring and noise sources.
+ 
+- Do not coil excess coax beside the antenna or sharply bend/crush the feed line.
+ 
+Outdoor placement
+Current AES placement guidance recommends an unobstructed view of the intended coverage area, ideally 360 degrees. The
+antenna should be plumb and clear of walls, parapets and roof structures.
+ Placement item
+ AES field guidance
+Roof height
+Prefer the antenna/ground plane about 5-10 feet above the roofline where practical
+Obstruction clearance
+At least about 12 inches from parapets, walls and other obstructions
+Metal roof
+Keep the radiating element above the roofline; avoid transmitting through the building
+Orientation
+Mount the omnidirectional antenna vertical/plumb
+Visibility
+Seek 360-degree visibility to nearby subscribers
+Power lines
+Maintain at least 10 feet separation from external power lines
+Weather
+Physically protect and weatherproof outdoor connectors and cable
+Height must not create a code or lightning hazard
+Use approved mounts, grounding, bonding and surge protection. Roof work and antenna placement must comply with the
+National Electrical Code, local requirements and the authority having jurisdiction.
+Common placement failures
+ Failure
+ Result
+Antenna beside metal cabinet/duct
+Pattern distortion, shielding and unstable Q
+Element below metal roofline
+Signal forced through/along building structure
+Horizontal or tilted omni
+Wrong polarization and uneven coverage
+Antenna next to power equipment
+Increased interference/noise risk
+Outdoor connector unsealed
+Water intrusion, corrosion and increasing reflected power
+Long unnecessary coax
+Feed-line loss consumes antenna gain
+
+PAGE 12 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 12
+10. Choose the antenna by evidence
+AES selection rule
+Use the smallest antenna gain that produces a strong, stable connection. AES advises avoiding antennas above 6 dB on
+subscriber installations unless specifically engineered; bigger is not automatically better.
+ Antenna class
+ Typical use in survey
+ Selection guidance
+2.5 dB case-top / rubber duck
+First trial and preferred simple installation
+Use when compliant NETCON and route diversity are stable
+Phantom / 3 dB
+Low-profile or modest remote improvement
+Try after location optimization; confirm correct mounting/ground plane
+5 dB omni
+Additional outdoor/remote coverage
+Use when measured routing improves and coax loss is controlled
+6 dB omni
+Higher-gain engineered subscriber option
+Use only when smaller antennas cannot meet the documented target
+7 or 9 dB omni
+Longer-range/head-end or special design
+Avoid as a default subscriber fix; require AES/network engineering
+approval
+Relevant AES antenna families
+ Part / family
+ Description / note
+7214 / 7214-EMK
+2.5 dB rubber-duck/case or extension-mount survey arrangement
+7264-PA-SUB
+Remote phantom-antenna package
+7210-3
+3 dB omnidirectional UHF antenna
+7210-5
+5 dB omnidirectional UHF antenna
+7210-6
+6 dB omnidirectional UHF antenna
+7210-7
+7 dB option; current accessory guide identifies 460-470 MHz range only
+7210-9
+9 dB omnidirectional antenna; not a default legacy-subscriber choice
+Antenna trial order
+ Order
+ Action
+ Advance only when
+1
+Case-top antenna in best practical subscriber location
+NETCON/route target cannot be made stable
+2
+Same antenna moved using EMK/test cable
+Best indoor position remains inadequate
+3
+Same antenna in outside free air
+Outside reference remains inadequate or proves
+building loss
+4
+3 dB or phantom antenna
+Measured table/Q improvement is insufficient
+5
+5 dB antenna with correct coax
+Smaller gain cannot reach target
+6
+6 dB or engineered solution
+Documented need and network/AES approval
+Why too much gain can be harmful
+Higher-gain omnidirectional antennas concentrate energy into a flatter vertical pattern. They can hear/transmit farther while
+reducing useful close-in vertical coverage, creating overreach and allowing distant traffic to dominate. Select gain from
+route-table evidence, not from the largest available dB number.
+
+PAGE 13 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 13
+11. Coax, connectors, surge protection and weather
+Cable requirements
+AES requires 50-ohm RF cable. Use the shortest practical run and only compatible connectors and tools.
+ Cable
+ AES maximum / recommendation
+ Field use
+RG-58
+25 feet maximum including surge protector
+Short subscriber-to-antenna runs
+RG-8 / Belden 9913
+equivalent
+75 feet maximum
+Longer low-loss runs with correct connectors
+LMR-400
+Current Antenna Matrix recommends 100 feet or less
+Longer remote-antenna runs
+Some older AES articles mention LMR-400 operation up to 125 feet. For new work, use the more conservative current Antenna
+Matrix recommendation of 100 feet or less unless AES engineering approves otherwise.
+Inspection checklist
+- Correct 50-ohm cable type and connector family.
+ 
+- No sharp bends, crushing, staples through the jacket or pulled center conductor.
+ 
+- No loose adapters, damaged threads, braid shorts or incomplete crimps.
+ 
+- No water, green corrosion or blackened connector surfaces.
+ 
+- Cable shield and center conductor pass continuity tests and are not shorted together.
+ 
+- Feed line is not longer than necessary.
+ 
+Outdoor installation
+- Use AES 7230 or the currently approved surge protector for every remote outdoor antenna.
+ 
+- Install grounding and bonding according to AES instructions, NEC and local code.
+ 
+- Protect threaded connections with suitable dielectric grease.
+ 
+- Seal exposed connectors with approved mastic/self-fusing weatherproofing tape.
+ 
+- Provide drip loops and physical protection where required.
+ 
+Loss-versus-gain reality
+A higher-gain antenna at the end of excessive or defective coax can perform worse than a smaller antenna on a short feed.
+Compare the routing table before and after adding the complete cable, surge protector and adapters - not the antenna alone.
+Useful isolation test
+If a case-top antenna works but the remote antenna does not, temporarily substitute a known-good short cable and
+antenna. Then add the permanent feed-line sections one at a time to locate the loss.
+
+PAGE 14 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 14
+12. RF power and reflected-power testing
+Use the e key-transmitter function
+e
+KEYING TX..
+TIMEOUT
+The e command keys the transmitter for approximately five seconds for wattmeter, antenna and coax tests. Press Enter to abort
+early. TIMEOUT after the full test interval is normal. This is a carrier test and may not create a decoded TX Monitor packet.
+Required equipment
+- 50-ohm wattmeter rated for the subscriber frequency and power.
+ 
+- Correct patch leads and connector adapters.
+ 
+- Known-good 50-ohm dummy load and/or verified antenna system.
+ 
+- DC meter suitable for checking supply behavior under transmit load.
+ 
+AES reflected-power criterion
+AES states that reflected power should be no more than 10 percent of forward power. Example: with 1.9 W forward, reflected
+power should not exceed 0.19 W.
+ Result
+ Interpretation
+ Next action
+Forward power normal; reflected
+<=10%
+Radio and tested load path are likely acceptable
+Continue route/location analysis
+Forward power low into known-good
+load
+Radio supply, radio, connector or test setup problem
+Check DC under load and isolate radio output
+Forward normal; reflected >10%
+Mismatch downstream of meter
+Move meter to next connection point
+Good at radio, bad after coax
+Cable/connector/surge protector/antenna fault
+Test each segment
+Power changes when cable moves
+Intermittent connector or damaged coax
+Replace/repair and retest
+Process of elimination
+ Test point
+ Purpose
+Radio into known-good dummy load
+Establish transmitter baseline
+Radio plus short patch
+Verify patch/adapters
+Before surge protector
+Evaluate indoor feed segment
+After surge protector
+Evaluate protector and grounding connection
+At antenna feed point
+Evaluate complete coax path
+Complete installed antenna
+Verify final match and output
+Do not use e as proof of network delivery
+A keyed transmitter and acceptable wattmeter reading prove RF hardware performance only. Final proof requires useful
+packets, acknowledgements, compliant routing and central-station event confirmation.
+
+PAGE 15 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 15
+13. Survey interpretation matrix
+ Inside
+ Outside
+ Routing / monitor pattern
+ Conclusion / action
+NC 6/7; Q8x
+NC <=5; Q02/03
+Acknowledgements improve outside
+Building attenuation. Remote antenna outside using correct coax.
+NC 6/7; Q8x
+NC 6/7; Q8x
+Sparse table/no ACK
+Coverage, radio/feed fault or major interference. Try approved gain and
+RF tests.
+NC 6/7; Q03
+NC 6/7; Q03
+Peers N6/7/high L
+Upstream mesh problem; antenna gain is unlikely to repair it.
+NC fluctuates
+NC stable <=5
+Q changes when cable/antenna moves
+Indoor multipath or intermittent feed line. Relocate/repair.
+RT1 XXXX; L255
+Same outside
+No useful AES traffic
+Check ID/cipher/frequency and network availability before antenna
+changes.
+Table full; Q03
+Same
+Repeated TX without P_ACK
+Two-way imbalance, route/peer issue, congestion or weak local TX.
+RX LED steady
+Same
+Monitor All mostly blank
+Interference/noise. Use service monitor and relocate source/antenna.
+When to escalate to the network administrator
+- Multiple local Q03 routes exist but local NETCON remains 6/7.
+ 
+- Every viable peer shows high N or high L values.
+ 
+- The same weak upstream ID appears in many affected subscribers.
+ 
+- A subscriber has only one viable route even in clear outdoor conditions.
+ 
+- Packet acknowledgements are inconsistent across multiple known-good local installations.
+ 
+- A frequency/interference survey suggests a network-wide channel problem.
+ 
+Information to provide
+- Subscriber ID, model, firmware, location and antenna/coax configuration.
+ 
+- Status output at 1, 3 and 5 minutes after reset.
+ 
+- Complete routing tables from inside, outside and final antenna location.
+ 
+- Monitor lines showing packet numbers, FROM/TO IDs, retries and acknowledgements.
+ 
+- Forward/reflected-power measurements and supply voltage under key.
+ 
+- Photographs of antenna height, clearance, cable, surge protector and connectors.
+ 
+Constant NETCON 6/7 with good Q is data
+Do not discard this evidence. A full table of Q03 neighbors with poor N/LEVEL values demonstrates that the antenna is
+hearing well and the remaining problem is likely network topology or upstream health.
+
+PAGE 16 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 16
+14. Field survey worksheet
+Complete one row only after Reset and the same stabilization interval at each location.
+Trial
+ Location / height
+ Antenna
+ Cable
+ NC
+ RT1
+ L
+ #
+routes
+ Best Q
+Q02/03 count
+1
+2
+3
+4
+5
+6
+7
+8
+ Trial
+ WA after 5 min
+ RX activity
+ TX/P_ACK result
+ Unique IDs heard
+ Interference / notes
+1
+2
+3
+4
+5
+6
+7
+8
+Final antenna/feed-line record
+ Field
+ Recorded value
+Selected antenna / part
+________________________________________________________
+Mount location / height
+________________________________________________________
+Cable type / measured length
+________________________________________________________
+Surge protector / grounding
+________________________________________________________
+Forward / reflected power
+________________________________________________________
+Final RT1 / LEVEL / STAT / NETCON
+________________________________________________________
+Final route IDs and Q
+________________________________________________________
+Central-station event confirmation
+________________________________________________________
+Technician / date
+________________________________________________________
+
+PAGE 17 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 17
+15. Final acceptance and closeout
+ Step
+ Acceptance check
+1
+Final antenna is secure, vertical, weatherproof and properly clear of obstructions/power lines.
+2
+Coax is correct 50-ohm type, within length limit, undamaged and properly terminated.
+3
+Outdoor surge protection, grounding and bonding are complete and code compliant.
+4
+Physical Reset completed; subscriber allowed up to 5 minutes to rebuild routing.
+5
+Status shows correct ID, acceptable STAT, valid RT1, LEVEL not 255 and NETCON 0-5.
+6
+Routing table contains stable useful peers, with Q02/Q03 routes where available.
+7
+Monitor testing shows useful packets and acknowledgements without persistent retries.
+8
+RX is not continuously held by interference.
+9
+Forward/reflected power meets AES criterion when RF testing was required.
+10
+Every required alarm, trouble and restoral was received correctly by the central station.
+11
+a, b and c monitors are OFF; account removed from test; final readings documented.
+Quick diagnostic commands
+ PC key
+ Function
+ Use in this guide
+d
+Local Status
+RT1, LEVEL, STAT and NETCON
+Ctrl+T
+Routing Table
+Preference, ID, L, N and Q
+a
+RX Monitor
+Packets addressed to this subscriber
+c
+Monitor All
+All decoded AES traffic in range; requires a
+b
+TX Monitor
+Packets transmitted by this subscriber
+e
+Key Transmitter
+Five-second RF wattmeter/antenna test
+Technician escalation summary
+Local RF evidence:  route Q values and inside/outside comparison
+Upstream evidence:  neighbor N and L values
+Two-way evidence:   TX packet followed by P_ACK
+Hardware evidence:  forward/reflected power and coax isolation
+Final proof:        central station receives correct events
+
+PAGE 18 OF 18
+========================================================================
+AES 7744F / 7788F NETCON AND RF SURVEY GUIDE
+Routing, antenna and signal diagnostics
+Place active accounts on test before reset, RF keying or alarm transmission.
+Page 18
+Official AES sources
+AES 7744F Installation and Operation Manual
+https://aes-corp.com/wp-content/uploads/2020/07/7744-Install-Manual.pdf
+AES 7788F Installation and Operation Manual
+https://aes-corp.com/wp-content/uploads/2020/07/40-7788-Rev-6.pdf
+AES Best Practices for Antenna Placement
+https://aes-corp.com/best-practices-for-antenna-placement/
+AES Site Survey
+https://aes-corp.com/aes-site-survey/
+AES Antenna Matrix Installation and Buying Guide, Rev 5
+https://aes-corp.com/wp-content/uploads/2022/09/AES_Antenna-Matrix-Buying-Guide_Rev5.pdf
+AES Coax Cable Selection and Termination
+https://aes-corp.com/coax-cable-selection-and-termination/
+AES How to Test RF Performance
+https://aes-corp.com/how-to-test-rf-performance/
+AES 5 Keys to Proper Installation and Network Optimization
+https://aes-corp.com/5-keys-to-proper-installation-network-optimization/
+Guidance differences
+AES web guidance published at different times gives both minimum and preferred roof-clearance figures, and older
+articles mention LMR-400 runs up to 125 feet. This guide uses the stricter current placement recommendation and the
+Antenna Matrix recommendation of 100 feet or less. Follow the latest AES engineering direction for the specific
+installation.
+This guide supplements the AES 7744F/7788F Complete Technician Guide. It does not replace the official installation manuals,
+central-station network policy, approved system drawings, listings or authority-having-jurisdiction requirements.
