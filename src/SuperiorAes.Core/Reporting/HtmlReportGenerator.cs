@@ -102,7 +102,7 @@ public static class HtmlReportGenerator
             if (context.Building is not null)
             {
                 builder.AppendLine(
-                    $"<p><strong>Google imagery/elevation evidence:</strong> {Encode(context.Building.FormattedAddress)}; ground {FormatMeters(context.Building.GroundElevationMeters)}; estimated height {FormatMeters(context.Building.EstimatedBuildingHeightMeters)}; roof area {FormatSquareMeters(context.Building.RoofAreaSquareMeters)}; imagery quality {Encode(context.Building.ImageryQuality)}.</p>");
+                    $"<p><strong>Geoapify address/elevation evidence:</strong> {Encode(context.Building.FormattedAddress)}; ground {FormatMeters(context.Building.GroundElevationMeters)}; provider detail {Encode(context.Building.ImageryQuality)}.</p>");
             }
 
             builder.AppendLine("<table><thead><tr><th>Antenna layer</th><th>Gain</th><th>Expected NETCON</th><th>N5 peers</th><th>N6/7 peers</th></tr></thead><tbody>");

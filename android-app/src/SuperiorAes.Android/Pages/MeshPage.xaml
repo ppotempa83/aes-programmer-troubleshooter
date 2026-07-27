@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.MeshPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Mesh simulator">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Four-radio virtual mesh" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Configure one through four virtual radios and simulate direct/repeated TX, RX, ACK, and drop behavior. This page is intentionally a simulator and never transmits RF."
+          Style="{StaticResource MutedText}" />
+      <Button Clicked="OnAddRadioClicked" Style="{StaticResource SecondaryButton}" Text="Add virtual radio" />
+      <VerticalStackLayout x:Name="RadioList" Spacing="10" />
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Virtual signal" Style="{StaticResource SectionTitle}" />
+          <Picker x:Name="SourcePicker" Title="Source" />
+          <Picker x:Name="DestinationPicker" Title="Destination" />
+          <Picker x:Name="SignalTypePicker" Title="Signal type" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnSignalClicked" Text="Send once" />
+            <Button Grid.Column="1" Clicked="OnBurstClicked" Style="{StaticResource SecondaryButton}" Text="Send 10-packet burst" />
+          </Grid>
+        </VerticalStackLayout>
+      </Border>
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Visualized virtual path" Style="{StaticResource SectionTitle}" />
+          <Label
+              Text="Nodes show model and radio ID. The latest route is green when acknowledged and red when dropped."
+              Style="{StaticResource MutedText}" />
+          <GraphicsView
+              x:Name="MeshPathView"
+              HeightRequest="260"
+              HorizontalOptions="Fill" />
+          <Label
+              x:Name="MeshPathSummaryLabel"
+              Text="Send a virtual signal to visualize its direct or repeated path."
+              FontFamily="monospace"
+              FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Label x:Name="MeshOutputLabel" Text="No virtual signal sent." FontFamily="monospace" FontSize="12" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

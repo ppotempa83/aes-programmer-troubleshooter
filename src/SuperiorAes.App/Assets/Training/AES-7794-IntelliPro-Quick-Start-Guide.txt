@@ -1,0 +1,457 @@
+--- PAGE 1 ---
+Quick Start Guide                       AES-7794 IntelliPro Fire                                                     Page 1of 2   
+40-7794-QSG Rev 3   4/15/2019                                                                                                                                                                                                                                
+Out of the box 
+1. IntelliPro Fire Module (1) AES Part# 72-7794 
+2. RJ11 Cable (1)   AES Part# 13-0395 
+3. Stand-offs (4)  AES Part# 09-2015-M 
+4. Insulating washer (2) AES Part# 09-7X94 
+5. Kepnut (3)  AES Part# 09-1006 
+6. Kepnut green (1)  AES Part# 09-1006-G 
+IMPORTANT NOTE: An AES Hand Held Programmer (p/n: 7041E) is 
+required to install, program, and service this module 
+ 
+Overview: The 7794 full data module is a supplemental alarm reporting interface 
+for an AES Subscriber Unit. It is UL approved for use on Commercial Fire 
+Installations with or without a phone line. The 7794 can also be used in security 
+applications. This document describes installation procedure with an AES 
+subscriber and the interface to an Alarm Panel (AP) via the dialer interface. When 
+in operation, 7794 decodes a CID, PULSE, Modem II, or a Modem III message 
+received on its AP phone interface and sends the message via the AES subscriber 
+radio. It also provides a full replacement to a POTS line as well as POTS 
+monitoring when POTS is present.  
+User interface: The 7794 is programmed using the AES handheld programmer 
+which connects to the RJ11 connector J2. DO NOT CONNECT IT TO RJ11 J1 
+which is used for connecting the 7794 to the subscriber unit. The handheld is also 
+used for diagnostics and monitoring of the 7794 while in operation. In addition to 
+the handheld port, the 7794 has one LED to indicate operation and heartbeat. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Installing the 7794 in the Subscriber Unit:  
+1. Remove the four (4) lower nuts holding the main board inside box. Save the 
+nuts. 
+2. Install 4 standoffs (provided with 7794) in place of nuts, re-securing the 
+subscriber unit circuit board and providing a mount for the 7794. Do not over-
+tighten. 
+3. Mount the 7794 board on standoffs. 
+4. Install insulating washer (provided with 7794) over H3 (lower left corner) 
+5. Secure the 7794 with 3 kepnuts (provided with 7794); Earth ground should be 
+connected as the lower right green kepnut (provided with 7794). 
+6. Install a 6 wire modular cord (provided) between 7794 J1 and subscriber main 
+board. At this point if the subscriber is powered the 7794 will also be 
+powered.  
+ 
+How to find which firmware revision is on 7794:  When you power up the 7794 
+with the handheld connected, the LCD of the handheld will display the version 
+number on the 7794 in the format vx.xxx. The version number is the set of numbers 
+after the letter “v”. 
+ 
+                                               
+ 
+The 7794 can be configured via the Handheld (or PC terminal). Once configured, 
+the configuration information is stored on the 7794 non-volatile memory (i.e. it will 
+remain configured even when power cycled). 
+ 
+To enter configuration mode, from the main screen, press F1. This will place the 
+7794 in the configuration mode. The 7794 will still process AP events even while in 
+configuration mode, and because some of the operations display information on the 
+LCD, you may see AP data while changing the configuration. It is a good practice 
+to configure it w/o the panel connected to it. 
+ 
+Use F3 to change a particular value, F4 and F5 to browse on the list of configurable 
+features. To exit the configuration mode press ESC. 
+ 
+  
+ 
+ 
+ 
+Option No. on 
+CONFIG Menu 
+Parameter Default value 
+1 Phone line No 
+2 Intercept Number 555 
+3 AP Report Format CID 
+4 AP input gain 10 
+5 Intercept on blind dial No 
+6 Line Cut Report Yes 
+7 POTS Cut Report Delay 45 sec 
+8 POTS Restoral Delay 60 sec 
+9 AP ACCT Override No 
+10 POTS Input Gain 20 
+11 Advanced Options Display No 
+12  AP Output gain 3 
+13  Reset to defaults - 
+14  Line-cut sensing Enabled Yes 
+15 CID 4xx Letter U 
+16 M3 EC TEXT to CID Yes 
+17 Voltage Pump Enabled Yes 
+18 Clock FShift Enabled No 
+ 
+Note 1: Options 12-18 will only be displayed if you set Option 11 to YES  
+Note 2: Option 16 will be displayed only if you set Option 11 to Yes AND AP 
+report format=MODEM3 
+ 
+Configuration Options 
+1. Phone line:  Options are either “Y” or “N” to indicate POTS presence 
+2. Intercept Number: Press F3 to enter a phone number, for instance, 555, and 
+press enter to save the number. 
+3. AP report format: Available options are: CID, MODEM and PULSE.  
+ To select CID as the AP format type “C”. 
+ To select MODEM as the AP format type “M” from the “AP report format” 
+screen. Press F5 to change the modem format, type either “A” or “B” to set 
+MODEM format to MODEM3 or MODEM2.  If you select the format as 
+MODEM 3, option 16 on the menu will be available.  The table below shows 
+the different alarm panels tested & the MODEM format supported.  
+Panel Model Revision Number Format Tested 
+D7412GV2  7.08 Modem III 
+D7412GV3   8.03 Modem III 
+D8112E1/G1  22 Pulse Only 
+D8112G2   31.31 Modem II 
+D6112  4.0 Modem II 
+D2212B   3.03 (IIe = III)  Modem III 
+D4412 1.12 Modem III 
+D9412G 6.6 Modem III 
+ 
+ 
+Modem 2 format-Unknown family type assignment: 
+Because there are multiple variations on the panel type for the Modem 2 format, the 
+7794 implements a way to associate a never seen panel type with one of the Bosch 
+panel families that had Modem II, such as 6112, 7112, 8112. This type of 
+configuration is only needed when an unknown panel supporting Modem II is 
+connected to the 7794.  
+When the “new” panel type code is detected, the 7794 saves it to its non-volatile 
+memory and offers the option to allow the user to associate with the proper panel 
+family. 
+From the CONFIG menu, press F5 to go down until you see the sub menu for the 
+MODEM2: FAMILY SETUP  
+NOTE: This sub menu is only available if the report format is MODEM, AND its 
+format is MODEM2, AND an “unknown panel type has been detected. 
+Select the appropriate family type by pressing either “A=6112”, “B=7112” or 
+“C=8112”. Once the panel family is selected, the 7794 will associate the panel type 
+with the panel family, and will be able to process the AP messages for this new 
+panel type code.  
+ To select PULSE as the AP format type P from the “AP report format” screen. 
+If you press F5 now, you should be able to see the following configurable 
+parameters for the PULSE format. 
+Parameter Default value Options 
+D=HSD (Handshaking duration) 0.8 sec A=0.8, B=0.4 
+F=HSF (Handshaking frequency) 1.4Khz A=1.4, B=2.3 
+C=CF (Center frequency) 1.8Khz A=1.8 B=1.9 
+I=IDT (Inter digit time) 0.7 sec A=0.7,B=0.9,C=1.7 
+R=IRT (Inter round time) 3.0 sec A=3.0,B=5.0 
+Press the letter corresponding to a particular parameter, for instance press “F” for 
+HSF and then type either “A” or “B” or “C” to set the desired value.  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   AES Corporation                                                         
+Configuring the 7794 
+To view the complete Installation Manual refer to website: http://aes-corp.com 
+RJ11 
+Connection 
+to 
+Handheld 
+Trouble 
+Relay 
+RJ31 
+To AP 
+RJ31 
+TELCO 
+RJ11 
+Connection to 
+AES Subscriber 
+POTS,AP, CPE 
+Interfaces
+
+--- PAGE 2 ---
+AES-7794 IntelliPro Fire                                                       Page 2 of 2 
+AES Corporation                                                                                                                         40-7794-QSG Rev 3   4/15/2019       
+ 
+ 
+ 
+The table below shows the common pulse formats used by alarm panels and the 
+corresponding values of the different parameters for each of these formats. 
+ 
+ HSD HSF CF IDT IRT 
+Pulse Format sec kHz KHz sec sec 
+Ademco LS (10 pps) (4+2) 0.8 1.4 1.9 0.9 3 
+Ademco LS (10 pps) (3+1) 0.8 1.4 1.9 0.9 5 
+Ademco LS (10 pps) (4+1) 0.8 1.4 1.9 0.9 5 
+Ademco LS Double Round 
+(3+1 Expanded) 0.8 2.3 1.9 1.7 5 
+Ademco HS Double Round 
+(3+1 Expanded) 0.8 2.3 1.9 0.9 5 
+Ademco Slow Silent Knight 
+Slow, HS 1400 Hz 0.8 1.4 1.8 1.7 5 
+Ademco Slow Silent Knight 
+Slow, HS 2300 Hz 0.8 2.3 1.8 1.7 5 
+Radionics Fast (20pps) (4+2) 0.4 2.3 1.8 0.7 3 
+Radionics Fast (20pps) (4+1) 0.8 2.3 1.8 0.7 3 
+Radionics Fast (20pps) (3+1) 0.8 2.3 1.8 0.7 3 
+Radionics (20pps) (4+2) 0.8 2.3 1.9 0.7 3 
+Silent Knight LS Double 
+Round (3+1 Expanded) 0.8 2.3 1.9 1.7 5 
+Silent Knight HS Double 
+Round (3+1 Expanded) 0.8 2.3 1.9 0.9 5 
+Silent Knight Fast 0.8 2.3 1.9 0.9 5 
+Universal High Speed, hand 
+shake 1400Hz 0.8 1.4 1.8 0.7 5 
+Universal High Speed, hand 
+shake 2300Hz 0.8 2.3 1.8 0.7 5 
+ 
+4. AP input gain: Options are either “A” or “B” to set input gain to either 10 or 20. 
+5. Intercept on Blind dial: Options are either “Y” or “N” to enable or disable 
+intercept on blind dial. 
+6. Line cut Report: Options are either “Y” or “N” to enable or disable line cut 
+report. NOTE: This setting is only effective when POTS=YES. 
+7.  POTS cut report delay: The default value is 45 sec and the maximum is 9999. 
+8. POTS restoral delay:  The default value is 60 sec and the maximum is 9999. 
+9. AP ACCT Override: Options are either “Y” or “N” to enable or disable AP 
+ACCT override. 
+10. POTS Input gain: Options are either “A”, “B” or “C” to set POTS Input gain 
+either to 0,10 or 20. 
+11. Advanced Options Display: Options are either “Y” or “N” to enable or disable 
+the advanced options display respectively.  
+12, AP Output gain: Options are either “A”, “B” or “C” to set AP Output gain 
+either to 0,3 or 6. 
+13. Reset to defaults: To reset all configuration options, press F3 and then type 
+7794 and press ENTER, confirm Reset by pressing ”Y”. 
+14. Line-cut sensing Enabled: Options are either “Y” or “N” to enable or disable 
+line cut sensing respectively. 
+15. CID 4xx Letter: Options are either “U” or “C” for reporting open and close 
+reports with “U” or “C” 
+16. M3 EC TEXT to CID Enabled: Options are either “Y” or “N” to enable or 
+disable respectively. 
+18. Voltage Pump Enabled: : Options are either “Y” or “N” to enable or disable 
+the voltage pump respectively. 
+19. Clock FShift Enabled: Options are either “Y” or “N” to enable or disable 
+respectively. 
+ 
+ 
+The 7794 has one single RED LED that has a slow blinking pattern (1 pulse per 
+second) when all is working properly. If it becomes SOLID, it is a malfunction and 
+the board has to be sent for maintenance. If it blinks at a faster rate (2 pulses per 
+second) it indicates that the 7794 cannot communicate with the subscriber. In this 
+case, the 7794 also trips the trouble output. 
+ 
+ 
+ 
+Program POTS = NO (Option No.1 on the CONFIG menu). The 7794 will generate 
+all the voltages to emulate an actual phone line. Its emulations is 100% compatible, 
+issuing the wet voltage, dial-tone, ring back, and full DTMF digits decoding. Figure 
+shows the typical wiring diagram without a phone line. Connect the Tip and Ring of 
+the AP to the terminal block labeled: AP TIP RING on the 7794. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 7794 is capable of decoding all the DTMF digits present on a typical PSTN 
+phone connection. Connect the Tip and Ring of the AP to the terminal block 
+labeled: AP TIP RING. Connect the Tip and Ring of the POTS to the terminal block 
+labeled: RJ31TELCO TIP RING. Figure shows the typical wiring diagram with a 
+phone line: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Intercept on specific dial sequence 
+Set to POTS = YES, and enter the phone number that the AP dials. This can be the 
+single phone number or you can have dual numbers programmed on the AP, so one 
+of the numbers will engage the 7794. The default intercept number on 7794 is 555. 
+With default intercept number on 7794, you can program the AP with 5555(4 digits) 
+if you want 7794 to intercept. The intercept number on 7794 can be changed via the 
+handheld or via the 7201 IntelliLoader.  
+NOTE: When a phone line is present, and it is removed (line cut), the 7794 engages 
+the phone line simulation immediately, so the panel does not notice that there is no 
+phone line, and in this case, 7794 will act on any number dialed. 
+ 
+ Intercept on any dial sequence 
+Set to POTS = YES, and enter the phone number as *** (3 asterisks). This will 
+cause the 7794 to engage on any number dialed, with 3 or more.  
+ 
+ 
+ 
+Connect the Tip and Ring of the AP to the terminal block labeled: AP TIP RING. 
+Connect the Tip and Ring of the POTS to terminal block labeled: RJ31TELCO TIP 
+RING 
+Connect the Tip1 and Ring1 of the AP to terminal block: AP TIP1 RING1 
+Connect the Tip and Ring of the RJ31CPE to term. Block: RJ31CPE TIP  RING. 
+Figure shows the typical wiring diagram with a phone line along with CPE 
+(Customer Premises Equipment). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+When POTS=YES, the 7794 also monitors the presence of the phone line. In case 
+the line is cut, the 7794 immediately engages the phone line emulation (7794=POTS 
+is displayed on the LCD). If Line Cut Reporting is enabled the programmable timer 
+(default is 45 seconds, programmable) starts counting. If the line is restored before 
+the timer expires, no alarm is sent. However, if the timer expires, a line cut alarm is 
+sent (E351 C905).  
+ 
+ 
+Setting Clock FShift=YES option under Advanced Options will reduce receiver 
+noise on these two frequencies. No other IntelliPro options are changed when 
+changing this option. The 7094 will save the new configuration and exit the menu 
+immediately. NOTE: This option must not be used on other radio frequencies. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+Interpreting the LED blinking patterns 
+Usage of 7094 without a phone line 
+Usage of 7794 with a dedicated phone line 
+ 
+Usage of 7794 with a shared line 
+POTS line monitoring & Reporting 
+To view the complete Installation Manual refer to website: http://aes-corp.com 
+Reducing Receiver Noise on 419.5375 MHz & 451.5875 MHz

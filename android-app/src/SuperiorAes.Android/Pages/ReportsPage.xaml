@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.ReportsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Reports">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Reports &amp; exports" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Create actual shareable files in app storage. Credential and cipher values are excluded/redacted."
+          Style="{StaticResource MutedText}" />
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Session identity" Style="{StaticResource SectionTitle}" />
+          <Entry x:Name="TechnicianEntry" Placeholder="Technician / Android profile label" />
+          <Label x:Name="MetadataLabel" FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Button Clicked="OnSessionExportClicked" Text="Export &amp; share session TXT + XLSX" />
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Printable field report" Style="{StaticResource SectionTitle}" />
+          <Entry x:Name="SiteEntry" Placeholder="Site name" />
+          <Entry x:Name="AccountEntry" Placeholder="Account / work order" />
+          <Button Clicked="OnFieldReportClicked" Style="{StaticResource SecondaryButton}" Text="Export &amp; share printable HTML" />
+        </VerticalStackLayout>
+      </Border>
+      <Label
+          x:Name="ExportOutputLabel"
+          Text="No export has run in this session."
+          FontFamily="monospace"
+          FontSize="12" />
+      <Label
+          Text="The session text contains the complete timestamped terminal dump. The spreadsheet contains the same metadata and one timestamped terminal row per entry."
+          Style="{StaticResource MutedText}" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

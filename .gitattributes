@@ -1,0 +1,14 @@
+# Preserve binary assets byte-for-byte regardless of each contributor's
+# line-ending settings.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.apk binary
+
+# Manufacturer-manual text extractions retain source page spacing.
+src/SuperiorAes.App/Assets/Training/*.txt -whitespace
+
+# The Android source was generated with a deliberate final spacer line.
+android-app/** whitespace=-blank-at-eof

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.ContactIdPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Contact ID">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Contact ID — IntelliPro &amp; IntelliTap" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Installation worksheet, safety checks, live 7794 J2 controls, capture-test documentation, and original manuals in one section."
+          Style="{StaticResource MutedText}" />
+
+      <Border Padding="16" BackgroundColor="#FFF1F2" Stroke="#C5202F" StrokeShape="RoundRectangle 10">
+        <VerticalStackLayout Spacing="7">
+          <Label Text="Critical connection boundary" FontAttributes="Bold" TextColor="#9D1725" />
+          <Label
+              Text="Subscriber J1 pin 6 carries +12 V. Never connect it to USB, FTDI, RS-232, TTL, or a computer. Use the approved AES accessory cable. Program a 7794 only through its J2 HandHeld port with an approved or physically verified interface—never through 7794 J1 TO RADIO."
+              FontSize="13"
+              TextColor="#9D1725" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout x:Name="IntelliTapWorkflowPanel" Spacing="9">
+          <Label Text="7067 IntelliTap II — physical setup/programming" Style="{StaticResource SectionTitle}" />
+          <Label
+              Text="Historical AES Doc #40-7067B programs the 7067 with physical jumper positions and alarm-panel dialer settings—not PC/FTDI serial commands. Never send 7744F/7788F or 7794 J2 commands to the 7067 programming-pin set."
+              FontAttributes="Bold"
+              FontSize="13"
+              TextColor="#9D1725" />
+          <Picker x:Name="IntelliTapFormatPicker" Title="7067 format jumper selection" />
+          <Picker x:Name="IntelliTapPhonePicker" Title="7067 answer-number jumper selection" />
+          <Picker x:Name="IntelliTapLineModePicker" Title="7067 phone-line / line-cut jumper selection" />
+
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapManualCheckBox" />
+            <Label Text="Exact 7067 hardware/revision and original AES Doc #40-7067B are in hand" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapPowerCheckBox" />
+            <Label Text="AC, battery, and telephone lines will be disconnected before mounting, wiring, or changing jumpers" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapWiringCheckBox" />
+            <Label Text="Mounting and wiring will follow the exact official manual figure; terminal order is not inferred from this app" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapZoneCheckBox" />
+            <Label Text="At least one alarm-panel output is connected to a subscriber zone as the required supplemental trigger" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapPanelCheckBox" />
+            <Label Text="Alarm panel is set for tone/DTMF dialing and the selected 3-5-* or 5-5-5 answer number" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapResetCheckBox" />
+            <Label Text="7067 Reset switch will be pressed after jumper changes" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="IntelliTapTestCheckBox" />
+            <Label Text="Account is on test; receiver/automation compatibility and representative events will be verified" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <Button Clicked="OnIntelliTapChecklistClicked" Text="Review and record 7067 jumper plan" />
+          <Label x:Name="IntelliTapOutputLabel" FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Accessory and worksheet" Style="{StaticResource SectionTitle}" />
+          <Picker x:Name="ModulePicker" SelectedIndexChanged="OnModuleChanged" Title="Select accessory" />
+          <Label x:Name="ModuleStatusLabel" Style="{StaticResource MutedText}" />
+          <Picker x:Name="ReportFormatPicker" Title="Report format" />
+          <Entry x:Name="InterceptEntry" Text="555" Placeholder="Intercept number" />
+          <Picker x:Name="PhoneLinePicker" Title="Phone-line mode" />
+          <Picker x:Name="InputGainPicker" Title="Input gain" />
+          <Picker x:Name="FourXxPicker" Title="4XX event letter" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Entry x:Name="TtlHoursEntry" Grid.Column="0" Keyboard="Numeric" Text="3" Placeholder="TTL hours" />
+            <Entry x:Name="TtlMinutesEntry" Grid.Column="1" Keyboard="Numeric" Text="0" Placeholder="TTL minutes" />
+          </Grid>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="BlindDialCheckBox" />
+            <Label Text="Blind dial enabled only when approved by the system design" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <Button Clicked="OnSaveWorksheetClicked" Style="{StaticResource SecondaryButton}" Text="Record worksheet in session" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="7794 IntelliPro live J2 programming" Style="{StaticResource SectionTitle}" />
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="J2VerifiedCheckBox" />
+            <Label Text="Verified 7794 J2 HandHeld connection; account is on test" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <Label
+              Text="F1 enters CONFIG; F3 changes the displayed option; F4/F5 move through options; ESC exits. Read every live prompt before responding."
+              Style="{StaticResource MutedText}" />
+          <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="7" RowSpacing="7">
+            <Button Grid.Row="0" Grid.Column="0" Clicked="OnControlClicked" CommandParameter="F1" Text="F1" />
+            <Button Grid.Row="0" Grid.Column="1" Clicked="OnControlClicked" CommandParameter="F3" Text="F3" />
+            <Button Grid.Row="0" Grid.Column="2" Clicked="OnControlClicked" CommandParameter="F4" Text="F4" />
+            <Button Grid.Row="1" Grid.Column="0" Clicked="OnControlClicked" CommandParameter="F5" Text="F5" />
+            <Button Grid.Row="1" Grid.ColumnSpan="2" Clicked="OnControlClicked" CommandParameter="ESC" Style="{StaticResource SecondaryButton}" Text="ESC" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Entry x:Name="TerminalEntry" Grid.Column="0" Completed="OnSendLineClicked" Placeholder="Response to displayed 7794 prompt" />
+            <Button Grid.Column="1" Clicked="OnSendLineClicked" Text="Send line" />
+          </Grid>
+          <Label x:Name="TerminalPreviewLabel" FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Capture and acceptance test" Style="{StaticResource SectionTitle}" />
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="AlarmCheckBox" />
+            <Label Text="Alarm Contact ID event captured and confirmed" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="TroubleCheckBox" />
+            <Label Text="Trouble Contact ID event captured and confirmed" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="SupervisoryCheckBox" />
+            <Label Text="Supervisory Contact ID event captured and confirmed" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="RestoralCheckBox" />
+            <Label Text="Restoral Contact ID event captured and confirmed" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <Button Clicked="OnCaptureTestClicked" Text="Record capture-test result" />
+          <Label x:Name="ResultLabel" Style="{StaticResource MutedText}" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Packaged manuals" Style="{StaticResource SectionTitle}" />
+          <Button Clicked="OnManualClicked" CommandParameter="Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf" Text="Share Contact ID field guide" />
+          <Button Clicked="OnManualClicked" CommandParameter="AES-7794-IntelliPro-Fire-Installation-Manual.pdf" Style="{StaticResource SecondaryButton}" Text="Share 7794 IntelliPro manual" />
+          <Button Clicked="OnManualClicked" CommandParameter="AES-7794-IntelliPro-Quick-Start-Guide.pdf" Style="{StaticResource SecondaryButton}" Text="Share 7794 quick start" />
+          <Button Clicked="OnManualClicked" CommandParameter="AES-7067-IntelliTap-II-Historical-Manual.pdf" Style="{StaticResource SecondaryButton}" Text="Share 7067 IntelliTap historical manual" />
+          <Button Clicked="OnManualClicked" CommandParameter="AES-7794A-IntelliPro-2.0-Installation-Manual.pdf" Style="{StaticResource SecondaryButton}" Text="Share 7794A IntelliNet 2.0 manual" />
+        </VerticalStackLayout>
+      </Border>
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

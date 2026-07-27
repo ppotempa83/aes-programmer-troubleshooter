@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.TrainingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Training">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Training &amp; official product gallery" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Read and search the packaged guide text, open or share the original readable PDFs, and tap each AES product image for a larger view and official product link."
+          Style="{StaticResource MutedText}" />
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Training library" Style="{StaticResource SectionTitle}" />
+          <Picker x:Name="GuidePicker" SelectedIndexChanged="OnGuideChanged" Title="Select guide" />
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Entry x:Name="SearchEntry" Grid.Column="0" Completed="OnFindClicked" Placeholder="Find text in guide" />
+            <Button Grid.Column="1" Clicked="OnFindClicked" Text="Find next" />
+          </Grid>
+          <Label x:Name="SearchStatusLabel" Style="{StaticResource MutedText}" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnOpenPdfClicked" Text="Open original PDF" />
+            <Button Grid.Column="1" Clicked="OnSharePdfClicked" Style="{StaticResource SecondaryButton}" Text="Share / save PDF" />
+          </Grid>
+        </VerticalStackLayout>
+      </Border>
+
+      <Label x:Name="DocumentTitleLabel" Text="Training guide" Style="{StaticResource SectionTitle}" />
+      <Editor
+          x:Name="DocumentEditor"
+          HeightRequest="520"
+          IsReadOnly="True"
+          FontFamily="monospace"
+          FontSize="12" />
+
+      <Label Text="AES radios, accessories &amp; antennas" Style="{StaticResource SectionTitle}" />
+      <Label
+          Text="Tap a thumbnail to enlarge it. Every expanded view includes a link to the official AES product page."
+          Style="{StaticResource MutedText}" />
+      <VerticalStackLayout x:Name="HardwareGallery" Spacing="12" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

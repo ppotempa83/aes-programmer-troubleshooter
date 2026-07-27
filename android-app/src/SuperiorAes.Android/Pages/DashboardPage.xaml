@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Dashboard">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Superior AES Programmer · Android" Style="{StaticResource PageTitle}" />
+      <Border
+          Padding="12,8"
+          BackgroundColor="#FFF1F2"
+          Stroke="#F3A7AF"
+          StrokeShape="RoundRectangle 8">
+        <Label
+            x:Name="ModeBannerLabel"
+            Text="SIMULATION · SAFE DEFAULT · 0 REAL TRANSMISSIONS"
+            FontAttributes="Bold"
+            FontSize="12"
+            HorizontalTextAlignment="Center"
+            TextColor="{StaticResource BrandRed}" />
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="10">
+          <Label Text="Session" Style="{StaticResource SectionTitle}" />
+          <Label Text="Transport mode" Style="{StaticResource MutedText}" />
+          <Picker
+              x:Name="TransportPicker"
+              SelectedIndexChanged="OnTransportChanged"
+              Title="Choose transport" />
+          <Label Text="Radio model" Style="{StaticResource MutedText}" />
+          <Picker
+              x:Name="ModelPicker"
+              SelectedIndexChanged="OnModelChanged"
+              Title="Select model" />
+          <Button
+              x:Name="ConnectionButton"
+              Clicked="OnConnectionClicked"
+              Text="Connect" />
+          <Label
+              x:Name="ConnectionStatusLabel"
+              FontAttributes="Bold"
+              Text="Disconnected" />
+          <Label
+              x:Name="SessionMetadataLabel"
+              Style="{StaticResource MutedText}" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="10">
+          <Label Text="Recent activity" Style="{StaticResource SectionTitle}" />
+          <Label
+              x:Name="RecentActivityLabel"
+              FontFamily="monospace"
+              FontSize="12"
+              LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border
+          Padding="16"
+          BackgroundColor="#FFF8E8"
+          Stroke="#E8C46D"
+          StrokeShape="RoundRectangle 10">
+        <VerticalStackLayout Spacing="6">
+          <Label
+              Text="Hardware gate"
+              FontAttributes="Bold"
+              TextColor="#775500" />
+          <Label
+              Text="Hardware bench mode is explicit and not field-validated. Use only a genuine FTDI USB-to-RS-232 adapter. A bare USB-to-TTL cable is not equivalent. J1 pin 6 carries +12 V and must never be connected."
+              FontSize="13"
+              TextColor="#775500" />
+        </VerticalStackLayout>
+      </Border>
+
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

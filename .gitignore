@@ -7,6 +7,8 @@ obj/
 *.tmp
 *.log
 artifacts/
+/output/
+/tmp/
 TestResults/
 
 # Dependencies, generated output, and caches
@@ -28,6 +30,7 @@ temp/
 .env.*
 !.env.example
 *.local
+credentials.local.txt
 *.pem
 *.key
 *.pfx

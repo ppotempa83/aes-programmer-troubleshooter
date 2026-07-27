@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Shell
+    x:Class="SuperiorAes.Android.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Superior AES Programmer"
+    FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{StaticResource NavyDeep}">
+  <Shell.FlyoutHeader>
+    <Grid
+        Padding="24,30,24,22"
+        BackgroundColor="{StaticResource NavyDeep}"
+        RowDefinitions="Auto,Auto,Auto">
+      <Border
+          Grid.Row="0"
+          HeightRequest="62"
+          WidthRequest="62"
+          HorizontalOptions="Start"
+          BackgroundColor="{StaticResource BrandRed}"
+          StrokeThickness="0"
+          StrokeShape="RoundRectangle 16">
+        <Label
+            Text="AES"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            FontAttributes="Bold"
+            FontSize="20"
+            TextColor="White" />
+      </Border>
+      <Label
+          Grid.Row="1"
+          Margin="0,14,0,2"
+          Text="Superior AES Programmer"
+          FontAttributes="Bold"
+          FontSize="18"
+          TextColor="White" />
+      <Label
+          Grid.Row="2"
+          Text="Brought to you by Pete Potempa's AuDHD"
+          FontSize="12"
+          TextColor="#CBD6E2" />
+    </Grid>
+  </Shell.FlyoutHeader>
+</Shell>

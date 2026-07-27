@@ -5,7 +5,8 @@ public sealed record AntennaOption(
     string PartNumber,
     decimal GainDb,
     string Application,
-    string ImageFile)
+    string ImageFile,
+    string ProductUrl = "")
 {
     public string DisplayName => $"{GainDb:0.#} dB — {Name} ({PartNumber})";
 }
@@ -14,13 +15,13 @@ public static class AntennaCatalog
 {
     public static IReadOnlyList<AntennaOption> All { get; } =
     [
-        new("Tamper-resistant rubber duck", "7214", 2.5m, "Indoor", "aes-7214-rubber-duck.png"),
-        new("Omnidirectional stealth", "7211", 3m, "Indoor", "aes-7211-stealth.png"),
-        new("Omnidirectional stainless", "7210-3", 3m, "Indoor / outdoor", "aes-7210-3.png"),
-        new("High-gain stainless", "7210-5", 5m, "Indoor / outdoor", "aes-7210-5.png"),
-        new("High-gain fiberglass", "7210-6", 6m, "Indoor / outdoor", "aes-7210-6.png"),
-        new("Higher-gain fiberglass", "7210-7", 7m, "Outdoor; 460–470 MHz only", "aes-7210-6.png"),
-        new("Central-station fiberglass", "7210-9", 9m, "Special application / central station", "aes-7210-6.png")
+        new("Tamper-resistant rubber duck", "7214", 2.5m, "Indoor", "aes-7214-rubber-duck.png", "https://aes-corp.com/product/7214-2-5-omnidirectional-rubber-duck-antenna/"),
+        new("Omnidirectional stealth", "7211", 3m, "Indoor", "aes-7211-stealth.png", "https://aes-corp.com/product/7211-3-db-omnidirectional-stealth-antenna/"),
+        new("Omnidirectional stainless", "7210-3", 3m, "Indoor / outdoor", "aes-7210-3.png", "https://aes-corp.com/product/7210-3-3db-omnidirectional-antenna/"),
+        new("High-gain stainless", "7210-5", 5m, "Indoor / outdoor", "aes-7210-5.png", "https://aes-corp.com/product/7210-5-5db-omnidirectional-antenna/"),
+        new("High-gain fiberglass", "7210-6", 6m, "Indoor / outdoor", "aes-7210-6.png", "https://aes-corp.com/product/7210-6-6db-omnidirectional-antenna/"),
+        new("Higher-gain fiberglass", "7210-7", 7m, "Outdoor; 460–470 MHz only", "aes-7210-7.jpg", "https://aes-corp.com/product/7210-7-7db-omnidirectional-antenna/"),
+        new("Central-station fiberglass", "7210-9", 9m, "Special application / central station", "aes-7210-9.jpg", "https://aes-corp.com/product/7210-9-9db-omnidirectional-antenna/")
     ];
 }
 
@@ -39,7 +40,17 @@ public sealed record ProgrammingTemplate(
     bool SuppressAcFailure,
     bool SuppressChargerFault,
     bool SuppressGroundFault,
-    string Antenna)
+    string Antenna,
+    string Notes = "",
+    string DialerCaptureModule = "None",
+    string ContactIdReportFormat = "Contact ID (C)",
+    string ContactIdInterceptNumber = "555",
+    string ContactIdPhoneLineMode = "Match approved system design",
+    int ContactIdInputGain = 10,
+    string ContactIdFourXxLetter = "U",
+    int ContactIdTtlHours = 3,
+    int ContactIdTtlMinutes = 0,
+    bool ContactIdBlindDialEnabled = false)
 {
     public static IReadOnlyList<ProgrammingTemplate> Defaults { get; } =
     [

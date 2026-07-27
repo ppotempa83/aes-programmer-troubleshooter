@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.DiagnosticsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Status &amp; routes">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Live status, routes &amp; zones" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Read-only commands use the selected transport. Parsed subscriber, RF-route, associated-radio L/N/Q, and zone values update as replies arrive."
+          Style="{StaticResource MutedText}" />
+      <Grid ColumnDefinitions="*,*" ColumnSpacing="10" RowDefinitions="Auto,Auto">
+        <Button Grid.Row="0" Grid.Column="0" Clicked="OnStatusClicked" Text="Read local status" />
+        <Button Grid.Row="0" Grid.Column="1" Clicked="OnRoutesClicked" Text="Read routing table" />
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" Clicked="OnZonesClicked" Style="{StaticResource SecondaryButton}" Text="Read zone status" />
+      </Grid>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Subscriber status" Style="{StaticResource SectionTitle}" />
+          <Label x:Name="StatusOutputLabel" Text="No complete status reply captured." FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Routing table / associated radios" Style="{StaticResource SectionTitle}" />
+          <Label x:Name="RoutesOutputLabel" Text="No route reply captured." FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Zones" Style="{StaticResource SectionTitle}" />
+          <Label x:Name="ZonesOutputLabel" Text="No zone reply captured." FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Label x:Name="CommandStateLabel" Style="{StaticResource MutedText}" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

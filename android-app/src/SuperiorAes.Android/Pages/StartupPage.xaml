@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.StartupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{StaticResource NavyDeep}"
+    Shell.NavBarIsVisible="False">
+  <Grid Padding="34" RowDefinitions="*,Auto,Auto,Auto,*">
+    <Image
+        Grid.Row="1"
+        HeightRequest="250"
+        WidthRequest="250"
+        HorizontalOptions="Center"
+        Aspect="AspectFit"
+        Source="superior_shield.png" />
+    <Label
+        Grid.Row="2"
+        Margin="0,22,0,4"
+        Text="Superior AES Programmer"
+        FontAttributes="Bold"
+        FontSize="27"
+        HorizontalTextAlignment="Center"
+        TextColor="White" />
+    <VerticalStackLayout Grid.Row="3" Spacing="8">
+      <Label
+          Text="Brought to you by Pete Potempa's AuDHD"
+          FontAttributes="Bold"
+          FontSize="14"
+          HorizontalTextAlignment="Center"
+          TextColor="#CBD6E2" />
+      <Label
+          Text="ANDROID · SIMULATION + EXPLICIT FTDI BENCH MODE"
+          FontAttributes="Bold"
+          FontSize="11"
+          CharacterSpacing="1.5"
+          HorizontalTextAlignment="Center"
+          TextColor="#FFB8BF" />
+    </VerticalStackLayout>
+  </Grid>
+</ContentPage>

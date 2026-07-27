@@ -1,9 +1,14 @@
+using System.IO;
 using System.IO.Ports;
 using System.Text;
 using SuperiorAes.Core.Protocol;
 
 namespace SuperiorAes.Core.Connections;
 
+/// <summary>
+/// Windows VCP serial transport. Kept in the WPF application so the shared core
+/// remains free of platform-specific System.IO.Ports runtime assets.
+/// </summary>
 public sealed class SerialAesConnection(string portName) : IAesConnection
 {
     private readonly SerialPort _port = new(

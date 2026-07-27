@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.RfMonitorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="RF monitor">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Live RF monitor" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Receive, transmit, and combined monitor commands operate through the selected transport. Monitor All starts Receive first when required."
+          Style="{StaticResource MutedText}" />
+      <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+        <Button x:Name="ReceiveButton" Grid.Row="0" Grid.Column="0" Clicked="OnReceiveClicked" Text="Receive: OFF" />
+        <Button x:Name="TransmitButton" Grid.Row="0" Grid.Column="1" Clicked="OnTransmitClicked" Text="Transmit: OFF" />
+        <Button x:Name="AllButton" Grid.Row="1" Grid.Column="0" Clicked="OnAllClicked" Text="All: OFF" />
+        <Button Grid.Row="1" Grid.Column="1" Clicked="OnStopClicked" Style="{StaticResource SecondaryButton}" Text="Stop all" />
+      </Grid>
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Recent RF terminal traffic" Style="{StaticResource SectionTitle}" />
+          <Label x:Name="MonitorOutputLabel" Text="Monitoring is stopped." FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Padding="16" BackgroundColor="#FFF1F2" Stroke="#F3A7AF" StrokeShape="RoundRectangle 10">
+        <VerticalStackLayout Spacing="8">
+          <Label Text="Authorized transmitter test" FontAttributes="Bold" TextColor="{StaticResource BrandRed}" />
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="RfLoadCheckBox" />
+            <Label Text="Correct antenna / approved RF load is connected" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <HorizontalStackLayout Spacing="8">
+            <CheckBox x:Name="AccountTestCheckBox" />
+            <Label Text="Account is on test and area is controlled" VerticalTextAlignment="Center" />
+          </HorizontalStackLayout>
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnKeyClicked" Style="{StaticResource DangerButton}" Text="Key briefly" />
+            <Button Grid.Column="1" Clicked="OnAbortClicked" Style="{StaticResource SecondaryButton}" Text="Abort / ENTER" />
+          </Grid>
+        </VerticalStackLayout>
+      </Border>
+      <Label
+          Text="Physical RF activity is not field-validated on Android. Complete the documented known-good 7744F and 7788F bench checklist before deployment."
+          Style="{StaticResource MutedText}" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

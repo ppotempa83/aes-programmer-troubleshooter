@@ -6,18 +6,34 @@
     <AssemblyName>SuperiorAes.Programmer</AssemblyName>
     <RootNamespace>SuperiorAes.App</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>0.2.0</Version>
+    <ApplicationIcon>Assets\Branding\superior-aes.ico</ApplicationIcon>
+    <Version>0.4.0</Version>
     <Authors>Superior Fire &amp; Security</Authors>
     <Product>Superior AES Programmer</Product>
     <Description>Field programming and diagnostic utility for legacy AES 7744F and 7788F subscribers.</Description>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperiorAes.Core\SuperiorAes.Core.csproj" />
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Hardware\*.png" />
+    <Resource Include="Assets\Hardware\*.jpg" />
+    <Resource Include="Assets\Branding\*.png" />
+    <Resource Include="Assets\Branding\*.ico" />
     <Resource Include="Assets\Training\*-cover.png" />
-    <Content Include="Assets\Training\*.pdf" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\Training\*.txt" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\Training\*.pdf"
+             CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest"
+             ExcludeFromSingleFile="true" />
+    <Content Include="Assets\Training\*.txt"
+             CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest"
+             ExcludeFromSingleFile="true" />
+    <Content Include="..\..\config\credentials.template.txt"
+             Link="config\credentials.template.txt"
+             CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest"
+             ExcludeFromSingleFile="true" />
   </ItemGroup>
 </Project>

@@ -43,7 +43,17 @@ public sealed class FieldToolsTests
         var directory = Path.Combine(Path.GetTempPath(), $"SuperiorAes-{Guid.NewGuid():N}");
         var path = Path.Combine(directory, "templates.json");
         var store = new ProgrammingTemplateStore(path);
-        var expected = ProgrammingTemplate.Defaults[0] with { Name = "Test template", SubscriberId = "1A2B" };
+        var expected = ProgrammingTemplate.Defaults[0] with
+        {
+            Name = "Test template",
+            SubscriberId = "1A2B",
+            DialerCaptureModule = "7794 IntelliPro Fire (recommended)",
+            ContactIdInterceptNumber = "555",
+            ContactIdInputGain = 20,
+            ContactIdFourXxLetter = "C",
+            ContactIdTtlHours = 3,
+            ContactIdBlindDialEnabled = true
+        };
 
         try
         {
@@ -110,6 +120,18 @@ public sealed class FieldToolsTests
 
         Assert.Contains("5 dB", recommendation.Antenna, StringComparison.OrdinalIgnoreCase);
         Assert.Contains("Exterior", recommendation.Location, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void AntennaCatalogUsesProductSpecificOfficialImagesAndLinks()
+    {
+        var sevenDb = Assert.Single(AntennaCatalog.All, antenna => antenna.PartNumber == "7210-7");
+        var nineDb = Assert.Single(AntennaCatalog.All, antenna => antenna.PartNumber == "7210-9");
+
+        Assert.Equal("aes-7210-7.jpg", sevenDb.ImageFile);
+        Assert.Equal("aes-7210-9.jpg", nineDb.ImageFile);
+        Assert.Contains("aes-corp.com/product/7210-7", sevenDb.ProductUrl, StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("aes-corp.com/product/7210-9", nineDb.ProductUrl, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]

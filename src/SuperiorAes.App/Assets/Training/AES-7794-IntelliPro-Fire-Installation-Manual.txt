@@ -1,0 +1,1519 @@
+--- PAGE 1 ---
+AES 7794 
+IntelliPro Fire 
+ 
+ 
+ 
+ 
+Installation Manual 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+AES Corporation 
+285 Newbury Street 
+Peabody, MA 01960-1315 USA 
+Tel (978) 535-7310 • Fax (978) 535-7313 
+www.aes-intellinet.com 
+Copyright 2014 All Rights Reserved 
+ 
+ 
+ 
+P/N 40-7794 
+Rev 5 
+Jun 9, 2015 
+ 
+ 
+;sdkpfo pijfpfpodkspfosd
+
+--- PAGE 2 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 2 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+ 
+THIS PAGE INTENTIONALLY LEFT BLANK
+
+--- PAGE 3 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 3 40-7794, Rev 5, 6/9/2015 
+TABLE OF CONTENTS 
+1 Summary .................................................................................................................... 6 
+1.1 Basic Functions.................................................................................................. 6 
+1.2 User Interface .................................................................................................... 6 
+1.3 System Requirements ....................................................................................... 6 
+1.3.1 Fire Alarm Control Panel Telco Interface Requirements ............................... 6 
+1.4 Safety Considerations ....................................................................................... 7 
+1.5 Technical Specifications ................................................................................... 7 
+2 Installation of 7794 in subscriber unit .................................................................... 8 
+3 Primary Communication Interface ......................................................................... 9 
+3.1 Connector and LED Locations ........................................................................ 9 
+3.2 Connecting 7794 to Alarm Panel – Primary Communication Interface ... 10 
+3.3 Connection Details – Primary Communication Interface ........................... 11 
+4 Supplemental Communication Interface .............................................................. 13 
+4.1 Connector and LED Locations ...................................................................... 13 
+4.2 7794 to Alarm Panel - US Installation - Supplemental Communication 
+Interface ....................................................................................................................... 14 
+4.2.1 Connection Details –7794 to Alarm Panel - US Installation ........................ 15 
+4.3 Connect 7794 to Alarm Panel – Canada/Dual Dialer Installation - 
+Supplemental Communication Interface .................................................................. 16 
+4.3.1 Connection Details – 7794 to Alarm Panel – Canada Installation ................ 17 
+5 Configure 7794 ........................................................................................................ 17 
+5.1 Connecting the Handheld Programmer........................................................ 17 
+5.2 Determine Firmware Version ........................................................................ 17 
+5.3 Configuration Interface .................................................................................. 18 
+5.4 Entering  Configuration Mode ...................................................................... 18 
+5.5 Changing option settings ................................................................................ 18 
+5.6 For Configuration Options – Primary Communication ............................. 18 
+5.6.1 Phone Line .................................................................................................... 19 
+5.6.2 Intercept number ........................................................................................... 19 
+5.6.3 Alarm Panel report format ............................................................................ 19 
+5.6.3.1 CID Alarm Format ................................................................................ 20 
+5.6.3.2 Modem Alarm format ........................................................................... 20 
+5.6.3.2.1 Modem 2 format – unknown panel type family assignment ........... 20 
+5.6.3.3 Pulse Alarm format ............................................................................... 20 
+5.6.4 AP Input gain ................................................................................................ 21 
+5.6.5 Intercept on blind dial ................................................................................... 21 
+5.6.6 Line Cut Report............................................................................................. 21 
+5.6.7 POTS cut report delay ................................................................................... 22 
+5.6.8 POTS restoral delay ...................................................................................... 22 
+5.6.9 AP ACCT Override....................................................................................... 22 
+5.6.10 POTS Input Gain....................................................................................... 22 
+5.6.11 Advanced Options Display ....................................................................... 22 
+5.6.12 AP Output Gain......................................................................................... 23 
+5.6.13 Reset to defaults ........................................................................................ 23 
+5.6.14 Line-cut sensing Enabled .......................................................................... 23
+
+--- PAGE 4 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 4 40-7794, Rev 5, 6/9/2015 
+5.6.15 CID 4xx Letter .......................................................................................... 23 
+5.6.16 M3 EC TEXT to CID Enabled.................................................................. 24 
+5.6.17 Voltage Pump Enabled ............................................................................. 24 
+5.6.18 Clock FShift Enabled ................................................................................ 24 
+5.7 Configuration options – Supplemental Communication ............................. 24 
+5.7.1 Phone Line .................................................................................................... 25 
+5.7.2 Intercept number ........................................................................................... 25 
+5.7.3 Alarm Panel report format ............................................................................ 25 
+5.7.3.1 CID Alarm Format ................................................................................ 26 
+5.7.3.2 Modem Alarm format ........................................................................... 26 
+5.7.3.2.1 Modem 2 format – unknown panel type family assignment ........... 26 
+5.7.3.3 Pulse Alarm format ............................................................................... 26 
+5.7.4 AP Input gain ................................................................................................ 27 
+5.7.5 Intercept on blind dial ................................................................................... 27 
+5.7.6 Line Cut Report............................................................................................. 27 
+5.7.7 POTS cut report delay ................................................................................... 28 
+5.7.8 POTS restoral delay ...................................................................................... 28 
+5.7.9 AP ACCT Override....................................................................................... 28 
+5.7.10 POTS Input Gain....................................................................................... 28 
+5.7.11 Advanced Options Display ....................................................................... 28 
+5.7.12 AP Output Gain......................................................................................... 29 
+5.7.13 Reset to defaults ........................................................................................ 29 
+5.7.14 Line-cut sensing Enabled .......................................................................... 29 
+5.7.15 CID 4xx Letter .......................................................................................... 29 
+5.7.16 M3 EC TEXT to CID Enabled.................................................................. 29 
+5.7.17 Voltage Pump Enabled ............................................................................. 30 
+5.7.18 Clock FShift Enabled ................................................................................ 30 
+6 Status LED Blink Patterns ..................................................................................... 30 
+7 Format: Contact ID ................................................................................................ 31 
+8 Format: Bosch/Radionics Modem 2 and Modem 3 ............................................. 31 
+8.1 Modem Format and Speed (Baud Rate) Settings for Modem Format ...... 31 
+8.2 Modem 2 format – unknown panel type family assignment ....................... 31 
+8.2.1 How do I know that I have an “unknown” panel type? ................................ 31 
+8.2.2 How do I  associate a family with an unknown type? .................................. 31 
+8.3 Bosch/Radionics panels supported ................................................................ 32 
+9 Format: Pulse .......................................................................................................... 32 
+9.1 Pulse format settings ....................................................................................... 32 
+9.2 Settings for non-supported formats .............................................................. 33 
+9.3 Notes on pulse formats.................................................................................... 33 
+9.3.1 Number of digits on Pulse format ................................................................. 33 
+9.3.2 Double round ................................................................................................ 34 
+9.3.3 Translation of 3+1 and 4+1 to 4+2 ............................................................... 34 
+9.3.4 Expanded format ........................................................................................... 34 
+10 Testing ...................................................................................................................... 34 
+10.1 Installation Checks.......................................................................................... 34 
+11 Maintenance, Warranty and Repair ..................................................................... 35 
+11.1 Troubleshooting .............................................................................................. 35
+
+--- PAGE 5 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 5 40-7794, Rev 5, 6/9/2015 
+11.2 Parts List .......................................................................................................... 35 
+11.3 Contact Information ....................................................................................... 35 
+12 Revision History ...................................................................................................... 35 
+13 Warranty and Service Procedure .......................................................................... 36
+
+--- PAGE 6 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 6 40-7794, Rev 5, 6/9/2015 
+1 Summary 
+This document describes the installation procedure for the AES 7794 IntelliPro Fire  
+module used with AES Fire Subscriber units to transmit alarm zone data.  
+ 
+The 7794 IntelliPro is a dialer interface intended for use with commercial Fire Alarm 
+Control Panel (FACP) installations. The 7794 is a UL Listed primary communicator 
+when used with the AES 7762 Hardware Supervisor. 
+ 
+Installed between the FACP and AES subscriber, the 7794 intercepts alarm panel 
+messages and sends them to the monitoring station via the AES fire subscriber unit. 
+NOTE: The 7794 IntelliPro and subscriber must be connected to the FACP within the 
+same room and in no more than 20 ft. of conduit. 
+ 
+1.1 Basic Functions 
+ 
+The 7794 is a dialer capture module with monitoring capabilities as well as full emulation 
+of the POTS telephone line for incoming data sent from the FACP. The 7794 can 
+intercept the FACP phone line connection at different states of the call if the intercept 
+number matches the number being dialed. 
+ 
+1.2 User Interface 
+ 
+The 7794 does not use configuration jumper settings and is programmed using the AES 
+Hand Held Programmer (P/N 7041E). The Hand Held Programmer connects to the J2 
+RJ11 connector labeled “HandHeld”. See Figure 1. - 7794 Connector and LED 
+Locations. The Hand Held is also used for diagnostics and monitoring of the 7794 while 
+in operation. An LED is used to indicate operating status.  See Section 6 Status LED 
+Blink Patterns for details. 
+ 
+ IMPORTANT: Do not connect the Hand Held programmer to the J1 connector. J1 is for 
+connecting the 7794 to the subscriber unit.  
+ 
+1.3 System Requirements 
+ 
+This document assumes the user knows how to set the AES subscriber unit account 
+number, cipher and other configuration settings as well as how to operate the AES Multi 
+Net software environment including IPCtrl and automation. 
+1.3.1 Fire Alarm Control Panel Telco Interface Requirements 
+ 
+NOTE:  
+ 
+ The 7794 is NOT compatible with Fire Alarm Control Panels that 
+test both digital communicator telephone lines at the same time.
+
+--- PAGE 7 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 7 40-7794, Rev 5, 6/9/2015 
+ 
+With the 7794 IntelliPro used as the sole path communicator, only one telephone 
+line connection to the FACP is required. Use the following method below.  
+ 
+ Parallel connect both telephone lines together. 
+  
+The 7794 can provide voltage to both telephone line connections if they are 
+connected together in parallel with TIP to TIP and RING to RING as shown in 
+Section 3, Figure 5 and Section 4, Figure 6D. 
+ 
+ 
+1.4 Safety Considerations  
+ All equipment must be installed in accordance with National Electric Code, 
+NFPA 70, National Fire Code NFPA 72 and local building codes.  
+ Test this system periodically for proper operation. AES assumes no responsibility 
+for this equipment's failure to operate.  AES' sole responsibility is to repair or 
+replace any AES device found to be defective during the warranty period. 
+ Avoid dropping or other physical impact which could damage the card or card 
+components.  
+ 
+1.5 Technical Specifications 
+• SIZE:  4 7/8 in. x 5 in. (12.3 cm x 12.7 cm ) 
+• WEIGHT: 0.4 pounds (0.18 kilograms) 
+• POWER INPUT:  Power supplied from AES 7744F/7788F/7788F-C 
+• VOLTAGE:  12VDC nominal 
+• CURRENT:  350 mA nominal 
+• FUSE: Onboard current limiter. Not serviceable 
+• OPERATING TEMPERATURE RANGE:  0° to 49° C (32° to 120°F) 
+• STORAGE TEMPERATURE RANGE:  -10° to 60° C (14° to 140°F) 
+• RELATIVE HUMIDITY RANGE:  0 to 93% RH, Non Condensing 
+ 
+NOTE:  
+ The AES 7794 IntelliPro must be used with the 7762 Hardware 
+Supervisor for compliance with UL listing as primary 
+communicator. See the 7762 Hardware Supervisor Installation 
+and Operation Manual for details. 
+ 
+ The 7794 must be installed in accordance with National Electrical 
+Codes and UL-864. 
+ 
+ Canadian installations must be done in accordance with Canadian 
+Electrical Codes and ULC-527.
+
+--- PAGE 8 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 8 40-7794, Rev 5, 6/9/2015 
+2 Installation of 7794 in subscriber unit  
+ 
+ Remove four (4) of the hex nuts shown in Figure 2 that hold the subscriber unit 
+board in the subscriber enclosure. Save the hex nuts. 
+ 
+Figure 2. 
+ Install the 4 hex standoffs (P/N 09-2015). Place the standoffs on the threads 
+exposed after removing the hex nuts. Do not over tighten the standoffs while 
+installing. See Figure 3 
+ 
+Figure 3.
+
+--- PAGE 9 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 9 40-7794, Rev 5, 6/9/2015 
+ Mount the 7794 PC board on four newly installed standoffs. Install insulating 
+washer (P/N 09-7X94) over mounting hold H3. Temporarily secure the board 
+using the  4 hex nuts removed earlier Important: Place the Earth Ground hex nut 
+(green) on the right side center hex standoff as shown in Figure 2 above. 
+ 
+Figure 4. 
+3 Primary Communication Interface 
+ 
+3.1 Connector and LED Locations 
+ 
+ 
+Figure 1. 7794 Connector and LED Locations
+
+--- PAGE 10 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 10 40-7794, Rev 5, 6/9/2015 
+3.2 Connecting 7794 to Alarm Panel – Primary Communication 
+Interface 
+ 
+When mounted in a subscriber enclosure and connected to the Fire Alarm Control Panel 
+dialer, the 7794 delivers alarm messages to the central monitoring station as shown in 
+Figure 5 and Figure 5A below.  The 7794 is supervised by the 7762 using a ‘heartbeat’. 
+See the 7762 Install Manual AES P/N 40-7762 for detail. NOTE: The 7794 IntelliPro 
+and subscriber must be connected to the FACP within the same room and in no 
+more than 20 ft. of conduit. 
+ 
+ 
+Figure 5.
+
+--- PAGE 11 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 11 40-7794, Rev 5, 6/9/2015 
+ 
+Figure 5A.  
+ ` 
+ 
+3.3 Connection Details – Primary Communication Interface 
+ 
+When mounted in a subscriber enclosure and connected to the Fire Alarm Control 
+Panel dialer, the 7794 delivers alarm messages to the central monitoring station as 
+shown in Figure 5 and Figure 5A above.  NOTE: The 7794 IntelliPro and 
+subscriber must be connected to the FACP within the same room and in no 
+more than 20 ft. of conduit. 
+ 
+To connect the 7794 to the FACP: 
+ 
+a) Extend FACP Dialer 1 and Dialer 2 TIP and RING to the 7794. 
+ 
+See Figure 6 below for the following steps:
+
+--- PAGE 12 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 12 40-7794, Rev 5, 6/9/2015 
+b) Connect FACP Dialer 1 and Dialer 2 TIP wire to J6 terminal block labeled AP 
+TIP.  
+ 
+c) Connect FACP Dialer 1 and Dialer 2 RING wire to the J6 terminal block 
+labeled AP RING.  
+ 
+NOTE: Terminal blocks J3, J5, J7, J8 and J9 are not used. Do not connect to these 
+terminals. 
+ 
+ 
+ 
+Figure 6. 
+ 
+ 
+Note: Disabling Second FACP Telco Connection - Most fire panels can be 
+configured to disable the second Telco connection.  With the second Telco 
+connection disabled, the panel will no longer supervise the connection. This 
+method can be used to eliminate supervision alarms at the panel due to 
+disconnecting the second Telco connection. 
+ 
+ 
+Proceed to Section 5 - Configure 7794.
+
+--- PAGE 13 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 13 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+4 Supplemental Communication Interface 
+ 
+4.1 Connector and LED Locations 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Figure 6A. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+RJ11 
+connection to 
+Handheld  
+ 
+AP  
+TIP and 
+RING 
+ 
+RJ31TELCO 
+TIP and 
+RING 
+RJ31CPE  
+TIP and 
+RING 
+ 
+AP CPE 
+TIP and 
+RING 
+ 
+RJ11 connection 
+to AES 
+subscriber 
+LED 
+ 
+Pots, AP, CPE 
+interfaces 
+(see detail) 
+Trouble output 
+(Form C relay) 
+RJ31 TO AP  
+RJ31 FROM 
+WALL
+
+--- PAGE 14 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 14 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+4.2 7794 to Alarm Panel - US Installation - Supplemental 
+Communication Interface 
+ 
+ 
+Figure 6B. 
+ 
+ 
+FACP (Fire Alarm Control Panel) with both dialers connected to the 7794 (AP TIP and 
+AP RING) as shown in Figure 6B. 
+Method 1: Dialer 1/ Dialer 2 to 7794 
+Method 2: FACP relays into 7788 Zone Inputs 
+Normal case: Alarm = Dialer #1 / #2 to MultiNet Receiver via 7794 
+ 
+Method 1- FAILS:   
+FACP detects Dialer 1 and Dialer 2 both in trouble 
+FACP trips relay "T" to 7788  
+7788 reports to MultiNet (DIALER FAILURE) 
+ 
+Method 2 - FAILS: (antenna cut, etc.) 
+7744F/7788F/7788F-C engages J4 Trouble Relay 
+J4 relay trip causes local annunciation – see  
+7744F RF Subscriber Unit Installation and Operation Manual P/N 40-7744 
+7788F RF Subscriber Unit Installation and Operation Manual P/N 40-7788 
+7788F-C RF Subscriber Unit Installation and Operation Manual P/N 40-7788FC 
+for details.
+
+--- PAGE 15 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 15 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+4.2.1 Connection Details –7794 to Alarm Panel - US Installation 
+1) Connect the FACP Dialer 1 and Dialer 2 TIP and RING to the 7794 terminal 
+block labeled AP TIP RING as shown in Figure 6C below.  
+ 
+ 
+Figure 6C. 
+2) Wire the Zones of the FACP into the 7788 as depicted above in Figure 6B. 
+ 
+ 
+Note: Disabling Second FACP Telco Connection - Most fire panels can be 
+configured to disable the second Telco connection.  With the second Telco 
+connection disabled, the panel will no longer supervise the connection. This 
+method can be used to eliminate supervision alarms at the panel due to 
+disconnecting the second Telco connection.
+
+--- PAGE 16 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 16 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+ 
+4.3 Connect 7794 to Alarm Panel – Canada/Dual Dialer Installation - 
+Supplemental Communication Interface 
+ 
+ 
+ 
+ 
+Figure 6D. 
+ 
+ 
+FACP with PSTN and RF 
+Method 1: PSTN via Dialer 1 
+Method 2: RF (7788F-C #1) via Relays 
+Method 3: Supplemental:  RF (7794-7788F-C #2) via Dialer 2, Reverse Polarity, Other 
+Technologies, Relays or other means provided by ULC S559 Listed FACP 
+Normal case: Alarm = Dialer 1 dials into Phone Receiver or via Dialer 2 into MultiNet 
+receiver 
+ 
+Method 1 FAILS: PSTN fails (line cut, failure to connect, etc) 
+ Reports with 2 messages: 
+AP detects  (AP monitoring  PSTN), and trip relay "T" connected to the 7788F-C  
+7788F-C sends ZONE alarm (DIALER FAILURE). 
+AP reports via Method 3.  If used, 7794-7788F-C #2 reports into MultiNet (DIALER 
+FAILURE). 
+ 
+Method 2 FAILS: antenna cut, etc. 
+7788F-C engages J4 Trouble Relay 
+J4 relay trip  causes local annunciation
+
+--- PAGE 17 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 17 40-7794, Rev 5, 6/9/2015 
+AP sends message via Dialer 1 indicating that 7788F-C is in trouble. 
+AP reports via Dialer into Phone Receiver (RF COMMUNICATOR FAILURE) 
+ 
+ 
+4.3.1 Connection Details – 7794 to Alarm Panel – Canada Installation 
+1) Connect the FACP Dialer 1 TIP and RING to the PSTN (Public Switching 
+Telephone Network). 
+2) Connect the FACP Dialer 2 TIP and RING to the 7794 terminal block labeled AP 
+TIP RING. 7794 into 7788F-C #2. 
+3) Wire the Zones of the FACP into the 7788F-C #1 as depicted above in Figure 6D. 
+4) Connect the FACP 
+Note: Disabling Second FACP Telco Connection - Most fire panels can be 
+configured to disable the second Telco connection.  With the second Telco 
+connection disabled, the panel will no longer supervise the connection. This 
+method can be used to eliminate supervision alarms at the panel due to 
+disconnecting the second Telco connection. 
+ 
+5 Configure 7794  
+The 7794 is configured using the AES Hand Held programmer (P/N 7041E) and 
+programmer cable (P/N 13-0395).  Perform the following: 
+ 
+5.1 Connecting the Handheld Programmer   
+The 7794 must be installed and connected by the interconnect cable to the subscriber unit 
+as described in Section 3. Attach the Hand Held to J2 connector labeled ‘HandHeld’ on 
+the 7794. See Figure 7 below. The Hand Held programmer powers up automatically 
+when the programmer cable is plugged into the J2 connector. 
+ 
+ 
+ 
+Figure 7. 
+ 
+IMPORTANT: Do NOT use J1 labeled ‘TO RADIO’ to connect the Hand Held 
+programmer. 
+5.2 Determine Firmware Version  
+The Hand Held LCD displays status information including firmware version. The 
+firmware version is visible after the Hand Held powers up when plugged into J2. The 
+example in Figure 6 shows the firmware version number after the letter ‘v’. 
+ 7794vX.XXX F1=config 
+POTS:NO,7794=POTS
+
+--- PAGE 18 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 18 40-7794, Rev 5, 6/9/2015 
+ 
+ 
+ 
+Figure 8. 
+ 
+(NOTE: If there is different data in the display, press F1, then press ‘E’ to update 
+the display. Some Hand Held programmers have a slow response time.)  
+ 
+5.3 Configuration Interface 
+The 7794 can be configured using the Hand Held programmer, a PC configured as a 
+terminal, or using the AES IntelliLoader (Note: Check the IntelliLoader version for 
+features that can be programmed.) 
+ 
+5.4 Entering  Configuration Mode 
+It is a good practice to configure the 7794 with the FACP disconnected. Press F1 to enter 
+Configuration Mode. ’CONFIG’ will appear in the display. 
+If the Alarm Panel is powered, incoming AP events may be displayed on the LCD. To 
+exit configuration mode press the ESC or the E key. 
+ 
+5.5 Changing option settings 
+Press F3 to change the value. 
+Press F4 and F5 to browse the list of configurable features. 
+When you press F3, select the new value or press ESC to exit without changing it. 
+After selecting the new value, you return to the CONFIG screen at the same position 
+before selecting the value. 
+ 
+5.6 For Configuration Options – Primary Communication 
+ 
+Configuration 
+options 
+Available settings Required settings 
+Phone line Y/N N 
+Intercept Number Any number with minimum 
+of 3 digits and maximum of 
+20 digits. 
+No required setting. 
+AP report format CID/MODEM/PULSE 
+MODEM options: 
+        MODEM2/MODEM3 
+PULSE options 
+       HSD =08/04 sec 
+       HSF=1.4/2.3  kHz 
+       CF=1.4/1.9  kHz 
+       IDT=0.7/0.9/1.7 sec 
+       IRT=3.0/5.0 sec 
+ 
+Select based on 
+FACP 
+communication 
+format 
+ 
+AP Input gain 10/20 Select based on use. 
+Intercept blind dial Y/N Y
+
+--- PAGE 19 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 19 40-7794, Rev 5, 6/9/2015 
+Configuration 
+options 
+Available settings Required settings 
+Line cut Report Not Used. Not Used. 
+POTS cut report delay Not Used. Not Used. 
+POTS restoral delay Not Used. Not Used. 
+ 
+AP ACCT override Y/N Select based on 
+account ID 
+requirement. 
+POTS Input gain Not Used. Not Used. 
+Advanced Options 
+Display 
+Y/N No required setting. 
+ 
+AP Output Gain 0/3/6 Select based on use. 
+Reset to defaults Not applicable. Not applicable. 
+Line cut sensing Not Used. Not Used. 
+CID 4XX Letter 
+ 
+U/C Select based on use. 
+M3 EX TEXT TO 
+CID Y/N Select based on use. 
+Voltage Pump Y/N Y 
+Clock FShift Not Used. Not Used. 
+ 
+5.6.1 Phone Line  
+Option settings: YES or NO. 
+YES = Phone line is present 
+NO = Phone line is not present (DEFAULT) 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.2 Intercept number 
+Set the intercept number to the number programmed in the Fire Alarm Control Panel with 
+a minimum of 3 numbers entered. Default number is ‘555’. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.3 Alarm Panel report format 
+This setting allows you to modify the way the 7794 interprets the data sent by the FACP 
+over the dialer interface. The 7794 interprets the data and transfers it to the subscriber 
+where it is sent to the Multi Net.  
+The 7794 currently supports the following formats: 
+ Contact ID (Ademco CID) 
+Note:  If Phone Line (POTS) is not present, or if the 
+line is cut, the 7794 will emulate the Central Office 
+and will respond to any number dialed, regardless 
+of the setting for the Intercept Number.
+
+--- PAGE 20 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 20 40-7794, Rev 5, 6/9/2015 
+ Pulse formats at 10 and 20 pulses per second, with combinations of 
+handshake, kiss-off, and center pulse frequencies, plus variable durations that 
+cover most pulse formats 
+ Modem formats from Bosch, ranging from Modem II to Modem IIIa. 
+The options for the alarm panel report are CID, MODEM or PULSE with: 
+C=CID, M=MODEM, P=PULSE 
+Press F3 to change the value. 
+Use: 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.3.1 CID Alarm Format 
+ 
+To select CID report format, press “C” (after pressing F3).  
+5.6.3.2 Modem Alarm format 
+To select Modem report format, press “M” (after pressing F3). The next configuration 
+option (reached by pressing F5) will allow you to select Modem II or Modem IIIa. This 
+next configuration option is only available when the format is MODEM.  
+A=MODEM3 (default) 
+B=MODEM2 
+Press F3 to change the value. 
+ 
+For details see Section 8 –  Format: Bosch/Radionics Modem 2 and Modem 3 on page 
+31. 
+ 
+5.6.3.2.1 Modem 2 format – unknown panel type family assignment 
+When using the Modem II format there is a chance that you will find a panel type (a field 
+in the Modem II message that the 7794 translates) that does not exist in the 7794 pre-
+defined panel types. When this occurs, even though the 7794 knows that it is Modem II, 
+it cannot decide what the panel family is. For these cases there is a setting that is active 
+when the unknown panel type is detected. This occurs at the configuration time and you 
+MUST set the proper family. NOTE: THIS FEATURE IS NEEDED AND AVAILABLE 
+FOR THE MODEM2 AP FORMAT ONLY. 
+For details, Section 8.2 – Modem 2 format – unknown panel type family assignment on 
+page 31 
+5.6.3.3 Pulse Alarm format 
+Press “P” (after pressing F3) to select the Pulse report as Pulse (also referred as 4+2, 
+4+1, or 3+1). The next configuration option (reached by pressing F5) will allow you to 
+select durations and frequencies for the pulse format.  
+The following configuration option is only available when the format is PULSE: 
+ 
+D=HSD (Handshaking duration)  (default 0.8 sec) 
+ Options are A=0.8,B=0.4 
+F=HSF (Handshaking frequency)  (default 1.4 KHz)
+
+--- PAGE 21 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 21 40-7794, Rev 5, 6/9/2015 
+ Options are A=1.4,B=2.3 
+C=CF (Center frequency)  (default 1.8 KHz) 
+ Options are A=1.8,B=1.9 
+I=IDT (Inter digit time)  (default 0.7 sec) 
+ Options are A=0.7,B=0.9,C=1.7 
+R=IRT (Inter round time)  (default 0.8 sec) 
+ Options are A=3.0,B=5.0 
+5.6.4 AP Input gain 
+The AP input gain increases the 7794 sensitivity when listening to the FCAP. Some 
+panels will adjust to this setting.  
+The options are:  
+A=10 (DEFAULT) 
+B=20 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+If the 7794 cannot decode the dialing digits, then the AP Gain can be changed to 20. This 
+setting will increase sensitivity and make the 7794 capable of decoding the data from the 
+AP. 
+5.6.5 Intercept on blind dial 
+Intercept on AP blind dial should be used when the panel does not wait for a dial tone. 
+This occurs when the AP goes off hook and starts dialing immediately. If the option is set 
+to YES, the 7794 will expects the digits as soon as the AP goes off hook and will skip the 
+initial dial tone. 
+ 
+Options are: YES or NO. 
+YES: Intercept on AP blind dial enabled 
+NO: Intercept on AP blind dial disabled (DEFAULT) 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.6 Line Cut Report 
+By default, the Line Cut Report is YES. Note: The following combination: 
+Phone Line (POTS) = YES and Line Cut Report = NO will change when  
+Phone Line (POTS) is set to NO, the changed again to Phone Line (POTS) = YES. The 
+Lin Cut Report will be overwritten and return to YES. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen
+
+--- PAGE 22 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 22 40-7794, Rev 5, 6/9/2015 
+5.6.7 POTS cut report delay 
+The default setting is 45 seconds. The maximum setting is 9999 seconds. (Any value 
+between 0-9999 sec) Note: If the line condition is restored (no fault) before the set report 
+time elapsed, then no signal will be sent.  
+This option is not used.  
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.8 POTS restoral delay 
+This option is to set a value before issuing a restoral on the telephone line. If will assure 
+the telephone line is stable before restoring. The default value is 60 sec and the maximum 
+value is 9999 sec. (Any value between 0-9999 sec) 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+5.6.9 AP ACCT Override 
+The purpose of this option is to allow bypassing the alarm panel account. When set to 
+YES, the account number of the AES subscriber is used in place of the account number in 
+the control panel. This is a useful feature for automation software packages that do not 
+allow two distinct account numbers in one customer account. 
+ 
+Options are: YES or NO 
+YES: AP ACCT Override enabled 
+No: AP ACCT Override disabled (DEFAULT) 
+ 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.10 POTS Input Gain 
+POTS Input Gain increases the 7794 sensitivity when the 7794 is listening to activity on 
+the telephone line (Phone Line (POTS) = YES). The default value is 20 and reducing this 
+value will decrease the 7794 gain. 
+Options are: 
+A = 0 
+B = 10 
+C = 20 (Default) 
+5.6.11 Advanced Options Display 
+This setting allows display and configuration of parameters listed below. 
+Options are: YES or NO
+
+--- PAGE 23 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 23 40-7794, Rev 5, 6/9/2015 
+YES to enable. 
+NO to disable. (DEFAULT) 
+This must be set to YES to allow viewing of advanced configuration options. 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.12 AP Output Gain 
+AP output gain sets the output gain when the 7794 is in POTS mode (POTS=NO).  It is 
+used to increase the gain on the dial tone, handshake and KISS-OFF tones sent by the 
+7794 to the AP. Increasing this value will increase the AP output gain. 
+Options are: 
+A=0 (DEFAULT) 
+B=3  
+C=6  
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.13 Reset to defaults 
+Use only to reset all configuration options -  press F3. Type 7794 and press ENTER. 
+Confirm Reset by pressing Y. 7794 will reset options to default values. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.14 Line-cut sensing Enabled 
+Enable or disable line cut sensing. This option is not used. 
+5.6.15 CID 4xx Letter 
+For reporting open and close reports with “U” or “C” 
+Options are: 
+U: report open and close reports with “U” (DEFAULT) 
+C: report open and close reports with “C” 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen
+
+--- PAGE 24 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 24 40-7794, Rev 5, 6/9/2015 
+5.6.16 M3 EC TEXT to CID Enabled 
+Options are: 
+YES: enable (DEFAULT) 
+NO: disable  
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.17 Voltage Pump Enabled 
+Options are: 
+YES: enable the voltage pump (DEFAULT) 
+NO: disable the voltage pump 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.6.18 Clock FShift Enabled 
+Options are: 
+YES: enable 
+NO: disable (DEFAULT) 
+Keep set at NO. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+5.7 Configuration options – Supplemental Communication 
+The configuration options for 7794 as Supplemental Communication are shown in the 
+table below 
+ 
+Configuration options Available settings 
+Phone line Y/N 
+Intercept Number Any number with minimum of 3 digits and 
+maximum of 20 digits. 
+AP report format CID/MODEM/PULSE 
+MODEM options: 
+        MODEM2/MODEM3 
+PULSE options 
+       HSD =08/04 sec 
+       HSF=1.4/2.3  kHz 
+       CF=1.4/1.9  kHz 
+       IDT=0.7/0.9/1.7 sec 
+       IRT=3.0/5.0 sec
+
+--- PAGE 25 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 25 40-7794, Rev 5, 6/9/2015 
+Configuration options Available settings 
+AP Input gain 10/20 
+Intercept blind dial Y/N 
+Line cut Report Y/N  
+POTS cut report delay Any value between 0-9999(seconds) 
+POTS restoral delay Any value between 0-9999(seconds) 
+AP ACCT override Y/N 
+POTS Input gain 0/10/20 
+Advanced Options Display Y/N 
+AP Output Gain 0/3/6 
+Reset to defaults – 
+Line cut sensing Y/N 
+CID 4XX Letter 
+ 
+U/C 
+M3 EX TEXT TO CID Y/N 
+Voltage Pump Y/N 
+Clock FShift Y/N 
+ 
+ 
+5.7.1 Phone Line  
+Option settings: YES or NO. 
+YES = Phone line is present 
+NO = Phone line is not present (DEFAULT) 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.2 Intercept number 
+Set the intercept number to the number programmed in the Fire Alarm Control Panel with 
+a minimum of 3 numbers entered. Default number is ‘555’. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.3 Alarm Panel report format 
+This setting allows you to modify the way the 7794 interprets the data sent by the FACP 
+over the dialer interface. The 7794 interprets the data and transfers it to the subscriber 
+where it is sent to the Multi Net.  
+The 7794 currently supports the following formats: 
+ Contact ID (Ademco CID) 
+ Pulse formats at 10 and 20 pulses per second, with combinations of 
+handshake, kiss-off, and center pulse frequencies, plus variable durations that 
+cover most pulse formats 
+ Modem formats from Bosch, ranging from Modem II to Modem IIIa.
+
+--- PAGE 26 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 26 40-7794, Rev 5, 6/9/2015 
+The options for the alarm panel report are CID, MODEM or PULSE with: 
+C=CID, M=MODEM, P=PULSE 
+Press F3 to change the value. 
+Use: 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.3.1 CID Alarm Format 
+ 
+To select CID report format, press “C” (after pressing F3).  
+5.7.3.2 Modem Alarm format 
+To select Modem report format, press “M” (after pressing F3). The next configuration 
+option (reached by pressing F5) will allow you to select Modem II or Modem IIIa. This 
+next configuration option is only available when the format is MODEM.  
+A=MODEM3 (default) 
+B=MODEM2 
+Press F3 to change the value. 
+ 
+For details see Section 8 –  Format: Bosch/Radionics Modem 2 and Modem 3 on page 
+31. 
+ 
+5.7.3.2.1 Modem 2 format – unknown panel type family assignment 
+When using the Modem II format there is a chance that you will find a panel type (a field 
+in the Modem II message that the 7794 translates) that does not exist in the 7794 pre-
+defined panel types. When this occurs, even though the 7794 knows that it is Modem II, 
+it cannot decide what the panel family is. For these cases there is a setting that is active 
+when the unknown panel type is detected. This occurs at the configuration time and you 
+MUST set the proper family. NOTE: THIS FEATURE IS NEEDED AND AVAILABLE 
+FOR THE MODEM2 AP FORMAT ONLY. 
+For details, Section 8.2 – Modem 2 format – unknown panel type family assignment on 
+page 31 
+5.7.3.3 Pulse Alarm format 
+Press “P” (after pressing F3) to select the Pulse report as Pulse (also referred as 4+2, 
+4+1, or 3+1). The next configuration option (reached by pressing F5) will allow you to 
+select durations and frequencies for the pulse format.  
+The following configuration option is only available when the format is PULSE: 
+ 
+D=HSD (Handshaking duration)  (default 0.8 sec) 
+ Options are A=0.8,B=0.4 
+F=HSF (Handshaking frequency)  (default 1.4 KHz) 
+ Options are A=1.4,B=2.3 
+C=CF (Center frequency)  (default 1.8 KHz) 
+ Options are A=1.8,B=1.9 
+I=IDT (Inter digit time)  (default 0.7 sec)
+
+--- PAGE 27 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 27 40-7794, Rev 5, 6/9/2015 
+ Options are A=0.7,B=0.9,C=1.7 
+R=IRT (Inter round time)  (default 0.8 sec) 
+ Options are A=3.0,B=5.0 
+5.7.4 AP Input gain 
+The AP input gain increases the 7794 sensitivity when listening to the FCAP. Some 
+panels will adjust to this setting.  
+The options are:  
+A=10 (DEFAULT) 
+B=20 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+If the 7794 cannot decode the dialing digits, then the AP Gain can be changed to 20. This 
+setting will increase sensitivity and make the 7794 capable of decoding the data from the 
+AP. 
+5.7.5 Intercept on blind dial 
+Intercept on AP blind dial should be used when the panel does not wait for a dial tone. 
+This occurs when the AP goes off hook and starts dialing immediately. If the option is set 
+to YES, the 7794 will expects the digits as soon as the AP goes off hook and will skip the 
+initial dial tone. 
+ 
+Options are: YES or NO. 
+YES: Intercept on AP blind dial enabled 
+NO: Intercept on AP blind dial disabled (DEFAULT) 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.6 Line Cut Report 
+By default, the Line Cut Report is YES. Note: The following combination: 
+Phone Line (POTS) = YES and Line Cut Report = NO will change when  
+Phone Line (POTS) is set to NO, the changed again to Phone Line (POTS) = YES. The 
+Lin Cut Report will be overwritten and return to YES. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen
+
+--- PAGE 28 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 28 40-7794, Rev 5, 6/9/2015 
+5.7.7 POTS cut report delay 
+The default setting is 45 seconds. The maximum setting is 9999 seconds. (Any value 
+between 0-9999 sec) Note: If the line condition is restored (no fault) before the set report 
+time elapsed, then no signal will be sent.  
+This option is not used.  
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.8 POTS restoral delay 
+This option is to set a value before issuing a restoral on the telephone line. If will assure 
+the telephone line is stable before restoring. The default value is 60 sec and the maximum 
+value is 9999 sec. (Any value between 0-9999 sec) 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+5.7.9 AP ACCT Override 
+The purpose of this option is to allow bypassing the alarm panel account. When set to 
+YES, the account number of the AES subscriber is used in place of the account number in 
+the control panel. This is a useful feature for automation software packages that do not 
+allow two distinct account numbers in one customer account. 
+ 
+Options are: YES or NO 
+YES: AP ACCT Override enabled 
+No: AP ACCT Override disabled (DEFAULT) 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.10 POTS Input Gain 
+POTS Input Gain increases the 7794 sensitivity when the 7794 is listening to activity on 
+the telephone line (Phone Line (POTS) = YES). The default value is 20 and reducing this 
+value will decrease the 7794 gain. 
+Options are: 
+A = 0 
+B = 10 
+C = 20 (Default) 
+5.7.11 Advanced Options Display 
+This setting allows display and configuration of parameters listed below. 
+Options are: YES or NO 
+YES to enable.
+
+--- PAGE 29 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 29 40-7794, Rev 5, 6/9/2015 
+NO to disable. (DEFAULT) 
+This must be set to YES to allow viewing of advanced configuration options. 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.12 AP Output Gain 
+AP output gain sets the output gain when the 7794 is in POTS mode (POTS=NO).  It is 
+used to increase the gain on the dial tone, handshake and KISS-OFF tones sent by the 
+7794 to the AP. Increasing this value will increase the AP output gain. 
+Options are: 
+A=0 (DEFAULT) 
+B=3  
+C=6  
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.13 Reset to defaults 
+Use only to reset all configuration options -  press F3. Type 7794 and press ENTER. 
+Confirm Reset by pressing Y. 7794 will reset options to default values. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.14 Line-cut sensing Enabled 
+Ennable or disable line cut sensing. 
+5.7.15 CID 4xx Letter 
+For reporting open and close reports with “U” or “C” 
+Options are: 
+U: report open and close reports with “U” (DEFAULT) 
+C: report open and close reports with “C” 
+ 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.16 M3 EC TEXT to CID Enabled 
+Options are:
+
+--- PAGE 30 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 30 40-7794, Rev 5, 6/9/2015 
+YES: enable (DEFAULT) 
+NO: disable  
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.17 Voltage Pump Enabled 
+Options are: 
+YES: enable the voltage pump (DEFAULT) 
+NO: disable the voltage pump 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+5.7.18 Clock FShift Enabled 
+Options are: 
+YES: enable 
+NO: disable (DEFAULT) 
+Keep set at NO. 
+Use: 
+F3:Change setting 
+F4:Go UP to prior screen 
+F5:Do DOWN to next screen 
+ 
+ 
+ 
+6 Status LED Blink Patterns 
+See Figure 1 above for LED location on the 7794 circuit card. Operating status is shown 
+by a red LED that blinks.  
+ 
+Pattern   Status  
+ 
+Slow blink  
+1 pulse per second   Normal operation 
+ 
+Fast blink 
+2 pulses per second  7794 cannot communicate with the subscriber 
+ 
+No blink, always on 7794 not operating properly and should be returned to AES 
+for repair
+
+--- PAGE 31 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 31 40-7794, Rev 5, 6/9/2015 
+7 Format: Contact ID  
+The 7794 is fully compliant with the Contact ID (CID) protocol.  Select option “C”. For 
+details on how to configure the 7794 to process CID, see Section 5.6.3.1 – CID Alarm 
+Format on Page 20. 
+ 
+8  Format: Bosch/Radionics Modem 2 and Modem 3 
+Select option “M”. For details on how to configure the 7794 to process Modem formats, 
+see section 5.6.3.2 – Modem Alarm format on page 20 
+ 
+8.1 Modem Format and Speed (Baud Rate) Settings for Modem 
+Format 
+ 
+Modem Format Speed Family Supported 
+Modem II 110 D8112G2 
+D6112 
+Modem IIe 300 D2212B 
+Modem III 300 D7412GV2 
+D7412GV3 
+D4412 
+D9412G 
+   
+Note: Note: This feature is needed and available for the Modem II AP format only. 
+For details on the translation between Modem format and Contact ID format please 
+contact AES.  
+ 
+8.2 Modem 2 format – unknown panel type family assignment 
+ 
+The 7794 implements a way to associate a “never seen before” panel with one of the 
+Bosch panel family types. This type configuration is needed only when an unknown 
+panel supporting Modem II is connected to the 7794.  When the “new” panel type code is 
+detected, the 7794 saves it to its non-volatile memory and offers the option to allow the 
+user to associate the panel type with the proper panel family.  
+ 
+8.2.1 How do I know that I have an “unknown” panel type? 
+If the AP is not in the 7794 internal database and the AP attempts to communicate with 
+the 7794, the following message will be displayed on the Hand Held programmer:  
+ 
+ 
+ 
+8.2.2 How do I  associate a family with an unknown type? 
+Once you enter the CONFIG mode, press F5 until you reach the sub menu: 
+MODEM2: FAMILY SETUP  
+NOTE:  
+ERR: NEW MODEM2 TYPE  
+F1 FOR FAMILY SETUP
+
+--- PAGE 32 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 32 40-7794, Rev 5, 6/9/2015 
+This sub menu is only available if the report format is MODEM and the format is MODEM2, 
+and an “unknown panel type” has been detected. 
+The default family type displayed on this sub-menu is NONE. 
+Press F3 to change the type of MODEM2 family.  
+The options are: 
+A=6112 
+B=7112 
+C=8112 
+ 
+Select the appropriate family type by pressing either “A”, “B” or “C”. Once the panel 
+family is selected, the 7794 will associate the panel type with the panel family and will be 
+able to process the AP messages for this new panel type code. This association is stored 
+in the 7794 non-volatile memory.  
+  
+ 
+8.3 Bosch/Radionics panels supported 
+ 
+Panel Model Revision Number Format Tested 
+D7412GV2  7.08 Modem III 
+D7412GV3   8.03 Modem III 
+D8112E1/G1  22 Pulse Only 
+D8112G2   31.31 Modem II 
+D6112  4.0 Modem II 
+D2212B   3.03 Modem II e 
+D4412 1.12 Modem III 
+D9412G 6.6 Modem III 
+ 
+NOTE: 
+Even if the panel you are connecting to does not show on the list, it does not mean that it 
+is not supported. 
+ 
+ 
+9  Format: Pulse  
+Select Option “P” (for details on how to configure the 7794 to process Pulse formats see 
+section 5.6.3.3 – Pulse Alarm format on page 20) 
+ 
+9.1 Pulse format settings 
+ 
+The table below shows the different pulse formats supported and the corresponding 
+values of the different parameters for each of these formats.  
+ HSD HSF CF IDT IRT 
+Pulse Format sec kHz KHz sec sec 
+Ademco LS (10 pps) (4+2) 0.8 1.4 1.9 0.9 3 
+Ademco LS (10 pps) (3+1) 0.8 1.4 1.9 0.9 5 
+Ademco LS (10 pps) (4+1) 0.8 1.4 1.9 0.9 5 
+Ademco LS Double Round (3+1 Expanded) 0.8 2.3 1.9 1.7 5
+
+--- PAGE 33 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 33 40-7794, Rev 5, 6/9/2015 
+ HSD HSF CF IDT IRT 
+Pulse Format sec kHz KHz sec sec 
+Ademco HS Double Round (3+1 Expanded) 0.8 2.3 1.9 0.9 5 
+Ademco Slow Silent Knight Slow, HS 1400 Hz 0.8 1.4 1.8 1.7 5 
+Ademco Slow Silent Knight Slow, HS 2300 Hz 0.8 2.3 1.8 1.7 5 
+Radionics Fast (20pps) (4+2) 0.4 2.3 1.8 0.7 3 
+Radionics Fast (20pps) (4+1) 0.8 2.3 1.8 0.7 3 
+Radionics Fast (20pps) (3+1) 0.8 2.3 1.8 0.7 3 
+Radionics (20pps) (4+2) 0.8 2.3 1.9 0.7 3 
+Silent Knight LS Double Round (3+1 Expanded) 0.8 2.3 1.9 1.7 5 
+Silent Knight HS Double Round (3+1 Expanded) 0.8 2.3 1.9 0.9 5 
+Silent Knight Fast 0.8 2.3 1.9 0.9 5 
+Universal High Speed, hand shake 1400Hz 0.8 1.4 1.8 0.7 5 
+Universal High Speed, hand shake 2300Hz 0.8 2.3 1.8 0.7 5 
+ 
+ 
+ 
+ 
+   
+9.2 Settings for non-supported formats 
+Some high speed formats will not work since the 7794 supports only 10 pps and 20pps 
+formats. However, most alarm panels will “gear down” and lower pulse speed after trying 
+and failing to send data to the 7794.  
+ 
+The settings below in Table 1 are recommended the for common high speed formats 
+when the low speed fallback is implemented. The 7794 will successfully interpret the 
+data sent by the AP over the phone dialer interface when speed is reduced. 
+NOTE: These settings are only for the “fail safe” speed. These settings are not for the 
+actual 33 or 40 pps that are not supported by the 7794.  
+ 
+Pulse Format / Recommend Fail Safe settings HSD HSF CF IDT IRT 
+ sec kHz KHz sec sec 
+Radionics Fast Double Round (33pps) 0.8 2.3 1.9 0.7 5 
+Radionics Fast (40 pps Double Round) 0.8 1.4 1.8 0.7 5 
+Table 1.  
+ 
+9.3 Notes on pulse formats 
+9.3.1 Number of digits on Pulse format 
+Pulse format has no selection for the number of digits since the number is determined 
+when the 7794 interprets the pulse train. 
+ If 6 digits are received, it translates into 4+2 
+ If 5 digits are received, it translates in 4+1 
+ If 4 digits are received, it translates in 3+1 
+HSD – Handshake duration              CF – Center frequency      sec = seconds 
+HSF – Handshake frequency            IRT – Inter Round time 
+IDT – Inter digit time
+
+--- PAGE 34 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 34 40-7794, Rev 5, 6/9/2015 
+9.3.2 Double round 
+Double round sends the same message twice and is automatically detected. This is a 
+method used by some pulse protocols to allow a receiver, the 7794 in this case, to 
+validate the data received. 
+ 
+9.3.3 Translation of 3+1 and 4+1 to 4+2  
+1234 56  arrives at Multi Net as:  1234 56 
+1234 5    arrives at Multi Net as:  1234 05 
+123 5      arrives at Multi Net as : 0123 05 
+9.3.4 Expanded format 
+We do not recommend using expanded format due to how the messages will reach Multi 
+Net. 
+ 
+When the AP is programmed for Expanded format (not to be confused with double 
+round), it sends 2 trains of pulses (4 total, because of the double round), and the 7794 
+sends the 2 messages received. This has to be handled carefully with the automation 
+software because the two messages will appear as having two “different” accounts. An 
+expanded format configuration will produce a total of 4 pulse trains. 
+ 
+1st: 5879 6 (4+1) 6879 06 (4+2) 
+2nd: 6666 3 (4+1) 6666 03 (4+2) 
+ 
+For instance, with the expanded format, it would send the following two messages, and 
+each one would produce a message with automation software: 
+ 
+1234 6 1234 6  1234 06 ACCT 1234 RF 5555 RL=14 
+6666 8 6666 8  6666 08 ACCT 6666 RF 5555 RL=14 
+ 
+ 
+10 Testing 
+ 
+Perform the following tests listed below to confirm the 7794 is properly installed and 
+functional. 
+ 
+10.1 Installation Checks 
+Some of the tests to be performed at the installation site require a response from a Central 
+Station person. 
+ Trigger alarm conditions and confirm that the proper message is received at the 
+Central Station. 
+ Cause fault conditions and confirm that the proper message is received at the 
+Central Station.
+
+--- PAGE 35 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 35 40-7794, Rev 5, 6/9/2015 
+11  Maintenance, Warranty and Repair 
+Once installed and nor mal operation is confirmed, there is typically little 
+maintenance required.   
+11.1 Troubleshooting 
+Problems on the circuit board usually require returning the defective unit to 
+AES for service.   
+11.2 Parts List 
+ The 7794 IntelliPro includes the following items: 
+o 7794 IntelliPro  
+o AES RJ11 cable P/N 13-0395 
+o Hex standoffs, (1 1/4 in.) AES P/N 09-2015 
+11.3 Contact Information 
+AES Corporation 
+285 Newbury Street 
+Peabody, Massachusetts 01960 USA 
+Website:  http://www.aes-intellinet.com  
+AES corporate Phone:  (800) 237-6387 (800) AES-NETS 
+USA (978) 535-7310 
+Fax: USA (978) 535-7313 
+Email: Check Website for latest email addresses 
+ 
+ 
+ 
+ 
+ 
+12 Revision History 
+ 
+ 
+Revision Date Notes 
+ 
+3.3E ––––––––––  
+4 Sept. 23, 2014 Instructions for use as primary communicator.
+
+--- PAGE 36 ---
+AES 7794 IntelliPro Fire – Installation Manual  
+ 
+ 
+AES Corporation 36 40-7794, Rev 5, 6/9/2015 
+13  Warranty and Service Procedure 
+OWNER WARRANTY - AES CORPORATION 
+LIMITED PRODUCT WARRANTY AND TECHNOLOGY LICENSE 
+LIMITED PRODUCT WARRANTY: 
+AES Corporation (“AES”) warrants to the original purchaser that each AES Subscriber Product will be free 
+from defects in material and workmanship for three (3) years from date of purchase and all other products 
+purchased from AES including central station receivers and accessories will be warranted for one (1) year 
+from the date of purchase.  At no cost to the original purchaser for parts or labor, AES will repair or replace 
+any AES Product or any, part or parts thereof which are judged defective under the terms of this Warranty.  
+Defective AES Products must be return ed to AES directly, provided they are properly packed, postage 
+prepaid.  Or exchange may be made through any authorized direct factory representative for any AES 
+Products that are judged defective under the terms of this Warranty.  Improper or incorrectly performed 
+maintenance or repair voids this Warranty.  This Warranty does not cover replacement parts that are not 
+approved by AES.  This Warranty does not apply to any AES Product or any part thereof that has been 
+altered in any way to affect its stability  or reliability, or that has been subjected to abuse, misuse, negligence, 
+accident or act of God, or that has had the serial number effaced or removed.  
+Certain AES Products are designed to operate and communicate with other specified AES Products and 
+certain other specified products, systems or networks authorized or approved by AES, as identified in the 
+applicable AES Product instructions.  This Warranty does not apply to any AES Product that is used with any 
+unauthorized or unapproved products, systems or  networks, or that has been installed, applied or used in 
+any manner, other than in strict accordance with AES instructions. 
+AES makes no warranty, express or implied, other than what is expressly stated in this Warranty.   If the law 
+of your state provides  that an implied warranty of merchantability, or an implied warranty of fitness for 
+particular purpose, or any other implied warranty, applies to AES, then any such implied warranty is limited to 
+the duration of this Warranty. 
+AES cannot be aware of and is  not responsible for the differing values of any property to be protected by its 
+alarm reporting systems.  This Warranty does not cover and AES shall not be liable for any defect, incidental 
+or consequential, loss or damage arising out of the failure of any AES Product to operate. 
+Some states do not allow the exclusion or limitation of the durations of implied warranties or the limitation on 
+incidental or consequential damages, so the above limitations or exclusions may not apply to you.  
+This Warranty gives you specific legal rights and you may also have other rights that vary from state to state.  
+TECHNOLOGY LICENSE: 
+Certain AES Products include software, protocols and other proprietary and confidential technology and 
+trade secrets of AES which are incorpora ted in or provided with AES Products solely for use in conjunction 
+with and in order to operate AES Products (“Licensed Technology”).  AES grants the original purchaser a 
+non-exclusive license to use such Licensed Technology solely in connection with the u se and operation of 
+AES Products and for no other purpose or use whatsoever.  No title or ownership in or to any such Licensed 
+Technology is conveyed by the sale or delivery of any AES Products; all such rights are retained by AES.  
+AES SERVICE PROCEDURE:   Contact AES by Phone (978) 535 -7310, Fax (978) 535 -7313 or Email 
+service@aes-intellinet.com, to receive a Return Material Authorization Number.  Have the AES part number 
+and serial number ready.  Repack equipment in original or equivalent packaging.  Insid e the box, please 
+include a contact name, telephone number, address and a brief description of the reason for return.  
+Ship items freight-prepaid to: 
+Repair Services, RMA#__________ 
+AES Corporation, 
+285 Newbury Street 
+Peabody, MA 01960 USA  
+(Contact AES for Return Material Authorization number) 
+June 2007

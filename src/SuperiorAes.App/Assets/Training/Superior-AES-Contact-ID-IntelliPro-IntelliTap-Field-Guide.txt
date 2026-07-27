@@ -1,0 +1,41 @@
+SUPERIOR AES CONTACT ID / DIALER CAPTURE FIELD GUIDE
+7794 INTELLIPRO FIRE + 7067 INTELLITAP II
+Brought to you by Pete Potempa's AuDHD
+
+VERIFIED COMPATIBILITY
+- 7744F / 7788F legacy fire: 7794 IntelliPro Fire is the recommended Contact ID accessory.
+- 7744F / 7788F legacy fire: 7067 IntelliTap II is historically compatible but discontinued and unsupported.
+- 7707 / 7177 IntelliNet 2.0 fire: 7794A IntelliPro; do not use 7794A in legacy subscribers.
+- 7058E / 7350 legacy burglary: 7094 IntelliPro.
+- 7007 IntelliNet 2.0 burglary: 7094A IntelliPro.
+
+CRITICAL SAFETY
+- Put the account on test and follow impairment/AHJ procedures.
+- De-energize AC and battery sources before mounting or wiring.
+- Subscriber J1 pin 6 carries +12 V. Never connect it to USB, RS-232, TTL, FTDI, or a PC.
+- Use only the AES factory accessory cable between the subscriber and approved module.
+- Program the 7794 through J2 HandHeld. Never attach a programmer to J1 TO RADIO.
+- Use official AES manual wiring figures; never infer terminal order from this companion guide.
+
+7794 INTELLIPRO CONTACT ID
+- Mount with required standoffs/insulating washer/earth hardware.
+- Connect 7794 J1 TO RADIO to subscriber J1 with the supplied AES cable.
+- Connect FACP TIP/RING using the exact primary or supplemental manual figure.
+- Keep FACP and subscriber in the same room and within 20 ft of conduit.
+- For UL primary use, verify the 7762 Hardware Supervisor requirement.
+- F1 enters configuration; F3 changes; F4/F5 browse; E/ESC exits.
+- Select C for Contact ID and match intercept/POTS/gain/account behavior to the approved design.
+- AES network guidance recommends 3-hour TTL for Alarm, Trouble, Restoral, and IntelliTap traffic, subject to network approval.
+
+7067 INTELLITAP II
+- Historical, discontinued, and no longer supported.
+- Retain the supplied original manual for existing-unit service evidence.
+- Verify all jumper positions against the exact hardware/manual revision and AES/AHJ approval.
+- Plan migration to 7794/7795 or an approved IntelliNet 2.0 solution.
+
+ACCEPTANCE
+- Confirm alarm, trouble/fault, supervisory where applicable, and required restorals.
+- Verify the complete Contact ID account, qualifier, event, partition/group, and zone/user at automation.
+- Reconnect accessories, rerun subscriber status/routes, and return the account to service only after acceptance.
+
+See the PDF field guide and original AES manuals in the Training section for full details and official links.

@@ -7,6 +7,7 @@
         MinWidth="1160"
         MinHeight="720"
         WindowStartupLocation="CenterScreen"
+        Icon="/Assets/Branding/superior-aes.ico"
         Background="{StaticResource CanvasBrush}"
         Closing="Window_Closing">
     <Grid>
@@ -17,23 +18,25 @@
 
         <Grid Grid.Column="0" Background="{StaticResource NavyDeepBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="108"/>
+                <RowDefinition Height="132"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="128"/>
+                <RowDefinition Height="146"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Margin="22,20,18,0">
-                <TextBlock Text="SUPERIOR"
-                           Foreground="White"
-                           FontSize="23"
-                           FontWeight="Bold"/>
-                <Border Width="48" Height="4" Background="{StaticResource RedBrush}"
-                        HorizontalAlignment="Left" Margin="0,8,0,7"/>
-                <TextBlock Text="AES PROGRAMMER"
-                           Foreground="#AFC0D1"
-                           FontSize="12"
-                           FontWeight="SemiBold"/>
-            </StackPanel>
+            <Grid Margin="18,16,14,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="62"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Assets/Branding/superior-shield.png" Width="55" Height="72" Stretch="Uniform"/>
+                <StackPanel Grid.Column="1" Margin="9,4,0,0">
+                    <TextBlock Text="SUPERIOR" Foreground="White" FontSize="21" FontWeight="Bold"/>
+                    <Border Width="48" Height="4" Background="{StaticResource RedBrush}"
+                            HorizontalAlignment="Left" Margin="0,7,0,6"/>
+                    <TextBlock Text="AES PROGRAMMER" Foreground="#AFC0D1" FontSize="11" FontWeight="SemiBold"/>
+                    <TextBlock Text="Pete Potempa's AuDHD" Foreground="#FF7180" FontSize="9" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
@@ -50,6 +53,7 @@
                     <Button Style="{StaticResource NavButton}" Tag="5" Click="Navigate_Click" Content="⌖   Site survey"/>
                     <Button Style="{StaticResource NavButton}" Tag="6" Click="Navigate_Click" Content="⌂   New radio check"/>
                     <Button Style="{StaticResource NavButton}" Tag="7" Click="Navigate_Click" Content="◈   Mesh simulator"/>
+                    <Button Style="{StaticResource NavButton}" Tag="11" Click="Navigate_Click" Content="☎   Contact ID capture"/>
                     <Button Style="{StaticResource NavButton}" Tag="8" Click="Navigate_Click" Content="▣   Training guides"/>
                     <Button Style="{StaticResource NavButton}" Tag="9" Click="Navigate_Click" Content="▤   Field report"/>
                     <Button Style="{StaticResource NavButton}" Tag="10" Click="Navigate_Click" Content="›_  Terminal"/>
@@ -73,10 +77,15 @@
                                FontSize="11"
                                TextWrapping="Wrap"
                                Margin="17,5,0,0"/>
-                    <TextBlock Text="v0.2 field engineering build"
+                    <TextBlock Text="Brought to you by Pete Potempa's AuDHD"
+                               Foreground="#FF7180"
+                               FontSize="9"
+                               TextWrapping="Wrap"
+                               Margin="17,9,0,0"/>
+                    <TextBlock Text="v0.4 field engineering build"
                                Foreground="#70859A"
                                FontSize="10"
-                               Margin="17,8,0,0"/>
+                               Margin="17,6,0,0"/>
                 </StackPanel>
             </Border>
         </Grid>
@@ -108,33 +117,41 @@
                                    Margin="0,3,0,0"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                        <StackPanel Margin="0,0,10,0">
-                            <TextBlock Style="{StaticResource FieldLabel}" Text="MODEL"/>
-                            <ComboBox x:Name="ModelCombo" Width="98" SelectedIndex="1">
-                                <ComboBoxItem Content="7744F"/>
-                                <ComboBoxItem Content="7788F"/>
-                            </ComboBox>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="Brought to you by Pete Potempa's AuDHD"
+                                   HorizontalAlignment="Right"
+                                   Foreground="{StaticResource RedBrush}"
+                                   FontSize="10"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,2"/>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Style="{StaticResource FieldLabel}" Text="MODEL"/>
+                                <ComboBox x:Name="ModelCombo" Width="98" SelectedIndex="1">
+                                    <ComboBoxItem Content="7744F"/>
+                                    <ComboBoxItem Content="7788F"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,8,0">
+                                <TextBlock Style="{StaticResource FieldLabel}" Text="SERIAL PORT"/>
+                                <ComboBox x:Name="PortCombo" Width="118"/>
+                            </StackPanel>
+                            <Button Style="{StaticResource SecondaryButton}"
+                                    Width="42" Height="34" MinHeight="34"
+                                    Margin="0,19,8,0" Padding="0"
+                                    ToolTip="Refresh serial ports"
+                                    Click="RefreshPorts_Click"
+                                    Content="↻"/>
+                            <CheckBox x:Name="SimulationCheckBox"
+                                      IsChecked="True"
+                                      VerticalAlignment="Center"
+                                      Margin="4,20,12,0"
+                                      Content="Simulation"/>
+                            <Button x:Name="ConnectButton" Width="105"
+                                    Margin="0,19,0,0"
+                                    Click="Connect_Click"
+                                    Content="Connect"/>
                         </StackPanel>
-                        <StackPanel Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource FieldLabel}" Text="SERIAL PORT"/>
-                            <ComboBox x:Name="PortCombo" Width="118"/>
-                        </StackPanel>
-                        <Button Style="{StaticResource SecondaryButton}"
-                                Width="42" Height="34" MinHeight="34"
-                                Margin="0,19,8,0" Padding="0"
-                                ToolTip="Refresh serial ports"
-                                Click="RefreshPorts_Click"
-                                Content="↻"/>
-                        <CheckBox x:Name="SimulationCheckBox"
-                                  IsChecked="True"
-                                  VerticalAlignment="Center"
-                                  Margin="4,20,12,0"
-                                  Content="Simulation"/>
-                        <Button x:Name="ConnectButton" Width="105"
-                                Margin="0,19,0,0"
-                                Click="Connect_Click"
-                                Content="Connect"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -182,40 +199,73 @@
                             <UniformGrid Columns="6" Margin="0,0,0,4">
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7744f-7788f.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7744f-7788f.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7744f-7788f.png|AES 7744F fire subscriber|https://aes-corp.com/product/7788f-fire-subscriber/"/>
                                         <TextBlock Text="7744F" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                         <TextBlock Text="4×4 fire subscriber" FontSize="10" Foreground="{StaticResource MutedBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7744f-7788f.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7744f-7788f.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7744f-7788f.png|AES 7788F fire subscriber|https://aes-corp.com/product/7788f-fire-subscriber/"/>
                                         <TextBlock Text="7788F" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                         <TextBlock Text="8-zone fire subscriber" FontSize="10" Foreground="{StaticResource MutedBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7214-rubber-duck.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7214-rubber-duck.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7214-rubber-duck.png|AES 7214 2.5 dB antenna|https://aes-corp.com/product/7214-2-5-omnidirectional-rubber-duck-antenna/"/>
                                         <TextBlock Text="7214 · 2.5 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7211-stealth.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7211-stealth.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7211-stealth.png|AES 7211 3 dB stealth antenna|https://aes-corp.com/product/7211-3-db-omnidirectional-stealth-antenna/"/>
                                         <TextBlock Text="7211 · 3 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7210-5.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7210-5.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7210-5.png|AES 7210-5 5 dB antenna|https://aes-corp.com/product/7210-5-5db-omnidirectional-antenna/"/>
                                         <TextBlock Text="7210-5 · 5 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Style="{StaticResource CardBorder}" Padding="12">
                                     <StackPanel>
-                                        <Image Source="/Assets/Hardware/aes-7210-6.png" Height="88" Stretch="Uniform"/>
+                                        <Image Source="/Assets/Hardware/aes-7210-6.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7210-6.png|AES 7210-6 6 dB antenna|https://aes-corp.com/product/7210-6-6db-omnidirectional-antenna/"/>
                                         <TextBlock Text="7210-6 · 6 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                            </UniformGrid>
+
+                            <UniformGrid Columns="5" Margin="0,0,0,4">
+                                <Border Style="{StaticResource CardBorder}" Padding="12">
+                                    <StackPanel>
+                                        <Image Source="/Assets/Hardware/aes-7210-3.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7210-3.png|AES 7210-3 3 dB antenna|https://aes-corp.com/product/7210-3-3db-omnidirectional-antenna/"/>
+                                        <TextBlock Text="7210-3 · 3 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Style="{StaticResource CardBorder}" Padding="12">
+                                    <StackPanel>
+                                        <Image Source="/Assets/Hardware/aes-7210-7.jpg" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7210-7.jpg|AES 7210-7 7 dB antenna|https://aes-corp.com/product/7210-7-7db-omnidirectional-antenna/"/>
+                                        <TextBlock Text="7210-7 · 7 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Style="{StaticResource CardBorder}" Padding="12">
+                                    <StackPanel>
+                                        <Image Source="/Assets/Hardware/aes-7210-9.jpg" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7210-9.jpg|AES 7210-9 9 dB antenna|https://aes-corp.com/product/7210-9-9db-omnidirectional-antenna/"/>
+                                        <TextBlock Text="7210-9 · 9 dB" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Style="{StaticResource CardBorder}" Padding="12">
+                                    <StackPanel>
+                                        <Image Source="/Assets/Hardware/aes-7794-intellipro.jpg" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7794-intellipro.jpg|AES 7794 IntelliPro Fire|https://aes-corp.com/product/7794-subscriber-add-on-module/"/>
+                                        <TextBlock Text="7794 IntelliPro" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <Border Style="{StaticResource CardBorder}" Padding="12">
+                                    <StackPanel>
+                                        <Image Source="/Assets/Hardware/aes-7794a-intellipro.png" Height="88" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7794a-intellipro.png|AES 7794A IntelliPro 2.0|https://aes-corp.com/product/7794a-accessory-board/"/>
+                                        <TextBlock Text="7794A · 2.0 only" FontWeight="Bold" Foreground="{StaticResource NavyBrush}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
                             </UniformGrid>
@@ -313,14 +363,33 @@
                                         <WrapPanel Margin="0,8,0,0">
                                             <Button Content="Save current" Click="SaveTemplate_Click" Margin="0,0,8,0"/>
                                             <Button Content="Apply" Click="ApplyTemplate_Click" Style="{StaticResource SecondaryButton}"/>
+                                            <Button Content="Import" Click="ImportTemplates_Click" Style="{StaticResource SecondaryButton}" Margin="8,0,0,0"/>
+                                            <Button Content="Export" Click="ExportTemplates_Click" Style="{StaticResource SecondaryButton}" Margin="8,0,0,0"/>
                                         </WrapPanel>
                                     </StackPanel>
                                     <StackPanel Grid.Column="4">
                                         <TextBlock Text="PLANNED ANTENNA" Style="{StaticResource FieldLabel}"/>
                                         <ComboBox x:Name="ProgrammingAntennaCombo" DisplayMemberPath="DisplayName"/>
-                                        <Button Content="Delete selected template" Click="DeleteTemplate_Click" Style="{StaticResource SecondaryButton}" Margin="0,8,0,0"/>
+                                        <TextBlock Text="CONTACT ID / DIALER CAPTURE" Style="{StaticResource FieldLabel}" Margin="0,10,0,5"/>
+                                        <ComboBox x:Name="ProgrammingDialerCaptureCombo" SelectedIndex="0" SelectionChanged="ProgrammingDialerCaptureCombo_SelectionChanged">
+                                            <ComboBoxItem Content="None"/>
+                                            <ComboBoxItem Content="7794 IntelliPro Fire (recommended)"/>
+                                            <ComboBoxItem Content="7067 IntelliTap II (legacy / discontinued)"/>
+                                            <ComboBoxItem Content="7794A IntelliPro (2.0 Fire only)"/>
+                                        </ComboBox>
+                                        <WrapPanel Margin="0,8,0,0">
+                                            <Button Content="Open Contact ID" Tag="11" Click="Navigate_Click"/>
+                                            <Button Content="Delete template" Click="DeleteTemplate_Click" Style="{StaticResource SecondaryButton}" Margin="8,0,0,0"/>
+                                        </WrapPanel>
                                     </StackPanel>
                                 </Grid>
+                            </Border>
+                            <Border Style="{StaticResource CardBorder}">
+                                <StackPanel>
+                                    <TextBlock Text="Template notes" Style="{StaticResource SectionTitle}"/>
+                                    <TextBlock Text="Fully editable job instructions, verification steps, or site conventions. Never enter a cipher or API key here." Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" Margin="0,0,0,8"/>
+                                    <TextBox x:Name="TemplateNotesTextBox" AcceptsReturn="True" MinHeight="72" TextWrapping="Wrap"/>
+                                </StackPanel>
                             </Border>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -449,6 +518,22 @@
                                     </StackPanel>
                                 </Border>
                             </Grid>
+                            <Border Style="{StaticResource CardBorder}">
+                                <StackPanel>
+                                    <TextBlock Text="Full official command menu" Style="{StaticResource SectionTitle}"/>
+                                    <TextBlock Text="Every documented PC command is available here. Each button opens a guide with the purpose, required entry format, and an example before anything is sent." Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" Margin="0,0,0,12"/>
+                                    <ItemsControl x:Name="FullCommandItemsControl">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Content="{Binding Title}" Tag="{Binding Command}" Click="GuidedCommand_Click" MinWidth="210" Margin="0,0,8,8"/>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
@@ -617,6 +702,7 @@
                                     <TextBlock Text="Automatic baseline" Style="{StaticResource SectionTitle}"/>
                                     <TextBlock Text="Reads local status, the complete routing table, and zone status, then analyzes enrollment, STAT, NETCON, route diversity, local Q, and peer N/L." Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap"/>
                                     <Button Content="Run baseline diagnosis" Margin="0,16,0,0" Click="RunBaseline_Click"/>
+                                    <Button Content="Export troubleshooting report" Style="{StaticResource SecondaryButton}" Margin="0,8,0,0" Click="ExportTroubleshooting_Click"/>
                                 </StackPanel>
                             </Border>
                             <Border Style="{StaticResource CardBorder}" Background="#F7FAFC">
@@ -820,9 +906,9 @@
                                     <StackPanel>
                                         <TextBlock Text="ADDRESS-BASED RADIO PLANNING" Foreground="#8FB5D8" FontSize="11" FontWeight="Bold"/>
                                         <TextBlock Text="New radio check" Foreground="White" FontSize="26" FontWeight="SemiBold" Margin="0,5,0,4"/>
-                                        <TextBlock Text="Combines Google location/elevation and imagery-derived roof data with all four Emergency24 AES antenna layers." Foreground="#CDD9E4" TextWrapping="Wrap"/>
+                                        <TextBlock Text="Combines Geoapify address and terrain-elevation data with all four Emergency24 AES antenna layers." Foreground="#CDD9E4" TextWrapping="Wrap"/>
                                     </StackPanel>
-                                    <Image Grid.Column="1" Source="/Assets/Hardware/aes-7744f-7788f.png" Height="118" Stretch="Uniform"/>
+                                    <Image Grid.Column="1" Source="/Assets/Hardware/aes-7744f-7788f.png" Height="118" Stretch="Uniform" Cursor="Hand" MouseLeftButtonUp="HardwareImage_Click" Tag="/Assets/Hardware/aes-7744f-7788f.png|AES 7744F / 7788F fire subscriber|https://aes-corp.com/product/7788f-fire-subscriber/"/>
                                 </Grid>
                             </Border>
                             <Grid>
@@ -835,9 +921,9 @@
                                         <TextBlock Text="Site inputs" Style="{StaticResource SectionTitle}"/>
                                         <TextBlock Text="STREET ADDRESS" Style="{StaticResource FieldLabel}"/>
                                         <TextBox x:Name="RadioCheckAddressTextBox" Text="Chicago, IL"/>
-                                        <TextBlock Text="GOOGLE MAPS PLATFORM API KEY" Style="{StaticResource FieldLabel}" Margin="0,10,0,5"/>
-                                        <PasswordBox x:Name="GoogleApiKeyPasswordBox" MinHeight="34" Padding="9,6"/>
-                                        <TextBlock Text="Used only for this lookup; never saved or logged. Set GOOGLE_MAPS_API_KEY to prefill securely." Foreground="{StaticResource MutedBrush}" FontSize="11" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                        <TextBlock Text="GEOAPIFY API KEY" Style="{StaticResource FieldLabel}" Margin="0,10,0,5"/>
+                                        <PasswordBox x:Name="GeoapifyApiKeyPasswordBox" MinHeight="34" Padding="9,6"/>
+                                        <TextBlock Text="Never logged. Setup creates an editable %ProgramData%\SuperiorFire\AES Programmer\credentials.local.txt file; GeoapifyApiKey is loaded from it when present. GEOAPIFY_API_KEY remains supported." Foreground="{StaticResource MutedBrush}" FontSize="11" TextWrapping="Wrap" Margin="0,5,0,0"/>
                                         <Grid Margin="0,10,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -871,8 +957,7 @@
                                         </ComboBox>
                                         <Button Content="Analyze site and AES coverage" Click="AnalyzeRadioSite_Click" Margin="0,14,0,0"/>
                                         <WrapPanel Margin="0,8,0,0">
-                                            <Button Content="Google Maps" Click="OpenGoogleMaps_Click" Style="{StaticResource SecondaryButton}" Margin="0,0,7,7"/>
-                                            <Button Content="Google Earth" Click="OpenGoogleEarth_Click" Style="{StaticResource SecondaryButton}" Margin="0,0,7,7"/>
+                                            <Button Content="Geoapify map" Click="OpenGeoapifyMap_Click" Style="{StaticResource SecondaryButton}" Margin="0,0,7,7"/>
                                             <Button Content="AES map" Click="OpenEmergencyMap_Click" Style="{StaticResource SecondaryButton}"/>
                                         </WrapPanel>
                                     </StackPanel>
@@ -884,7 +969,7 @@
                                             <TextBlock x:Name="RadioRecommendationText" Text="Enter an address or coordinates to begin." FontSize="16" FontWeight="SemiBold" Foreground="{StaticResource NavyBrush}" TextWrapping="Wrap"/>
                                             <TextBlock x:Name="RadioRecommendationDetailText" Text="The app will compare real map layers and provide a field-verification plan." Foreground="{StaticResource MutedBrush}" TextWrapping="Wrap" Margin="0,8,0,0"/>
                                             <Border Background="#FFF6E8" CornerRadius="6" Padding="12" Margin="0,12,0,0">
-                                                <TextBlock Text="Planning estimate only — Google imagery and public AES coverage do not replace an RF survey, structural inspection, listing instructions, AHJ approval, or central-station acceptance testing." Foreground="#714B0B" TextWrapping="Wrap"/>
+                                                <TextBlock Text="Planning estimate only — Geoapify terrain data and public AES coverage do not replace an RF survey, structural inspection, listing instructions, AHJ approval, or central-station acceptance testing." Foreground="#714B0B" TextWrapping="Wrap"/>
                                             </Border>
                                         </StackPanel>
                                     </Border>
@@ -892,11 +977,15 @@
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="210"/>
                                                 <RowDefinition Height="190"/>
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <TextBlock Text="Emergency24 antenna-layer comparison" Style="{StaticResource SectionTitle}"/>
-                                            <DataGrid x:Name="RadioCoverageGrid" Grid.Row="1">
+                                            <Border Grid.Row="1" Background="#E9EEF2" CornerRadius="6" Margin="0,0,0,10">
+                                                <Image x:Name="GeoapifyMapImage" Stretch="UniformToFill"/>
+                                            </Border>
+                                            <DataGrid x:Name="RadioCoverageGrid" Grid.Row="2">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Header="Layer" Binding="{Binding Antenna}" Width="*"/>
                                                     <DataGridTextColumn Header="Gain" Binding="{Binding GainDb}" Width="70"/>
@@ -905,7 +994,7 @@
                                                     <DataGridTextColumn Header="N6/7 peers" Binding="{Binding NetConSixOrSevenPeers}" Width="90"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>
-                                            <TextBlock x:Name="BuildingDataText" Grid.Row="2" Text="No building data loaded." TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" Margin="0,10,0,0"/>
+                                            <TextBlock x:Name="BuildingDataText" Grid.Row="3" Text="No Geoapify site data loaded." TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" Margin="0,10,0,0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -1131,9 +1220,9 @@
                                 <TextBox x:Name="ReportAccountTextBox"/>
                                 <TextBlock Text="TECHNICIAN" Style="{StaticResource FieldLabel}" Margin="0,11,0,5"/>
                                 <TextBox x:Name="ReportTechnicianTextBox"/>
-                                <TextBlock Text="The HTML report includes current status, routes, zones, diagnostic findings, survey trials, and the complete session transcript." TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" Margin="0,16,0,0"/>
+                                <TextBlock Text="The HTML report includes current status, routes, zones, diagnostic findings, survey trials, and the complete session transcript. Session export creates both a text dump and an Excel workbook." TextWrapping="Wrap" Foreground="{StaticResource MutedBrush}" Margin="0,16,0,0"/>
                                 <Button Content="Export printable HTML report" Margin="0,18,0,0" Click="ExportReport_Click"/>
-                                <Button Content="Save raw session log" Style="{StaticResource SecondaryButton}" Margin="0,8,0,0" Click="SaveLog_Click"/>
+                                <Button Content="Export session text + spreadsheet" Style="{StaticResource SecondaryButton}" Margin="0,8,0,0" Click="SaveLog_Click"/>
                             </StackPanel>
                         </Border>
                         <Border Grid.Column="1" Style="{StaticResource CardBorder}">
@@ -1191,6 +1280,254 @@
                             <Button Grid.Column="3" Content="Clear" Style="{StaticResource SecondaryButton}" Margin="8,0,0,0" Click="ClearTerminal_Click"/>
                         </Grid>
                     </Grid>
+                </TabItem>
+
+                <TabItem Style="{StaticResource HiddenTab}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="24,22,12,28">
+                            <Border Background="{StaticResource NavyBrush}" CornerRadius="10" Padding="24" Margin="0,0,14,18">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="230"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="CONTACT ID / DIALER CAPTURE" Foreground="#8FB5D8" FontSize="11" FontWeight="Bold"/>
+                                        <TextBlock Text="IntelliPro + IntelliTap"
+                                                   Foreground="White"
+                                                   FontSize="29"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,7,0,5"/>
+                                        <TextBlock Text="Use 7794 IntelliPro Fire as the recommended Contact ID path for legacy 7744F and 7788F subscribers. Retain 7067 IntelliTap II instructions for existing discontinued hardware only."
+                                                   Foreground="#CDD9E4"
+                                                   FontSize="13"
+                                                   TextWrapping="Wrap"
+                                                   MaxWidth="780"/>
+                                        <TextBlock Text="Brought to you by Pete Potempa's AuDHD"
+                                                   Foreground="#FF7180"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,14,0,0"/>
+                                    </StackPanel>
+                                    <Image Grid.Column="1"
+                                           Source="/Assets/Hardware/aes-7794-intellipro.jpg"
+                                           Height="150"
+                                           Stretch="Uniform"
+                                           Cursor="Hand"
+                                           MouseLeftButtonUp="HardwareImage_Click"
+                                           Tag="/Assets/Hardware/aes-7794-intellipro.jpg|AES 7794 IntelliPro Fire|https://aes-corp.com/product/7794-subscriber-add-on-module/"/>
+                                </Grid>
+                            </Border>
+
+                            <Border Style="{StaticResource CardBorder}" BorderBrush="#F0B7BC" Background="#FFF8F8">
+                                <StackPanel>
+                                    <TextBlock Text="Critical connector safety" Style="{StaticResource SectionTitle}" Foreground="{StaticResource RedBrush}"/>
+                                    <TextBlock Text="Subscriber J1 pin 6 carries +12 V. Never connect J1 pin 6 to USB, RS-232, TTL, FTDI, or a PC. Use the factory AES accessory cable from subscriber J1 to an approved module. Program the 7794 only through J2 HandHeld with the AES 7041E or a physically verified compatible PC interface—never through 7794 J1 TO RADIO."
+                                               TextWrapping="Wrap"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.95*"/>
+                                    <ColumnDefinition Width="1.35*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Border Style="{StaticResource CardBorder}">
+                                        <StackPanel>
+                                            <TextBlock Text="Choose the installed module" Style="{StaticResource SectionTitle}"/>
+                                            <ComboBox x:Name="ContactIdModuleCombo" SelectedIndex="1" SelectionChanged="ContactIdModuleCombo_SelectionChanged">
+                                                <ComboBoxItem Content="None"/>
+                                                <ComboBoxItem Content="7794 IntelliPro Fire (recommended)"/>
+                                                <ComboBoxItem Content="7067 IntelliTap II (legacy / discontinued)"/>
+                                                <ComboBoxItem Content="7794A IntelliPro (2.0 Fire only)"/>
+                                            </ComboBox>
+                                            <Border Background="#EDF5FA" BorderBrush="#B8D7EA" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,12,0,0">
+                                                <TextBlock x:Name="ContactIdModuleStatusText"
+                                                           Text="Recommended for 7744F / 7788F legacy fire. The 7794 replaces the discontinued 7067."
+                                                           TextWrapping="Wrap"
+                                                           Foreground="{StaticResource NavyBrush}"
+                                                           FontWeight="SemiBold"/>
+                                            </Border>
+                                            <TextBlock Text="Compatibility" Style="{StaticResource FieldLabel}" Margin="0,14,0,5"/>
+                                            <TextBlock Text="7744F / 7788F → 7794 recommended" TextWrapping="Wrap" Margin="0,2"/>
+                                            <TextBlock Text="7744F / 7788F → 7067 historical only" TextWrapping="Wrap" Margin="0,2"/>
+                                            <TextBlock Text="7707 / 7177 → 7794A (2.0 Fire)" TextWrapping="Wrap" Margin="0,2"/>
+                                            <TextBlock Text="Do not install a 7794A in a 7744F or 7788F."
+                                                       Foreground="{StaticResource RedBrush}"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,10,0,0"/>
+                                            <Button Content="Copy choice to programming template"
+                                                    Click="ContactIdCopyToProgramming_Click"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="0,15,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Border Style="{StaticResource CardBorder}" Background="#FFF7E8" BorderBrush="#E4B65F">
+                                        <StackPanel>
+                                            <TextBlock Text="7067 IntelliTap II—historical" Style="{StaticResource SectionTitle}"/>
+                                            <TextBlock Text="AES lists the 7067 as discontinued and no longer supported. Existing installations may be documented using the supplied original manual, but this app intentionally does not automate or infer jumper positions. Verify the exact hardware/manual revision, listing, receiver, network-owner, and AHJ requirements."
+                                                       TextWrapping="Wrap"/>
+                                            <Button Content="Open supplied 7067 manual"
+                                                    Tag="AES-7067-IntelliTap-II-Historical-Manual.pdf"
+                                                    Click="OpenBundledTraining_Click"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="0,14,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <Border Style="{StaticResource CardBorder}">
+                                        <StackPanel>
+                                            <TextBlock Text="7794 configuration worksheet" Style="{StaticResource SectionTitle}"/>
+                                            <TextBlock Text="These values are saved with programming templates. The app starts the official interactive menu; the connected 7794 remains the source of truth for prompts and accepted values."
+                                                       Foreground="{StaticResource MutedBrush}"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,0,14"/>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="14"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel>
+                                                    <TextBlock Text="AP REPORT FORMAT" Style="{StaticResource FieldLabel}"/>
+                                                    <ComboBox x:Name="ContactIdReportFormatCombo" SelectedIndex="0">
+                                                        <ComboBoxItem Content="Contact ID (C)"/>
+                                                    </ComboBox>
+                                                    <TextBlock Text="INTERCEPT NUMBER (3–20 DIGITS)" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <TextBox x:Name="ContactIdInterceptTextBox" Text="555" MaxLength="20"/>
+                                                    <TextBlock Text="PHONE LINE / POTS MODE" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <ComboBox x:Name="ContactIdPhoneLineCombo" SelectedIndex="0">
+                                                        <ComboBoxItem Content="Match approved system design"/>
+                                                        <ComboBoxItem Content="POTS present / supplemental"/>
+                                                        <ComboBoxItem Content="No POTS / approved primary"/>
+                                                    </ComboBox>
+                                                    <TextBlock Text="BLIND DIAL" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <ComboBox x:Name="ContactIdBlindDialCombo" SelectedIndex="0">
+                                                        <ComboBoxItem Content="Disabled"/>
+                                                        <ComboBoxItem Content="Enabled only when approved"/>
+                                                    </ComboBox>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2">
+                                                    <TextBlock Text="AP INPUT GAIN" Style="{StaticResource FieldLabel}"/>
+                                                    <ComboBox x:Name="ContactIdInputGainCombo" SelectedIndex="0">
+                                                        <ComboBoxItem Content="10"/>
+                                                        <ComboBoxItem Content="20"/>
+                                                    </ComboBox>
+                                                    <TextBlock Text="CID 4XX LETTER" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <ComboBox x:Name="ContactIdFourXxCombo" SelectedIndex="0">
+                                                        <ComboBoxItem Content="U"/>
+                                                        <ComboBoxItem Content="C"/>
+                                                    </ComboBox>
+                                                    <TextBlock Text="INTELLITAP TTL HOURS" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <TextBox x:Name="ContactIdTtlHoursTextBox" Text="3"/>
+                                                    <TextBlock Text="INTELLITAP TTL MINUTES" Style="{StaticResource FieldLabel}" Margin="0,12,0,5"/>
+                                                    <TextBox x:Name="ContactIdTtlMinutesTextBox" Text="0"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <TextBlock Text="AES legacy-network guidance recommends 3 hours for Alarm, Trouble, Restoral, and IntelliTap traffic; the network owner must approve the final values."
+                                                       TextWrapping="Wrap"
+                                                       Foreground="{StaticResource MutedBrush}"
+                                                       Margin="0,14,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Border Style="{StaticResource CardBorder}">
+                                        <StackPanel>
+                                            <TextBlock Text="Interactive 7794 controls" Style="{StaticResource SectionTitle}"/>
+                                            <TextBlock Text="Format: connect a verified terminal interface to 7794 J2 HandHeld, select 7794 IntelliPro above, check the safety confirmation, then use these controls while reading each live terminal prompt. Example: F1 enters CONFIG, F3 changes the displayed option, F4/F5 move through options, and ESC exits."
+                                                       TextWrapping="Wrap"
+                                                       Foreground="{StaticResource MutedBrush}"/>
+                                            <CheckBox x:Name="ContactIdJ2VerifiedCheckBox"
+                                                      FontWeight="SemiBold"
+                                                      Margin="0,14,0,0">
+                                                <TextBlock Text="I verified this connection is the 7794 J2 HandHeld programming interface—not subscriber J1 or 7794 J1 TO RADIO."
+                                                           TextWrapping="Wrap"/>
+                                            </CheckBox>
+                                            <WrapPanel Margin="0,14,0,0">
+                                                <Button Content="F1 · Enter CONFIG" Tag="F1" Click="ContactIdControl_Click" Margin="0,0,8,8"/>
+                                                <Button Content="F3 · Change" Tag="F3" Click="ContactIdControl_Click" Margin="0,0,8,8"/>
+                                                <Button Content="F4 · Up" Tag="F4" Click="ContactIdControl_Click" Margin="0,0,8,8"/>
+                                                <Button Content="F5 · Down" Tag="F5" Click="ContactIdControl_Click" Margin="0,0,8,8"/>
+                                                <Button Content="ESC · Exit" Tag="ESC" Click="ContactIdControl_Click" Style="{StaticResource SecondaryButton}" Margin="0,0,8,8"/>
+                                            </WrapPanel>
+                                            <TextBox x:Name="ContactIdTerminalPreview"
+                                                     IsReadOnly="True"
+                                                     AcceptsReturn="True"
+                                                     TextWrapping="NoWrap"
+                                                     VerticalScrollBarVisibility="Auto"
+                                                     HorizontalScrollBarVisibility="Auto"
+                                                     Height="170"
+                                                     Background="#0B141D"
+                                                     Foreground="#D1F5E5"
+                                                     BorderThickness="0"
+                                                     Padding="12"
+                                                     FontFamily="Consolas"
+                                                     FontSize="14"
+                                                     Margin="0,4,0,0"/>
+                                            <Grid Margin="0,8,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="ContactIdTerminalInputTextBox"
+                                                         FontFamily="Consolas"
+                                                         KeyDown="ContactIdTerminalInput_KeyDown"/>
+                                                <Button Grid.Column="1"
+                                                        Content="Send response"
+                                                        Click="SendContactIdLine_Click"
+                                                        Margin="8,0,0,0"/>
+                                            </Grid>
+                                            <TextBlock Text="Direct 7794 PC-terminal operation still requires physical bench validation with known-good 7744F and 7788F hardware before field deployment."
+                                                       Foreground="{StaticResource RedBrush}"
+                                                       FontWeight="SemiBold"
+                                                       TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+
+                            <Border Style="{StaticResource CardBorder}">
+                                <StackPanel>
+                                    <TextBlock Text="Guides, original manuals, and official AES pages" Style="{StaticResource SectionTitle}"/>
+                                    <WrapPanel>
+                                        <Button Content="Open field guide"
+                                                Tag="Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf"
+                                                Click="OpenBundledTraining_Click"
+                                                Margin="0,0,8,8"/>
+                                        <Button Content="7794 installation manual"
+                                                Tag="AES-7794-IntelliPro-Fire-Installation-Manual.pdf"
+                                                Click="OpenBundledTraining_Click"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"/>
+                                        <Button Content="7794 quick start"
+                                                Tag="AES-7794-IntelliPro-Quick-Start-Guide.pdf"
+                                                Click="OpenBundledTraining_Click"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"/>
+                                        <Button Content="7794A 2.0 manual"
+                                                Tag="AES-7794A-IntelliPro-2.0-Installation-Manual.pdf"
+                                                Click="OpenBundledTraining_Click"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"/>
+                                        <Button Content="Browse in Training"
+                                                Click="OpenContactIdTraining_Click"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"/>
+                                        <Button Content="Official 7794 product page"
+                                                Tag="https://aes-corp.com/product/7794-subscriber-add-on-module/"
+                                                Click="OpenOfficialPage_Click"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
                 </TabItem>
             </TabControl>
 

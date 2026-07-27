@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.ProgrammingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Programming">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Full subscriber programming" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Every documented AES command is available below. Each button explains the function, entry format, and example before sending through the selected transport."
+          Style="{StaticResource MutedText}" />
+
+      <Border
+          Padding="14"
+          BackgroundColor="#FFF8E8"
+          Stroke="#E8C46D"
+          StrokeShape="RoundRectangle 10">
+        <VerticalStackLayout Spacing="6">
+          <Label
+              Text="Physical-programming safety"
+              FontAttributes="Bold"
+              TextColor="#775500" />
+          <Label
+              Text="Simulation is the safe default. Physical mode requires a genuine USB-to-RS-232 FTDI adapter, a known-good radio, and a verified J1 cable with pin 6 (+12 V) isolated. RF keying, cipher changes, and RAM reset require extra confirmation."
+              FontSize="13"
+              TextColor="#775500" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="10">
+          <Label Text="User-configurable templates" Style="{StaticResource SectionTitle}" />
+          <Picker
+              x:Name="TemplatePicker"
+              SelectedIndexChanged="OnTemplateSelected"
+              Title="Choose template" />
+          <Entry x:Name="TemplateNameEntry" Placeholder="Template name" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Entry
+                x:Name="TemplateSubscriberEntry"
+                Grid.Column="0"
+                MaxLength="4"
+                Placeholder="Subscriber ID" />
+            <Picker
+                x:Name="TemplateModelPicker"
+                Grid.Column="1"
+                Title="Radio model" />
+          </Grid>
+          <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="7">
+            <Entry x:Name="TemplateHoursEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="HH" />
+            <Entry x:Name="TemplateMinutesEntry" Grid.Column="1" Keyboard="Numeric" Placeholder="MM" />
+            <Entry x:Name="TemplateAcDelayEntry" Grid.Column="2" Placeholder="AC/RM" />
+            <Entry x:Name="TemplateReportDelayEntry" Grid.Column="3" Keyboard="Numeric" Placeholder="Sec" />
+          </Grid>
+          <Entry x:Name="TemplateZonesEntry" MaxLength="8" Placeholder="Zones, e.g. FFFBBBBB" />
+          <Entry x:Name="TemplateRestoralsEntry" MaxLength="8" Placeholder="Restorals, e.g. RRRXXXXX" />
+          <Picker x:Name="TemplateAntennaPicker" Title="Antenna" />
+          <Picker x:Name="TemplateContactIdPicker" Title="Contact ID accessory" />
+          <Picker x:Name="TemplateContactFormatPicker" Title="Contact ID report format" />
+          <Entry x:Name="TemplateContactInterceptEntry" Placeholder="Contact ID intercept number" />
+          <Picker x:Name="TemplateContactPhoneLinePicker" Title="Contact ID phone-line mode" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Entry x:Name="TemplateContactGainEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="Input gain" />
+            <Entry x:Name="TemplateContactFourXxEntry" Grid.Column="1" MaxLength="1" Placeholder="4XX letter" />
+          </Grid>
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Entry x:Name="TemplateContactTtlHoursEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="Contact ID TTL hours" />
+            <Entry x:Name="TemplateContactTtlMinutesEntry" Grid.Column="1" Keyboard="Numeric" Placeholder="Contact ID TTL minutes" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Contact ID blind dial enabled" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateContactBlindDialSwitch" Grid.Column="1" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Fire/Trouble packets enabled" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateFireTroubleSwitch" Grid.Column="1" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Repeating enabled" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateRepeatingSwitch" Grid.Column="1" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Suppress AC-failure reporting" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateSuppressAcSwitch" Grid.Column="1" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Suppress charger-fault reporting" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateSuppressChargerSwitch" Grid.Column="1" />
+          </Grid>
+          <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label Grid.Column="0" Text="Suppress ground-fault reporting" VerticalTextAlignment="Center" />
+            <Switch x:Name="TemplateSuppressGroundSwitch" Grid.Column="1" />
+          </Grid>
+          <Editor
+              x:Name="TemplateNotesEditor"
+              AutoSize="TextChanges"
+              MinimumHeightRequest="86"
+              Placeholder="Template notes" />
+          <Label
+              Text="Cipher values are never part of a template."
+              Style="{StaticResource MutedText}" />
+          <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+            <Button Grid.Row="0" Grid.Column="0" Clicked="OnSaveTemplateClicked" Text="Save current" />
+            <Button Grid.Row="0" Grid.Column="1" Clicked="OnApplyTemplateClicked" Style="{StaticResource SecondaryButton}" Text="Apply" />
+            <Button Grid.Row="1" Grid.Column="0" Clicked="OnImportTemplatesClicked" Style="{StaticResource SecondaryButton}" Text="Import JSON" />
+            <Button Grid.Row="1" Grid.Column="1" Clicked="OnExportTemplatesClicked" Style="{StaticResource SecondaryButton}" Text="Export JSON" />
+            <Button Grid.Row="2" Grid.ColumnSpan="2" Clicked="OnDeleteTemplateClicked" Style="{StaticResource DangerButton}" Text="Delete selected template" />
+          </Grid>
+        </VerticalStackLayout>
+      </Border>
+
+      <Label Text="All command functions" Style="{StaticResource SectionTitle}" />
+      <VerticalStackLayout x:Name="CommandList" Spacing="12" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>

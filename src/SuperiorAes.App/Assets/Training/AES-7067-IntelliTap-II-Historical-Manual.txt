@@ -1,0 +1,502 @@
+--- PAGE 1 ---
+Page 1AES•IntelliNet Model 7067 IntelliTap-II
+AES Corporation Doc# 40-7067B, 08/05/04
+AES 7067 IntelliTap-II Digital Dialer Interface
+A Supplemental Alarm Reporting Device
+WARNING:  Test this system periodically for proper
+operation. AES assumes no responsibility for this
+equipment's failure to operate. AES's sole responsibility is
+to repair or replace any AES device found to be defective
+during the warranty period.
+285 Newbury Street  Peabody, Massachusetts 01960 USA
+Tel 978-535-7310  Fax 978-535-7313
+www.aes-intellinet.com    email info@aes-intellinet.com
+ 1  PHYSICAL INSTALLATION
+ The 7067 IntelliTap-II is mounted inside the AES Subscriber Unit.
+SPECIFICATIONS
+I/O - Connections:
+  • RS-232 data link to 7750-F, 7050-E, or 7450-XL
+   Incoming Telephone Line
+   Phone Output from Alarm Panel   House Phone
+Indicators: Green LED,  ON when phone line relay engages
+Red LED - Status , Blink=Normal; Steady=Error
+    Off when receiving call; blinks during data transfer
+Formats Supported   3+1, 4+1, 4+2   Contact ID / Point ID
+Controls:   1 Reset Switch    Jumper Pins for Programming
+Size: 3.9x5x1.2" (9.8x12.7x3cm)
+Mounting: Inside subscriber unit case;
+Power Req: 12V, primary and backup power provided by AES
+Subscriber Unit
+Current:  Typical: 50ma (no load on ERR output), Maximum: 320ma (with max
+load on ERR output)
+ Com Err R T Grn Red  Gry Brn T1 R1
+1
+7067
+Mounting Holes
+Side View: Use standoffs 
+provided to mount the 
+7067 board over the 
+subscriber board as shown.
+Serial / Power Connection
+7050-E & 7750-F Series
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Dialer / 
+Telephone Connector
+Subscriber Zone Inputs
+Programming Pin Set
+Hex nut
+Hex Standoff
+Case 
+7067 Board
+7050-E (or F) Board
+ Com Err R T Grn Red Gry Brn T1 R1
+1
+7067
+7450-XL
+Mounting 
+Holes
+Serial / Power Connection
+NOTE on 7450-XL:
+The 7067 board 
+is mounted upside 
+down from other 
+illustrations
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Dialer / Telephone Connector
+Programming Pin Set
+Subscriber Zone Inputs
+Figure 1: Installation into 7050-E and F-Series Figure 2: Installation into 7450-XL
+HOW IT WORKS
+The AES Model 7067 IntelliTAP-II is a supplemental reporting interface for
+an AES Subscriber Unit. The Tap II controls the incoming telephone line,
+and provides phone line simulation for maximum alarm panel compatibility.
+It retrieves panel data in Contact ID or 4+2 formats from the built-in
+communicator of an alarm panel.  The TAP acts as a digital receiver and
+gives the proper responses to the alarm panel. The alarm panel only has to
+tone dial a selected phone number for the TAP to respond and receive the
+event. The TAP forwards the dialer data to the central station through an
+AESIntelliNet Radio Data Network.
+More Features
+ Use with or without a phone line attached.
+ Telephone Line Cut Detection: The TAP can monitor for telephone line
+cuts.  In the event of a line cut, the Tap will simulate line voltage and dial
+tone so that the panel can convey alarm data to the AES subscriber unit in
+the event of an alarm.
+ Alternate Reporting Trigger - The Tap also has an output to activate an
+alternate communication device if the radio subscriber unit is off the
+network.
+COMPATIBILITY
+Alarm Panel Compatibility: The TAP works with many alarm panel's
+digital communicator or dialer output that is programmable for either 3+1,
+4+1, 4+2,  Contact ID or Point ID formats, with tone dialing capability.  In a
+line cut situation, the Subscriber ID number is used.  In addition to the Tap,
+at least one alarm panel output must be connected to a zone of the AES
+Subscriber Unit.
+Radio Subscriber Unit Compatibility: The TAP is an accessory for the
+AES model 7050-E,
+ 7750-F, 7450 Radio Subscriber Units with Version
+ESB/SUB 1.71 or later.
+Central Receiver Compatibility:  7000/2, 7000/1, 7099, 7701/Net77,
+7703, and Keltron RF7300 receivers will accept TAP packets. Some earlier
+versions may require an upgrade. Refer to the section on central stations at
+the end of this manual. Note that the receiver's automation output sends
+dialer information from the alarm panel, including the alarm panel ID
+number. In a line cut the Subscriber ID number is used.
+Note: The automation output will send Contact ID information from the
+alarm panel, including the panel ID number. The AES Subscriber Unit
+ID is sent in a line cut situation.
+PHYSICAL INSTALLATION of 7067 in an AES Subscriber Unit
+The Tap is installed inside the subscriber unit.
+For 7050-E or 7750-F Subscriber Unit: 
+See Figure 1
+ Remove four (4) lower nuts holding main board inside box. Save the nuts.
+ Install 4 standoffs (provided) in place of nuts, securing the subscriber unit
+circuit board and providing a mount for the "TAP". Do not overtighten.
+ Mount TAP board on standoffs. Secure the board with the 4 nuts removed
+earlier.
+ Earth ground should be connected to lower right terminal.
+ Install 6 wire modular cord between Tap and subscriber main board.
+For 7450 Subscriber Unit: The IntelliTap board is mounted to the inside of
+the cover with double-back adhesive tape. Install the 6 wire modular cord
+between the Tap and the subscriber board.
+For 7450-XL Subscriber Unit: The IntelliTap board is mounted on
+standoffs to the predrilled holes on the plate inside the case. Install the 6-
+wire modular cord between the Tap the subscriber board.
+NOTE: The 7067 IntelliTap-II must be mounted inside subscriber
+enclosure. 
+Also, a separate output of the alarm panel m ust be
+used to activ ate one zone of the AES subscriber unit on alarm.
+© 2003, 2004 AES Corporation  All Rights Reserved.  Rev B.01
+ SIGNALING DEVICE ALSO SUITABLE FOR USE
+AS A BURGLAR ALARM SYSTEM ACCESSORY
+WARNING
+To Prevent The Risk Of
+Electric Shock,
+Deenergize The System
+Conrol Unit And
+Disconnect The
+Telephone Lines Before
+Opening This Unit
+
+--- PAGE 2 ---
+Page 2
+AES Corporation Doc# 40-7067B,   08/05/04
+AESIntelliNet Model 7067 IntelliTap-II
+DIALER FORMAT
+SELECTION -
+See Figure 3 and 4
+IMPORTANT NOTE: The
+central receiver offers
+Radionics 6500 and
+Ademco 685 outputs for
+automation. If you wish to
+use the Contact ID format
+for the AES
+IntelliTAP , it is
+strongly recommended that
+you use the Ademco 685
+format for the alarm
+automation output from your AES receiver.
+A single jumper MUST be installed on position 1, 2 OR 3
+ Contact ID (CID) format = Jumper on 1 only
+ 3+1, 4+1, 4+2 format with 1400 Hz answer tone = Jumper on 2 only
+ 3+1, 4+1, 4+2 format with 2300 Hz answer tone = Jumper on 3 only
+Note: For 3+1, 4+1, 4+2, program your alarm panel for a "single line"
+data format, with data range 0-9, B-F ,
+IMPORTANT: Alarm Panel MUST be programmed for TONE dialing
+only.
+Program the alarm panel to dial with matching parameters.
+How it Works: The TAP tries other answer tones if the selected format
+does not produce a response from the alarm panel:
+ If 1400 Hz is selected, then 2300 Hz will also be attempted.
+ If 2300 Hz is selected, then 1400 Hz will also be attempted.
+ If Contact ID (CID) is selected, CID answer tones are tried 4 times, then
+both 2300 Hz and 1400 Hz are attempted.
+NOTE: The Tap will accept signals from the alarm panel ONLY if the
+Subscriber Unit is enrolled in the network, and has available buffer
+to accept the signal from the Tap.
+PROGRAM PHONE NUMBER INTO THE TAP AND ALARM PANEL -
+Refer to Figures 3 + 4
+Select Phone Number and Program Alarm Panel
+Y ou must select which phone number the TAP-II is to respond to. Select
+either (3-5-*) or (5-5-5).
+Program "3-5-*" telephone number - Factory default setting, preferred
+setup) Install jumper on position 5. Program the alarm panel to dial 3-5-*.
+(Refer to alarm panel  manual for how to enter a * “star” character).
+Program "5-5-5" telephone number - Remove jumper on position 5.
+Program the alarm panel dialer phone number with the digits 5-5-5. During
+a reported event, the phone line is quiet after the 5-5-5 is dialed as it waits
+for more digits.  During this period, the TAP provides an answer tone,
+signalling to the alarm panel to transmit its data, and then kisses it off.  The
+control panel then hangs up the line. Test the setup - see next page.
+Note: Program the alarm panel for Tone/DTMF dialing. Pulse dialing will
+NOT work.
+Figure 3:
+Component
+Locations
+ # Function
+10 not used
+  9 not used
+  8 Jumper for No Phone Line option †
+  7 Line Cut Monitor:  1 minute delay* †
+  6 Line Cut Monitor:  2 minute delay* †
+  5 Phone Number:
+ Jumper = 3-5-* (Factory Default)
+ No Jumper =  5-5-5
+  4 not used
+  3 3+1,4+1,4+2 Format, 2300 Hz handshake
+  2 3+1,4+1,4+2 Format, 1400 Hz handshake
+  1 Contact ID Format first, then 4+2  format
+* For 3 minute delay - jumpers on 6 and 7
+† If there is a jumper on 8,
+    there can be NO jumpers on 6 or 7
+.  .
+.  .
+Position with jumper in place
+Position with no jumper
+Figure 4:
+Programming
+Jumpers
+LINE CUT MONITOR PROGRAMMING
+Refer to Figures 3 + 4
+The TAP can detect and report a telephone line cut. The TAP determines
+that the line is cut when the voltage across terminals 1 and 2 drops
+below approximately 2.5 volts for a programmable period of time. The line
+cut function is enabled and its parameters are set using jumpers 6 and 7
+(see figures 1+2).
+ Line cut monitor:
+    - with 1 minute delay = Jumper on 7 only
+    - with 2 minute delay = Jumper on 6 only
+    - with 3 minute delay = Jumpers on 6 AND  7 only
+ No Phone Line Used, and No Line Cut Monitor = Jumper on 8 only
+ Push Reset Switch on 7067 after setting jumpers.
+ The line cut function can also be used to supervise the line
+between the alarm panel and the subscriber unit. See page x in this
+manual for details.
+ Com Err R T Grn Red Gry Brn T1 R1
+1
+7067
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+Serial / Power Connection
+Dialer / Telephone 
+Connector
+Reset
+Programming Pin Set
+
+--- PAGE 3 ---
+Page 3AESIntelliNet Model 7067 IntelliTap-II
+AES Corporation Doc# 40-7067B, 08/05/04
+ Com Err R T Grn Red Gry Brn T1 R1
+Gry
+Grn
+Red
+Brn
+R T T1 R1
+Premises 
+Phones
+RJ31X
+Telco
+R
+R
+T
+T
+1 Gray
+2 Orange
+3 Black
+4 Red
+5 Green
+6 Yellow
+7 Blue
+8 Brown
+7067 IntelliTap-II
+Alarm Panel
+Figure 5:
+Typical Wiring Diagram with Phone Line Attached
+ Com Err R T Grn Red Gry Brn T1 R1
+RT
+7067 IntelliTap-II
+Alarm Panel
+IMPORTANT: BEFORE TESTING, notify the central station that a
+test is in progress for this account.Figure 6:
+Typical Wiring Diagram with NO Phone Line Attached
+IMPORTANT!
+CONNECT A ZONE ON THE SUBSCRIBER UNIT
+At least one output of the alarm panel must be connected to the
+AES Subscriber Unit when using the TAP.  The Tap is a supple-
+mental reporting device.
+The activated zone serves as a general alarm.  The alarm monitoring
+screen should comment that additional information should follow and
+what action to take if it does not. If the alarm panel has enough
+outputs you can send general alarms for more specific clarification,
+such as General Fire, Burglary, Panic, etc.
+The backup zone activation is immediate, and will  likely activate
+faster than the TAP , which must wait for the alarm panel to go
+through the dialing process.
+Note that the ID of the AES Subscriber Unit will be sent with the
+zone input signal; the ID of the alarm panel will be sent with the TAP
+signal.
+"Err" Error / Fault Output -
+Open collector output on Output Block position marked "Com Err".
+If the subscriber is "off" the network, the subscriber will not accept data
+from the TAP . The TAP detects the problem. It will not accept messages
+from the alarm panel dialer attempts.  During this condition, the TAP
+activates the “Err” output to annunciate the problem to another device.
+The "Err" Output is Activ ated when:
+ After 3 unsuccessful attempt to communicate with the AES Radio
+Subscriber Unit.
+ Memory failure on the TAP module.
+ If the subscriber is off the network, or the subscriber buffer is full
+The "Err" Output is De-Activ ated when:
+ The output deactivates on the 4th try.
+ Reset of TAP module
+ A new dialer call from the alarm panel.
+ The subscriber returns to the network, or  the subscriber buffer is cleared.
+ Com  Err
+Communication
+Error Output
++12V Open 
+Collector
+To Alternate
+Annunciation
+Device
+200ma. Max
+Typical Relay
+(User Supplied)
+Figure 7:
+Typical Wiring Diagram for Comm Error Output
+
+--- PAGE 4 ---
+Page 4
+AES Corporation Doc# 40-7067B,   08/05/04
+AESIntelliNet Model 7067 IntelliTap-II
+AES LIMITED ONE YEAR OWNER WARRANTY
+We warrant AES products to be free from defects in material and workmanship for one (1) full year
+from date of purchase.
+At no cost to the original purchaser for parts or labor, AES will repair or replace any part or parts which are
+judged defective under the terms of this Warranty.
+Defective products must be returned to AES directly, provided they are properly packed, postage prepaid.
+Or exchange may be made through any authorized direct factory representative for any products which
+are judged defective under the terms of this Warranty.
+This Warranty is in lieu of all other Warranties expressed or implied and of all other obligations or liabilities
+on the part of AES.  This Warranty does not apply to any product or any part thereof which has been repaired
+or altered outside our factory in any way to affect its stability or reliability, or which has been subjected to
+misuse, negligence or accident, or which has had the serial number effaced or removed. Neither shall this
+Warranty apply to any product which has not been installed, applied or used in strict accordance with our
+instructions.
+AES Corporation cannot be aware of, or responsible, for the differing values of property to be protected by
+its alarm reporting systems.  The above Warranty is given in lieu of all other Warranties, either expressed
+or implied, including a Warranty of fitness for a particular purpose, and manufacturer shall not be liable for
+any defect, incidental or consequential, loss or damage arising out of the failure of the product to operate.
+Some states do not allow the exclusion or limitation of incidental or consequential damages, so the above
+limitation or exclusion may not apply to you.
+This warranty gives you specific legal rights and you may also have other rights which vary from state to
+state.
+SERVICE PROCEDURE: Contact AES Corp. at 978-535-7310 (fax 978-535-7313) to receive a Return
+Authorization Number and instructions for shipping the unit to the AES service center.
+FCC IDENTIFICATION   AES IntelliTAP-II Model 7067
+This unit complies with FCC Part 68 as of date of manufacture. FCC# 51WUSA-
+32157-SP-N        Ringer Equivalence: 0.5B    Jack: Barrier Block
+ FCC COMPLIANCE
+NOTE:  This equipment has been tested and found to comply with the limits for a
+Class B digital device, pursuant to Part 15 of the FCC Rules.  These limits are
+designed to provide reasonable protection against harmful interference in a
+residential installation.  This equipment generates, uses and can radiate radio
+frequency energy and, if not installed and used in accordance with the instructions,
+may cause harmful interference to radio communications.  However, there is no
+guarantee that interference will not occur in a particular installation.  If this
+equipment does cause harmful interference to radio or television reception, which
+can be determined by turning the equipment off and on, the user is encouraged to
+try to correct the interference by one or more of the following measures: Reorient or
+relocate the receiving antenna; Increase the separation between the equipment and
+the receiver; Connect the equipment into an outlet on a circuit different from that to
+which the receiver is connected; Consult the dealer or an experienced radio/TV
+technician for help. CAUTION: Changes or modifications to this equipment not
+expressly approved by the party responsible for compliance could void the user’s
+authority to operate the equipment.
+ CANADIAN COMPLIANCE
+This digital apparatus does not exceed the Class B limits for radio noise emissions
+from digital apparatus as set out in the interference-causing equipment standard
+entitled "Digital Apparatus", ICES-003 of Industry Canada.
+Cet appareil numérique respects les limites de bruits radio électriques applicables
+aux appareils numériques de Classe B prescrites dans la norme sur le matériel
+brouilleur: "Appareils Numeriques", NMB-003 édictés par l'Industrie Canada.
+Programming Guide.
+Jumper position 4:
+This position is not used and is reserved for future use.
+Jumper position 5:
+This selects the telephone number the IntelliTap II is looking for to initiate
+an answer and begin communication with the alarm panel. The IntelliTap
+will answer any phone number with 3 or more digits during a line cut
+condition.
+The selected number with a jumper in 5 is 
+ " 3 - 5 - * "
+The selected number with no jumper in 5 is “5 – 5 – 5”
+No jumpers in 6, 7 or 8:
+Phone simulator never comes on. An attached telephone line is discon-
+nected during communication between panel and Tap, also applying
+voltage to the panel’s phone line connection and disconnecting phone
+interference. Tap does not send line cut message. This acts like original
+IntelliTap with a built in phone line disconnect relay. It disconnects a
+connected phone line during communication. Panel must dial the selected
+Tap number for Tap to answer. IntelliTap II will not respond to just any
+phone number if the phone line is cut. The panel must be able to blind dial
+the selected number, hear the answer tone and generate the message.
+Note 1:  This is not usable for DSC, Caddx, new Ademco or other panels
+that require a phone line voltage or dial tone to communicate.
+Note 2:  This is OK for a panel that will blind-dial without voltage to Ring &
+Tip. Examples of this type of panel are DMP XRSuper6 and Napco GEM-
+P9600.
+Jumper in 7, No jumpers in 6, or 8:
+A jumper in 7 selects one-minute phone line cut detection. This will
+introduce the built in phone line simulator when the IntelliTap II detects a
+voltage below 2.5 volts for 1 minute on terminals labeled Grn and Red of
+J3. A line cut message is generated. Restore is immediate and will reset
+the time to 1 minute as well as generate a restore line message. During a
+phone line cut the Tap will answer any phone number with 3 or more digits
+dialed by the panel. During phone line not cut the Tap will only answer the
+selected number as set by jumper 5.
+Jumper in 8, No jumpers in 6 or 7:
+A jumper in 8 selects no phone line is to be connected. This mode forces a
+line cut condition, but will not generate line cut/restore messages. This will
+always introduce the built in phone line simulator. Never connect terminals
+labeled Grn and Red of J3 to a telephone line. During this forced line cut,
+the Tap will answer any phone number with 3 or more digits dialed by the
+panel.
+Jumper in 8, any jumper in 6 and or 7: (Illegal setting)
+Illegal setting DO NOT USE especially with a phone line connection.
+Jumpers in 6 and 7 select phone line cut times and a jumper in 8 selects
+no phone line. This produces a conflict. The IntelliTap II is not expecting a
+phone line connection. It causes erratic operation of relays and phone
+simulator. Line cut and restores are sent erratically.
+Jumper in 6, No jumpers in 7, or 8:
+A jumper in 6 selects two-minute phone line cut detection. This will
+introduce the built in phone line simulator when the IntelliTap II detects a
+voltage below 2.5 volts for 2 minutes on terminals labeled Grn and Red of
+J3. A line cut message is generated. Restore is immediate and will reset
+the time to 2 minutes as well as generate a restore line message. During a
+phone line cut the Tap will answer any phone number with 3 or more digits
+dialed by the panel. During phone line not cut the Tap will only answer the
+selected number as set by jumper 5.
+Jumpers in 6 and 7, No jumpers in 8:
+A jumper in 6 and 7 selects three-minute phone line cut detection. This will
+introduce the built in phone line simulator when the IntelliTap II detects a
+voltage below 2.5 volts for 3 minutes on terminals labeled Grn and Red of
+J3. A line cut message is generated. Restore is immediate and will reset
+the time to 3
+Jumper position 9:
+This position is for debug mode. This is only for use by AES. A jumper in
+this position may cause the IntelliTap to not function,
+Jumper position 10: (not labeled on the board)
+This position is not used and is reserved for future use.
+UL / cUL Compliance Notes
+ Only Contact ID format has been evaluated by UL.
+ The 7067 IntelliT AP unit has been investigated by UL for Supplemental Use Only.
+ The 7067 IntelliTAP unit must be mounted inside the AES Subscriber Unit.
+The 7067 IntelliTAP unit has been evaluated to the following Standards:
+USL:
+UL 609 (10th ed) - Local Alarm Units and Systems
+UL 365 (4th  ed) - Police Station Connected Burglar Alarm Units and Systems
+UL 1610 (2nd ed) - Central Station Burglar Alarm Units
+UL 864 (8th ed) - control Units for Fire-Protective Signaling Systems
+CNL:
+CAN/ULC-S527-M87 (1st ed) - Standard for Control Units for Fire Alarm Systems
+(amend 1995)
+ULC Subject C1023-1974 (1st ed) - Preliminary Standard for Household Burglar
+Alarm System Units
+CAN/ULC-S545-M89 (1st ed) - Standard for Residential Fire Warning System
+Control Units (amended 1995)
+CAN/ULC-S303-M91 (1st ed) - Standard for Local Burglar Alarm Units and
+Systems
+CAN/ULC-S304-M88 (1st ed) - Standard for Central and Monitoring Station
+Burglar Alarm Units
+ORD-C1076-1986 (5th ed) - Proprietary Burglar Alarm Units and Systems
+Electrical Rating: 12VDC nominal
+Current: T ypical: 50ma  (no load on ERR output)
+Maximum: 320ma (with max load on ERR output)

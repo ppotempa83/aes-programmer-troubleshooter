@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    x:Class="SuperiorAes.Android.Pages.SitePlanningPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SuperiorAes.Android.Controls"
+    Title="Site &amp; new radio">
+  <ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="14">
+      <Label Text="Site survey &amp; new radio" Style="{StaticResource PageTitle}" />
+      <Label
+          Text="Record measured field trials and use Geoapify address/elevation/static-map evidence for planning. Provider data does not replace an RF survey."
+          Style="{StaticResource MutedText}" />
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Geoapify credential" Style="{StaticResource SectionTitle}" />
+          <Entry x:Name="GeoapifyKeyEntry" IsPassword="True" Placeholder="Paste Geoapify API key for this device" />
+          <Entry x:Name="CredentialTemplateEntry" IsReadOnly="True" Text="GeoapifyApiKey=***" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnSaveKeyClicked" Text="Use secure storage" />
+            <Button Grid.Column="1" Clicked="OnCopyTemplateClicked" Style="{StaticResource SecondaryButton}" Text="Copy file format" />
+          </Grid>
+          <Label
+              Text="The value is migrated to Android Secure Storage, never written to terminal/session exports, and never embedded in source. Any client-side key can still be extracted by a determined device owner."
+              Style="{StaticResource MutedText}" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Measured site-survey trial" Style="{StaticResource SectionTitle}" />
+          <Entry x:Name="SurveyLocationEntry" Placeholder="Trial location" />
+          <Picker x:Name="SurveyAntennaPicker" Title="Antenna" />
+          <Entry x:Name="SurveyCableEntry" Placeholder="Coax / cable" />
+          <Grid ColumnDefinitions="*,*,*" ColumnSpacing="7">
+            <Entry x:Name="SurveyNetconEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="NETCON" />
+            <Entry x:Name="SurveyQualityEntry" Grid.Column="1" Placeholder="Q, e.g. 03" />
+            <Entry x:Name="SurveyRoutesEntry" Grid.Column="2" Keyboard="Numeric" Placeholder="Routes" />
+          </Grid>
+          <Grid ColumnDefinitions="*,*,*" ColumnSpacing="7">
+            <Entry x:Name="SurveyAckEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="ACK %" />
+            <Entry x:Name="SurveyForwardEntry" Grid.Column="1" Keyboard="Numeric" Placeholder="Fwd W" />
+            <Entry x:Name="SurveyReflectedEntry" Grid.Column="2" Keyboard="Numeric" Placeholder="Refl W" />
+          </Grid>
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="7">
+            <Entry x:Name="SurveyIdleVoltageEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="Idle V" />
+            <Entry x:Name="SurveyKeyedVoltageEntry" Grid.Column="1" Keyboard="Numeric" Placeholder="Keyed V" />
+          </Grid>
+          <Editor x:Name="SurveyNotesEditor" AutoSize="TextChanges" MinimumHeightRequest="76" Placeholder="Trial notes" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnSurveyClicked" Text="Add measured trial" />
+            <Button Grid.Column="1" Clicked="OnCompareClicked" Style="{StaticResource SecondaryButton}" Text="Compare trials" />
+          </Grid>
+          <Label x:Name="SurveyOutputLabel" FontFamily="monospace" FontSize="12" />
+          <Label Text="Accumulated measured trials" Style="{StaticResource SectionTitle}" />
+          <Label
+              x:Name="SurveyTrialsLabel"
+              Text="No measured trials recorded."
+              FontFamily="monospace"
+              FontSize="12"
+              LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+      </Border>
+
+      <Border Style="{StaticResource Card}">
+        <VerticalStackLayout Spacing="9">
+          <Label Text="Site analysis / new-radio check" Style="{StaticResource SectionTitle}" />
+          <Entry x:Name="AddressEntry" Placeholder="Service address (Geoapify key required)" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Entry x:Name="LatitudeEntry" Grid.Column="0" Keyboard="Numeric" Placeholder="Latitude (optional)" />
+            <Entry x:Name="LongitudeEntry" Grid.Column="1" Keyboard="Numeric" Placeholder="Longitude (optional)" />
+          </Grid>
+          <Label
+              Text="An address plus key adds Geoapify geocoding, elevation, and a static map. Latitude/longitude can run the Emergency24 AES antenna-layer analysis without Geoapify."
+              Style="{StaticResource MutedText}" />
+          <Picker x:Name="ConstructionPicker" Title="Construction" />
+          <Picker x:Name="PreferredLocationPicker" Title="Preferred antenna location" />
+          <Button Clicked="OnRadioCheckClicked" Text="Analyze site and AES coverage" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+            <Button Grid.Column="0" Clicked="OnOpenGeoapifyClicked" Style="{StaticResource SecondaryButton}" Text="Open Geoapify map" />
+            <Button Grid.Column="1" Clicked="OnOpenAesMapClicked" Style="{StaticResource SecondaryButton}" Text="Open AES map" />
+          </Grid>
+          <Image x:Name="GeoapifyMapImage" HeightRequest="220" Aspect="AspectFill" />
+          <Label x:Name="PlanningOutputLabel" Text="Enter an address/key or coordinates to begin." FontFamily="monospace" FontSize="12" />
+        </VerticalStackLayout>
+      </Border>
+      <Label
+          Text="Recommendations must be field-verified against route diversity, Q/NETCON/ACK evidence, coax loss, mounting/listing instructions, AHJ requirements, and central-station acceptance testing."
+          Style="{StaticResource MutedText}" />
+      <controls:BrandFooterView />
+    </VerticalStackLayout>
+  </ScrollView>
+</ContentPage>
