@@ -19,7 +19,8 @@ Simulation and emulator tests do not validate a physical programming path.
 - [ ] App starts normally with the FTDI cable attached and remains in Simulation.
 - [ ] No USB permission prompt appears until hardware mode is selected and Connect is tapped.
 - [ ] First attachment prompts for USB permission.
-- [ ] Permission denial leaves the app stable and disconnected.
+- [ ] After approval, the pending Connect operation completes without another tap or an app restart, and the interface remains responsive.
+- [ ] Permission denial leaves the app stable and disconnected; a later Connect attempt can request permission again and succeed.
 - [ ] Approved attachment opens at 4800 8-N-1 with flow control off.
 - [ ] DTR is asserted and RTS is cleared.
 - [ ] Cable removal does not crash or hang the app.

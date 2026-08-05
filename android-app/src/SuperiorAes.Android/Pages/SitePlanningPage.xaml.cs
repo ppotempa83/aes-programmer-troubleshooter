@@ -57,7 +57,7 @@ public partial class SitePlanningPage : ContentPage
 
         var supplied = await DisplayPromptAsync(
             "Geoapify setup",
-            $"{(string.IsNullOrWhiteSpace(stored) ? "No stored key was found." : "A key is already present in Android Secure Storage; leave this blank to keep using it.")} Paste a replacement for site/new-radio tools, or continue. The copyable credential-file format is shown on the page as GeoapifyApiKey=***. The value is never logged or exported.",
+            $"{(string.IsNullOrWhiteSpace(stored) ? "No stored key was found." : "A key is already present in Android Secure Storage; leave this blank to keep using it.")} Obtain your own key at myprojects.geoapify.com, then paste it for site/new-radio tools. The value is never logged or exported.",
             "Use key",
             "Continue without key",
             "Geoapify API key",
@@ -98,10 +98,10 @@ public partial class SitePlanningPage : ContentPage
         _session.RecordActivity("Geoapify runtime key supplied and redacted");
     }
 
-    private async void OnCopyTemplateClicked(object? sender, EventArgs args)
+    private async void OnGetGeoapifyKeyClicked(object? sender, EventArgs args)
     {
-        await Clipboard.Default.SetTextAsync("GeoapifyApiKey=***");
-        _session.RecordActivity("Credential-file placeholder format copied");
+        await Launcher.Default.OpenAsync("https://myprojects.geoapify.com/");
+        _session.RecordActivity("Official Geoapify MyProjects page opened");
     }
 
     private void OnSurveyClicked(object? sender, EventArgs args)

@@ -1,6 +1,6 @@
-SUPERIOR AES CONTACT ID / DIALER CAPTURE FIELD GUIDE
+AES CONTACT ID / DIALER CAPTURE FIELD GUIDE
 7794 INTELLIPRO FIRE + 7067 INTELLITAP II
-Brought to you by Pete Potempa's AuDHD
+AES Programmer & Troubleshooter
 
 VERIFIED COMPATIBILITY
 - 7744F / 7788F legacy fire: 7794 IntelliPro Fire is the recommended Contact ID accessory.

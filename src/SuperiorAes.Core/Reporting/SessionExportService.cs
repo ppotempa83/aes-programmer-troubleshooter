@@ -21,7 +21,7 @@ public static class SessionExportService
     public static string BuildText(SessionExportContext context)
     {
         var builder = new StringBuilder();
-        builder.AppendLine("SUPERIOR AES PROGRAMMER — COMPLETE SESSION TERMINAL DUMP");
+        builder.AppendLine("AES PROGRAMMER & TROUBLESHOOTER - COMPLETE SESSION TERMINAL DUMP");
         builder.AppendLine($"Session ID: {SessionId(context)}");
         builder.AppendLine($"Subscriber ID: {Value(context.SubscriberId)}");
         builder.AppendLine($"Model: {Value(context.Model)}");
@@ -56,7 +56,7 @@ public static class SessionExportService
     {
         var rows = new List<IReadOnlyList<string>>
         {
-            new[] { "Superior AES Programmer Session Export" },
+            new[] { "AES Programmer & Troubleshooter Session Export" },
             new[] { "Session ID", SessionId(context) },
             new[] { "Subscriber ID", Value(context.SubscriberId) },
             new[] { "Model", Value(context.Model) },

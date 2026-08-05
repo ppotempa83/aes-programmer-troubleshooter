@@ -1,6 +1,6 @@
-# Superior AES Programmer for Android
+# AES Programmer & Troubleshooter for Android
 
-Android .NET MAUI fork of the Superior AES Programmer. It provides the same
+Android .NET MAUI fork of the Windows AES Programmer & Troubleshooter. It provides the same
 technician feature surface as the Windows application while retaining an explicit
 safety boundary around unvalidated Android hardware use.
 
@@ -42,10 +42,8 @@ safety boundary around unvalidated Android hardware use.
   IntelliNet 2.0 compatibility boundary.
 - Packaged readable training PDFs/text and manufacturer-image gallery with
   expanded views, copyable official AES URLs, and share/save controls.
-- 3.5-second Superior shield startup screen and Superior Fire & Security
-  branding throughout.
-- Plain-text credential-template import that migrates populated values to
-  Android Secure Storage without logging or exporting the values.
+- 3.5-second generic AES startup screen and consistent navy/red field-tool theme.
+- Runtime Geoapify setup using a user-created key stored in Android Secure Storage.
 
 ## Android FTDI transport
 
@@ -93,25 +91,13 @@ Build output is local-only and ignored by Git. See
 [Android signing](docs/ANDROID-SIGNING.md) for a protected release-keystore
 workflow.
 
-## Credentials
+## Geoapify key
 
-The packaged `credentials.template.txt` contains `***` placeholders only. A
-distributor can edit a copy before handoff:
-
-```text
-GeoapifyApiKey=***
-Company1ApiKey=***
-Company2ApiKey=***
-CompanyPasscode=***
-```
-
-The Configuration page imports a separately distributed populated file into
-Android Secure Storage and never prints values back. Managed provisioning may
-instead stage `credentials.local.txt` in the app-private data directory; startup
-migrates it automatically and removes that private plaintext staging copy after
-success. A signed APK is immutable, so an editable file cannot live “beside” the
-APK in the Windows sense. The Site/New Radio page also prompts for Geoapify at
-runtime. Values are excluded from terminal logs and every report/export.
+No API key or credential file is packaged with the APK. Register or sign in at
+[Geoapify MyProjects](https://myprojects.geoapify.com/), create a project, open
+**API Keys**, and copy the generated key. The Site/New Radio page prompts for it
+and can store the user-supplied value in Android Secure Storage. Values are
+excluded from terminal logs and every report/export.
 
 Any key used by a client application can ultimately be recovered by a determined
 device owner. Use a server-side proxy when the key must remain secret from device

@@ -11,10 +11,9 @@
       StrokeShape="RoundRectangle 8">
     <Label
         HorizontalTextAlignment="Center"
-        Text="Brought to you by Pete Potempa's AuDHD"
+        Text="AES PROGRAMMER &amp; TROUBLESHOOTER"
         FontAttributes="Bold"
         FontSize="12"
         TextColor="White" />
   </Border>
 </ContentView>
-

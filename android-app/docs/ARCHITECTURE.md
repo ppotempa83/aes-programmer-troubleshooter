@@ -64,15 +64,12 @@ individual line is formatted:
 ```
 
 Multi-line RX/TX/app output is split into separately timestamped entries. Cipher
-values and runtime/imported API credentials are registered as sensitive before
+values and user-supplied API credentials are registered as sensitive before
 transmission or use, redacted from echoed text, and excluded from exports.
 
-`CredentialMigrationService` accepts a separately distributed file through the
-Android picker. Managed provisioning can alternatively stage
-`credentials.local.txt` in the app-private data directory; startup registers
-each populated value as sensitive, migrates it to Android Secure Storage, and
-removes only that private plaintext staging copy. The packaged template contains
-placeholders only.
+No credential file or API key is packaged. The Site/New Radio page directs users
+to Geoapify MyProjects, accepts a user-created key, registers it as sensitive,
+and stores it with Android Secure Storage.
 
 ## Packaged documents and imagery
 

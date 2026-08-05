@@ -1,4 +1,4 @@
-# Superior AES Programmer — Codex Transfer
+# AES Programmer & Troubleshooter — Codex Transfer
 
 Use this folder to continue the project in Codex on another computer.
 
@@ -20,8 +20,7 @@ work.
   `artifacts/Superior-AES-Programmer-v0.2.0-win-x64.zip`
 - Windows package SHA-256:
   `BD38E95551DF99F95307597CB0F85762E5E1E05E07B654AC06E4DDF858DCB449`
-- Public simulation-only demo:
-  <https://superior-aes-field-simulator.ppotempa83.chatgpt.site>
+- Public simulation-only demo: retain the existing Sites project and URL.
 - Web source: `web-demo`
 - Current web commit:
   `3ea558c2beb8c0c38309f4e6d47041cfe729ed59`
@@ -134,8 +133,7 @@ The latest web validation was:
 
 - Codex task ID: `019f963f-b24a-7e90-aa50-dbdc476c4441`
 - Original title: `Recall AES USB app discussions`
-- Original workspace:
-  `C:\Users\Pete Potempa\OneDrive\Documents\SFS AES App`
+- Original workspace: redacted from the public transfer bundle.
 
 Temporary credentials, private access tokens, and tool transcripts containing
 them are deliberately not included in this export.

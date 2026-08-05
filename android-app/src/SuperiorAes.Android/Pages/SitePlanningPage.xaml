@@ -16,13 +16,12 @@
         <VerticalStackLayout Spacing="9">
           <Label Text="Geoapify credential" Style="{StaticResource SectionTitle}" />
           <Entry x:Name="GeoapifyKeyEntry" IsPassword="True" Placeholder="Paste Geoapify API key for this device" />
-          <Entry x:Name="CredentialTemplateEntry" IsReadOnly="True" Text="GeoapifyApiKey=***" />
           <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
             <Button Grid.Column="0" Clicked="OnSaveKeyClicked" Text="Use secure storage" />
-            <Button Grid.Column="1" Clicked="OnCopyTemplateClicked" Style="{StaticResource SecondaryButton}" Text="Copy file format" />
+            <Button Grid.Column="1" Clicked="OnGetGeoapifyKeyClicked" Style="{StaticResource SecondaryButton}" Text="Get a Geoapify key" />
           </Grid>
           <Label
-              Text="The value is migrated to Android Secure Storage, never written to terminal/session exports, and never embedded in source. Any client-side key can still be extracted by a determined device owner."
+              Text="Sign in or register at Geoapify MyProjects, create a project, open API Keys, and copy the generated key. User-supplied keys are stored in Android Secure Storage and never written to terminal/session exports."
               Style="{StaticResource MutedText}" />
         </VerticalStackLayout>
       </Border>

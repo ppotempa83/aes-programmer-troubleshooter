@@ -1,9 +1,9 @@
-# Superior AES Programmer
+# AES Programmer & Troubleshooter
 
 Windows field programming and diagnostic utility for legacy AES IntelliNet 7744F and
 7788F subscriber units.
 
-Version 0.4 replaces terminal key combinations with a technician workspace while
+Version 0.5 replaces terminal key combinations with a technician workspace while
 retaining the official legacy PC command set. It includes separate hardware and
 virtual-mesh simulation paths, so training and workflow review do not require a
 connected radio.
@@ -30,8 +30,7 @@ connected radio.
 - Contact ID / dialer-capture workspace with recommended 7794 IntelliPro Fire
   setup, full interactive J2 controls, configurable template values, legacy
   7067 IntelliTap II guidance, and a 7794A compatibility warning
-- Four-second Superior Fire shield splash, shared Pete Potempa's AuDHD branding,
-  and a red rounded AES application icon
+- Four-second generic AES splash and a red rounded AES application icon
 - Manufacturer-published device and antenna thumbnails
 - Click-to-enlarge official hardware images with copyable AES product links
 - Antenna catalog drop-downs for the AES 7214, 7211, and 7210 families
@@ -68,7 +67,7 @@ and [bench-validation plan](docs/BENCH-VALIDATION.md).
 
 ## Run
 
-The published folder contains `SuperiorAes.Programmer.exe`. Simulation is selected
+The published folder contains `AesProgrammer.Troubleshooter.exe`. Simulation is selected
 by default:
 
 1. Start the application.
@@ -87,7 +86,7 @@ The published application includes searchable in-app text plus each original PDF
 - AES 7744F/7788F Complete Technician Guide
 - AES 7744F/7788F NETCON, Signal Survey and Antenna Guide
 - AES 7744F/7788F US232R Wiring and Commands
-- Superior AES Contact ID — IntelliPro + IntelliTap Field Guide
+- AES Contact ID — IntelliPro + IntelliTap Field Guide
 - AES 7794 IntelliPro Fire Installation Manual and Quick Start Guide
 - AES 7067 IntelliTap II historical original manual
 - AES 7794A IntelliPro 2.0 original manual (reference for compatible 2.0 radios)
@@ -105,12 +104,11 @@ Geoapify key with these APIs enabled:
 - Elevation API
 - Static Maps API
 
-Enter the key for a single lookup, set `GEOAPIFY_API_KEY`, or use the plaintext
-`credentials.local.txt` beside the Windows setup program. Setup imports that
-editable pre-distribution file to
-`%ProgramData%\SuperiorFire\AES Programmer\credentials.local.txt`, which the app
-loads when present. The format is `GeoapifyApiKey=VALUE`; `#` starts a comment.
-The app never logs or exports the key. Geoapify terrain data is planning evidence,
+Register or sign in at [Geoapify MyProjects](https://myprojects.geoapify.com/),
+create a project, open **API Keys**, and copy the automatically generated key.
+Paste it into the in-app prompt for the current session. No key or credential file
+is bundled with the application or installer, and the app never logs or exports
+the entered value. Geoapify terrain data is planning evidence,
 not a structural survey; roof height and construction remain field observations.
 When no runtime key is loaded, entering Site Survey or New Radio Check prompts
 for one, and a manually entered value remains in memory only for that app session.
@@ -187,6 +185,5 @@ Windows installer, FTDI staging, and certificate instructions are in
 - [Geoapify Static Maps](https://apidocs.geoapify.com/docs/maps/static/)
 
 AES, AES-IntelliNet, 7744F, and 7788F are identifiers of AES Corporation. This
-application is a Superior Fire & Security engineering tool and is not represented as
-an AES Corporation product. Hardware photographs are real AES manufacturer-published
+independent application is not represented as an AES Corporation product. Hardware photographs are real AES manufacturer-published
 images; see [image sources](docs/IMAGE-SOURCES.md).

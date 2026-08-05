@@ -24,6 +24,8 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
     private const int ReadPacketCount = 16;
     private const int FtdiStatusHeaderLength = 2;
     private const int FtdiLatencyMilliseconds = 16;
+    private static readonly TimeSpan UsbPermissionTimeout = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan UsbPermissionPollInterval = TimeSpan.FromMilliseconds(100);
 
     private const int ResetRequest = 0;
     private const int ModemControlRequest = 1;
@@ -40,7 +42,7 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
     private const int DataBitsEightParityNoneStopBitsOne = 0x0008;
 
     private const string UsbPermissionAction =
-        "com.superiorfirellc.superioraesprogrammer.USB_PERMISSION";
+        "com.aesprogrammer.troubleshooter.USB_PERMISSION";
 
     private static readonly HashSet<int> SupportedProductIds =
     [
@@ -193,7 +195,11 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
         bool granted;
         try
         {
-            granted = await completion.Task.WaitAsync(cancellationToken).ConfigureAwait(false);
+            granted = await WaitForUsbPermissionResultAsync(
+                    device,
+                    completion.Task,
+                    cancellationToken)
+                .ConfigureAwait(false);
         }
         finally
         {
@@ -213,6 +219,48 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
             throw new UnauthorizedAccessException(
                 "Android USB permission was denied for the FTDI adapter. " +
                 SelectableAesTransport.HardwareSafetyWarning);
+        }
+    }
+
+    private async Task<bool> WaitForUsbPermissionResultAsync(
+        UsbDevice device,
+        Task<bool> broadcastResult,
+        CancellationToken cancellationToken)
+    {
+        using var timeout = new CancellationTokenSource(UsbPermissionTimeout);
+        using var linked = CancellationTokenSource.CreateLinkedTokenSource(
+            cancellationToken,
+            timeout.Token);
+
+        try
+        {
+            while (true)
+            {
+                if (_usbManager.HasPermission(device))
+                {
+                    return true;
+                }
+
+                var poll = Task.Delay(UsbPermissionPollInterval, linked.Token);
+                var completed = await Task.WhenAny(broadcastResult, poll).ConfigureAwait(false);
+                if (completed == broadcastResult)
+                {
+                    var granted = await broadcastResult.ConfigureAwait(false);
+                    return granted || _usbManager.HasPermission(device);
+                }
+            }
+        }
+        catch (OperationCanceledException) when (
+            timeout.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
+        {
+            if (_usbManager.HasPermission(device))
+            {
+                return true;
+            }
+
+            throw new TimeoutException(
+                "Android did not return the FTDI USB permission result. " +
+                "Disconnect and reconnect the adapter, then tap Connect again.");
         }
     }
 

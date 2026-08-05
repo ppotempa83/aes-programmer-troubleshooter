@@ -1,7 +1,7 @@
 <Window x:Class="SuperiorAes.App.SplashWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Superior AES Programmer"
+        Title="AES Programmer &amp; Troubleshooter"
         Width="700"
         Height="470"
         WindowStyle="None"
@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Branding/superior-shield.png">
+        Icon="/Assets/Branding/superior-aes.ico">
     <Border Background="#091A2C"
             BorderBrush="#C5202F"
             BorderThickness="3"
@@ -24,23 +24,16 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image Source="/Assets/Branding/superior-shield.png"
+            <Image Source="/Assets/Branding/superior-aes-icon.png"
                    Stretch="Uniform"
                    Margin="30,0"/>
             <TextBlock Grid.Row="1"
-                       Text="SUPERIOR AES PROGRAMMER"
+                       Text="AES PROGRAMMER &amp; TROUBLESHOOTER"
                        Foreground="White"
                        FontSize="27"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        Margin="0,14,0,0"/>
-            <TextBlock Grid.Row="2"
-                       Text="Brought to you by Pete Potempa's AuDHD"
-                       Foreground="#FF7180"
-                       FontSize="16"
-                       FontWeight="SemiBold"
-                       HorizontalAlignment="Center"
-                       Margin="0,9,0,0"/>
             <ProgressBar Grid.Row="3"
                          IsIndeterminate="True"
                          Height="5"

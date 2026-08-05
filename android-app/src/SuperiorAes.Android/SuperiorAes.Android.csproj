@@ -9,10 +9,10 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-    <ApplicationTitle>Superior AES Programmer</ApplicationTitle>
-    <ApplicationId>com.superiorfirellc.superioraesprogrammer</ApplicationId>
-    <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationTitle>AES Programmer &amp; Troubleshooter</ApplicationTitle>
+    <ApplicationId>com.aesprogrammer.troubleshooter</ApplicationId>
+    <ApplicationDisplayVersion>0.2.0</ApplicationDisplayVersion>
+    <ApplicationVersion>4</ApplicationVersion>
 
     <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
     <AndroidPackageFormats>apk</AndroidPackageFormats>
@@ -26,18 +26,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <MauiIcon Include="..\..\..\src\SuperiorAes.App\Assets\Branding\superior-shield.png"
-              Link="Resources\AppIcon\appshield.png"
-              Color="#0A192A"
-              BaseSize="1024,1024" />
-    <MauiSplashScreen Include="Resources\Splash\superior_shield.png"
+    <MauiIcon Include="Resources\AppIcon\appicon.svg"
+              ForegroundFile="Resources\AppIcon\appiconfg.svg"
+              Color="#C5202F" />
+    <MauiSplashScreen Include="..\..\..\src\SuperiorAes.App\Assets\Branding\superior-aes-icon.png"
+                      Link="Resources\Splash\aes_splash.png"
                       Color="#0A192A"
                       BaseSize="512,512" />
     <MauiImage Include="Resources\Images\*" />
     <MauiAsset Include="Resources\Raw\**"
                LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-    <MauiImage Include="..\..\..\src\SuperiorAes.App\Assets\Branding\superior-shield.png"
-               Link="Resources\Images\superior_shield.png" />
+    <MauiImage Include="..\..\..\src\SuperiorAes.App\Assets\Branding\superior-aes-icon.png"
+               Link="Resources\Images\aes_programmer_icon.png" />
     <MauiAsset Include="..\..\..\src\SuperiorAes.App\Assets\Hardware\*.*"
                LogicalName="Hardware/%(Filename)%(Extension)" />
     <MauiAsset Include="..\..\..\src\SuperiorAes.App\Assets\Training\*.pdf"

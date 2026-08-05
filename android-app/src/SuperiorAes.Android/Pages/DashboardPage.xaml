@@ -7,7 +7,7 @@
     Title="Dashboard">
   <ScrollView>
     <VerticalStackLayout Padding="20" Spacing="14">
-      <Label Text="Superior AES Programmer · Android" Style="{StaticResource PageTitle}" />
+      <Label Text="AES Programmer &amp; Troubleshooter · Android" Style="{StaticResource PageTitle}" />
       <Border
           Padding="12,8"
           BackgroundColor="#FFF1F2"

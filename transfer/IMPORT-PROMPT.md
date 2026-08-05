@@ -1,6 +1,6 @@
 # Prompt to paste into Codex on the new computer
 
-Continue the Superior AES Programmer project in this workspace.
+Continue the AES Programmer & Troubleshooter project in this workspace.
 
 Before taking any action, read these files:
 
@@ -20,9 +20,7 @@ Current state:
 
 - Desktop app is version 0.2.0.
 - Desktop tests last passed 16/16.
-- The simulation-only web demo is live at
-  `https://superior-aes-field-simulator.ppotempa83.chatgpt.site`.
-- The URL must remain unchanged.
+- The simulation-only web demo retains its existing Sites project and URL.
 - Current web commit is
   `3ea558c2beb8c0c38309f4e6d47041cfe729ed59`.
 - The hosted demo has responsive desktop and mobile layouts.

@@ -1,4 +1,4 @@
-# Hardware and brand image sources
+# Hardware and application-image sources
 
 All radio, antenna, and dialer-capture images bundled with the application are
 manufacturer-published AES Corporation product images. No generated hardware
@@ -23,7 +23,6 @@ fire-subscriber enclosure family. The application therefore uses the
 manufacturer family photograph on both labeled model cards and describes the
 different input configurations in text.
 
-`Assets/Branding/superior-shield.png` is the Superior Fire & Security shield
-supplied directly by the user on July 27, 2026. The red rounded AES application
-icon is an original app-brand asset generated for this project; it is not
-represented as an AES Corporation product image.
+`Assets/Branding/superior-aes-icon.png` and `superior-aes.ico` are generic
+red/navy AES utility icons generated locally by `scripts/generate_app_icon.py`.
+They are not represented as AES Corporation product images or logos.

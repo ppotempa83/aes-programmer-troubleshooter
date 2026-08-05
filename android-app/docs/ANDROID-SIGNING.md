@@ -13,7 +13,7 @@ code-signing certificate cannot sign an APK.
 
 During publishing, pass signing passwords through protected environment variables
 or a secured local file. Do not write them into the project file, script, build
-log, or credential template.
+log, or project file.
 
 The release build should produce:
 
@@ -23,7 +23,7 @@ The release build should produce:
 
 Before distribution, verify:
 
-- Package ID is `com.superiorfirellc.superioraesprogrammer`.
+- Package ID is `com.aesprogrammer.troubleshooter`.
 - Version number is incremented.
 - Debugging is disabled.
 - No API key, subscriber cipher, local credential file, JAR staging archive, or

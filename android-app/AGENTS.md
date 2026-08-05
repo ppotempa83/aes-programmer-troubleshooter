@@ -1,4 +1,4 @@
-# Superior AES Android companion guidance
+# AES Programmer Android companion guidance
 
 This folder is an isolated Android companion. It must not change the Windows
 solution, WPF application, public simulation-only web demo, or their identities.
@@ -11,7 +11,7 @@ solution, WPF application, public simulation-only web demo, or their identities.
 - Use a genuine USB-to-RS-232 adapter. A bare USB-to-TTL cable is not equivalent.
 - Do not commit API keys, subscriber ciphers, signing keys, JAR/AAR files, APK/AAB
   files, dependencies, caches, or other generated output.
-- The credential template contains placeholders only.
+- Do not add a bundled credential template or pre-shared API key.
 - FTDI Java D2XX may be integrated only from an official, license-reviewed vendor
   package and only for genuine FTDI-based hardware.
 - Every terminal entry must use `[MM-DD-YYYY / HH:MM AM/PM]` formatting.
@@ -33,4 +33,3 @@ Once the documented .NET MAUI and Android toolchain is installed:
 dotnet build .\src\SuperiorAes.Android\SuperiorAes.Android.csproj `
   -f net10.0-android -c Debug
 ```
-

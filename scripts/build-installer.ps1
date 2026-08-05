@@ -8,8 +8,6 @@ param(
 
     [string]$PublicCertificatePath,
 
-    [string]$DeploymentCredentialSourcePath,
-
     [ValidatePattern('^https?://')]
     [string]$TimestampUrl = 'http://timestamp.digicert.com'
 )
@@ -96,7 +94,7 @@ try {
         }
     }
 
-    $publishedExecutable = Join-Path $publishRoot 'SuperiorAes.Programmer.exe'
+    $publishedExecutable = Join-Path $publishRoot 'AesProgrammer.Troubleshooter.exe'
     if (-not (Test-Path -LiteralPath $publishedExecutable -PathType Leaf)) {
         throw "The published application was not found at '$publishedExecutable'."
     }
@@ -139,7 +137,7 @@ try {
         }
 
         if ([string]::IsNullOrWhiteSpace($PublicCertificatePath)) {
-            $PublicCertificatePath = Join-Path $signingOutputRoot 'Superior-AES-Programmer-Code-Signing.cer'
+            $PublicCertificatePath = Join-Path $signingOutputRoot 'AES-Programmer-Troubleshooter-Code-Signing.cer'
         }
         $resolvedPublicCertificatePath = (
             Resolve-Path -LiteralPath $PublicCertificatePath -ErrorAction Stop
@@ -186,7 +184,7 @@ try {
         )
         $instructionText = $instructionText.Replace(
             '{INSTALLER_FILE}',
-            "Superior-AES-Programmer-v$appVersion-win-x64-setup.exe"
+            "AES-Programmer-Troubleshooter-v$appVersion-win-x64-setup.exe"
         )
         $instructionText = $instructionText.Replace('{FTDI_SHA256}', $requiredFtdiSha256)
         Set-Content -LiteralPath $certificateInstructionsPath -Value $instructionText -Encoding utf8
@@ -218,7 +216,7 @@ try {
         throw 'Inno Setup compilation failed.'
     }
 
-    $installerFileName = "Superior-AES-Programmer-v$appVersion-win-x64-setup.exe"
+    $installerFileName = "AES-Programmer-Troubleshooter-v$appVersion-win-x64-setup.exe"
     $installerPath = Join-Path $installerOutputRoot $installerFileName
     if (-not (Test-Path -LiteralPath $installerPath -PathType Leaf)) {
         throw "The expected installer was not produced at '$installerPath'."
@@ -237,7 +235,7 @@ try {
     "$installerHash  $installerFileName" |
         Set-Content -LiteralPath $checksumPath -Encoding ascii
 
-    $bundleDirectory = Join-Path $releaseOutputRoot "Superior-AES-Programmer-v$appVersion-win-x64"
+    $bundleDirectory = Join-Path $releaseOutputRoot "AES-Programmer-Troubleshooter-v$appVersion-win-x64"
     New-Item -ItemType Directory -Path $bundleDirectory -Force | Out-Null
 
     $bundledInstaller = Join-Path $bundleDirectory $installerFileName
@@ -246,15 +244,6 @@ try {
     Copy-Item -LiteralPath $checksumPath -Destination $bundledInstallerChecksum -Force
 
     $releaseBundleFiles = @($bundledInstaller, $bundledInstallerChecksum)
-    $bundledCredentialPath = Join-Path $bundleDirectory 'credentials.local.txt'
-    $credentialSourcePath = Join-Path $repositoryRoot 'config\credentials.template.txt'
-    if (-not [string]::IsNullOrWhiteSpace($DeploymentCredentialSourcePath)) {
-        $credentialSourcePath = (
-            Resolve-Path -LiteralPath $DeploymentCredentialSourcePath -ErrorAction Stop
-        ).Path
-    }
-    Copy-Item -LiteralPath $credentialSourcePath -Destination $bundledCredentialPath -Force
-    $releaseBundleFiles += $bundledCredentialPath
 
     if ($null -ne $publicCertificate) {
         $bundledCertificate = Join-Path $bundleDirectory (
@@ -268,7 +257,7 @@ try {
 
     $manifestPath = Join-Path $bundleDirectory 'RELEASE-MANIFEST.txt'
     $manifestLines = @(
-        'Superior AES Programmer Windows release',
+        'AES Programmer & Troubleshooter Windows release',
         "Application version: $appVersion",
         "Installer: $installerFileName",
         "Installer SHA-256: $installerHash",
@@ -276,8 +265,8 @@ try {
         'FTDI install path: verified unchanged x64 DPInst payload runs quietly first',
         "FTDI SHA-256: $requiredFtdiSha256",
         "FTDI signer thumbprint: $requiredFtdiSignerThumbprint",
-        'Deployment credential file: credentials.local.txt (editable before distribution)',
-        'Credential format: VariableName=Value; # starts a comment',
+        'Bundled API keys or credential files: NONE',
+        'Geoapify setup: create a personal project at https://myprojects.geoapify.com/',
         "Built UTC: $([DateTimeOffset]::UtcNow.ToString('o'))"
     )
     if ($null -ne $publicCertificate) {
@@ -291,7 +280,7 @@ try {
     Set-Content -LiteralPath $manifestPath -Value $manifestLines -Encoding utf8
     $releaseBundleFiles += $manifestPath
 
-    $releaseZipPath = Join-Path $releaseOutputRoot "Superior-AES-Programmer-v$appVersion-win-x64.zip"
+    $releaseZipPath = Join-Path $releaseOutputRoot "AES-Programmer-Troubleshooter-v$appVersion-win-x64.zip"
     if (Test-Path -LiteralPath $releaseZipPath -PathType Leaf) {
         Remove-Item -LiteralPath $releaseZipPath -Force
     }

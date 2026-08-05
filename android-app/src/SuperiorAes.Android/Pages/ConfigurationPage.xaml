@@ -10,7 +10,7 @@
     <VerticalStackLayout Padding="20" Spacing="14">
       <Label Text="Configuration" Style="{StaticResource PageTitle}" />
       <Label
-          Text="Import a technician-edited key/value file and migrate populated values into Android Secure Storage. The plaintext file remains under the distributor's control."
+          Text="Set the technician label and review external-service setup and FTDI safety information."
           Style="{StaticResource MutedText}" />
 
       <Border Style="{StaticResource Card}">
@@ -23,27 +23,11 @@
 
       <Border Style="{StaticResource Card}">
         <VerticalStackLayout Spacing="10">
-          <Label Text="Editable distribution-file format" Style="{StaticResource SectionTitle}" />
+          <Label Text="Geoapify setup" Style="{StaticResource SectionTitle}" />
           <Label
-              Text="Android APKs are signed and immutable: a populated file cannot remain editable beside or inside the APK. Distribute credentials.local.txt as a separate file and import it once with Android's file picker. Managed provisioning may instead stage that exact filename in the app-private path below; startup migrates it to Secure Storage and removes the plaintext staging copy."
+              Text="No API key or credential file is bundled with this app. Register or sign in at Geoapify MyProjects, create a project, open API Keys, then copy the generated key into Site survey &amp; new radio."
               Style="{StaticResource MutedText}" />
-          <Label
-              x:Name="AutomaticPathLabel"
-              FontFamily="monospace"
-              FontSize="11"
-              TextColor="#68788B" />
-          <Editor
-              x:Name="CredentialTemplateEditor"
-              IsReadOnly="True"
-              FontFamily="monospace"
-              FontSize="13"
-              HeightRequest="180"
-              Text="GeoapifyApiKey=***&#10;Company1ApiKey=***&#10;Company2ApiKey=***&#10;CompanyPasscode=***" />
-          <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="8">
-            <Button Grid.Row="0" Grid.Column="0" Clicked="OnCopyTemplateClicked" Text="Copy template" />
-            <Button Grid.Row="0" Grid.Column="1" Clicked="OnShareTemplateClicked" Style="{StaticResource SecondaryButton}" Text="Share blank template" />
-            <Button Grid.Row="1" Grid.ColumnSpan="2" Clicked="OnImportCredentialsClicked" Style="{StaticResource SecondaryButton}" Text="Import populated credential file" />
-          </Grid>
+          <Button Clicked="OnOpenGeoapifyClicked" Style="{StaticResource SecondaryButton}" Text="Open Geoapify MyProjects" />
           <Label x:Name="ImportStatusLabel" Style="{StaticResource MutedText}" />
         </VerticalStackLayout>
       </Border>
@@ -52,7 +36,7 @@
         <VerticalStackLayout Spacing="6">
           <Label Text="Security boundary" FontAttributes="Bold" TextColor="{StaticResource BrandRed}" />
           <Label
-              Text="Values are never printed back to this page, logs, reports, or exports. An APK cannot make a client-side key unrecoverable from a determined device owner; use a server-side proxy when true key secrecy is required."
+              Text="User-supplied Geoapify keys are never printed to logs, reports, or exports. An APK cannot make a client-side key unrecoverable from a determined device owner; use a server-side proxy when true key secrecy is required."
               FontSize="13"
               TextColor="#8F1420" />
         </VerticalStackLayout>

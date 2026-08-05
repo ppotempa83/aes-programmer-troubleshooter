@@ -3,7 +3,7 @@
     x:Class="SuperiorAes.Android.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Superior AES Programmer"
+    Title="AES Programmer &amp; Troubleshooter"
     FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{StaticResource NavyDeep}">
   <Shell.FlyoutHeader>
@@ -30,15 +30,11 @@
       <Label
           Grid.Row="1"
           Margin="0,14,0,2"
-          Text="Superior AES Programmer"
+          Text="AES Programmer &amp; Troubleshooter"
           FontAttributes="Bold"
           FontSize="18"
           TextColor="White" />
-      <Label
-          Grid.Row="2"
-          Text="Brought to you by Pete Potempa's AuDHD"
-          FontSize="12"
-          TextColor="#CBD6E2" />
+      <Label Grid.Row="2" Text="FIELD PROGRAMMING · DIAGNOSTICS · TRAINING" FontSize="11" TextColor="#CBD6E2" />
     </Grid>
   </Shell.FlyoutHeader>
 </Shell>

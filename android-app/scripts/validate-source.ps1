@@ -19,7 +19,6 @@ $required = @(
     'src\SuperiorAes.Android\Pages\TroubleshooterPage.xaml',
     'src\SuperiorAes.Android\Pages\SitePlanningPage.xaml',
     'src\SuperiorAes.Android\Pages\ReportsPage.xaml',
-    'src\SuperiorAes.Android\Resources\Raw\credentials.template.txt',
     'docs\ANDROID-SIGNING.md',
     'docs\FTDI-D2XX-INTEGRATION.md',
     'docs\PHYSICAL-VALIDATION.md'
@@ -73,20 +72,6 @@ foreach ($file in $xmlFiles)
     }
 }
 
-$credentialTemplate = Join-Path $androidRoot 'src\SuperiorAes.Android\Resources\Raw\credentials.template.txt'
-foreach ($line in Get-Content -LiteralPath $credentialTemplate)
-{
-    if ($line -match '^\s*([^#][^=]*)=(.*)$')
-    {
-        $name = $Matches[1].Trim()
-        $value = $Matches[2].Trim()
-        if ($value -ne '***')
-        {
-            throw "Credential template entry '$name' is not a placeholder."
-        }
-    }
-}
-
 $textExtensions = @('.cs', '.xaml', '.xml', '.svg', '.csproj', '.md', '.txt', '.ps1', '.sln')
 $textFiles = @(
     Get-ChildItem -LiteralPath $androidRoot -Recurse -File |
@@ -96,7 +81,7 @@ $textFiles = @(
 $combinedText = ($textFiles | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n"
 
 foreach ($requiredText in @(
-    "Brought to you by Pete Potempa's AuDHD",
+    'AES Programmer & Troubleshooter',
     'FTDI USB hardware bench',
     'IntelliPro',
     'IntelliTap',

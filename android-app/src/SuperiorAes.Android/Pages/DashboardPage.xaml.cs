@@ -93,7 +93,7 @@ public partial class DashboardPage : ContentPage
             }
         }
         catch (Exception exception) when (
-            exception is InvalidOperationException or IOException or UnauthorizedAccessException)
+            exception is InvalidOperationException or IOException or UnauthorizedAccessException or TimeoutException)
         {
             await DisplayAlertAsync("Connection failed", exception.Message, "OK");
         }

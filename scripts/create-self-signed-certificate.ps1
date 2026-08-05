@@ -1,8 +1,8 @@
 [CmdletBinding()]
 param(
-    [string]$Subject = 'CN=Superior Fire & Security AES Programmer Internal Code Signing',
+    [string]$Subject = 'CN=AES Programmer Project Code Signing',
 
-    [string]$FriendlyName = 'Superior AES Programmer Internal Code Signing',
+    [string]$FriendlyName = 'AES Programmer Project Code Signing',
 
     [ValidateRange(1, 5)]
     [int]$ValidYears = 3,

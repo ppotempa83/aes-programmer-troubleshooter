@@ -29,7 +29,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<IAesTransport>(
             services => services.GetRequiredService<SelectableAesTransport>());
         builder.Services.AddSingleton<ICompanionSession, CompanionSession>();
-        builder.Services.AddSingleton<CredentialMigrationService>();
         builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<StartupPage>();
 

@@ -3,13 +3,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>SuperiorAes.Programmer</AssemblyName>
+    <AssemblyName>AesProgrammer.Troubleshooter</AssemblyName>
     <RootNamespace>SuperiorAes.App</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\Branding\superior-aes.ico</ApplicationIcon>
-    <Version>0.4.0</Version>
-    <Authors>Superior Fire &amp; Security</Authors>
-    <Product>Superior AES Programmer</Product>
+    <Version>0.5.0</Version>
+    <Authors>AES Programmer Project</Authors>
+    <Product>AES Programmer &amp; Troubleshooter</Product>
     <Description>Field programming and diagnostic utility for legacy AES 7744F and 7788F subscribers.</Description>
   </PropertyGroup>
   <ItemGroup>
@@ -27,11 +27,6 @@
              CopyToPublishDirectory="PreserveNewest"
              ExcludeFromSingleFile="true" />
     <Content Include="Assets\Training\*.txt"
-             CopyToOutputDirectory="PreserveNewest"
-             CopyToPublishDirectory="PreserveNewest"
-             ExcludeFromSingleFile="true" />
-    <Content Include="..\..\config\credentials.template.txt"
-             Link="config\credentials.template.txt"
              CopyToOutputDirectory="PreserveNewest"
              CopyToPublishDirectory="PreserveNewest"
              ExcludeFromSingleFile="true" />

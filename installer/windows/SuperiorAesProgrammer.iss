@@ -1,4 +1,4 @@
-; Superior AES Programmer - Windows 10/11 x64 installer
+; AES Programmer & Troubleshooter - Windows 10/11 x64 installer
 ; Compile through scripts/build-installer.ps1 so all source paths and the
 ; application version are supplied consistently.
 
@@ -22,14 +22,12 @@
   #define DependencyRoot RepoRoot + "\artifacts\windows-dependencies"
 #endif
 
-#define AppName "Superior AES Programmer"
-#define AppPublisher "Superior Fire & Security"
-#define AppExecutable "SuperiorAes.Programmer.exe"
+#define AppName "AES Programmer & Troubleshooter"
+#define AppPublisher "AES Programmer Project"
+#define AppExecutable "AesProgrammer.Troubleshooter.exe"
 #define BrandingRoot RepoRoot + "\src\SuperiorAes.App\Assets\Branding"
 #define AppIcon BrandingRoot + "\superior-aes.ico"
-#define ShieldLogo BrandingRoot + "\superior-shield.png"
-#define CredentialTemplate RepoRoot + "\config\credentials.template.txt"
-#define RequiredTrainingGuide PublishRoot + "\Assets\Training\Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf"
+#define RequiredTrainingGuide PublishRoot + "\Assets\Training\AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf"
 #define FtdiInstaller DependencyRoot + "\ftdi\FTDI-CDM-VCP-Setup.exe"
 #define FtdiPayloadRoot DependencyRoot + "\ftdi\payload"
 #define FtdiDpInst FtdiPayloadRoot + "\dpinst-amd64.exe"
@@ -52,14 +50,6 @@
 
 #if !FileExists(AppIcon)
   #error "The Windows application icon is missing."
-#endif
-
-#if !FileExists(ShieldLogo)
-  #error "The Superior Fire shield logo is missing."
-#endif
-
-#if !FileExists(CredentialTemplate)
-  #error "The placeholder-only credential template is missing."
 #endif
 
 #if !FileExists(FtdiInstaller)
@@ -85,15 +75,15 @@ VersionInfoCompany={#AppPublisher}
 VersionInfoDescription={#AppName} Windows installer
 VersionInfoProductName={#AppName}
 VersionInfoProductVersion={#AppVersion}
-DefaultDirName={autopf64}\Superior Fire & Security\Superior AES Programmer
-DefaultGroupName=Superior Fire & Security
+DefaultDirName={autopf64}\AES Programmer and Troubleshooter
+DefaultGroupName=AES Programmer and Troubleshooter
 DisableProgramGroupPage=yes
 PrivilegesRequired=admin
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0
 OutputDir={#InstallerOutputRoot}
-OutputBaseFilename=Superior-AES-Programmer-v{#AppVersion}-win-x64-setup
+OutputBaseFilename=AES-Programmer-Troubleshooter-v{#AppVersion}-win-x64-setup
 SetupIconFile={#AppIcon}
 UninstallDisplayIcon={app}\{#AppExecutable}
 WizardStyle=modern
@@ -112,15 +102,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "importcredentials"; Description: "Import the editable credentials.local.txt located beside setup"; GroupDescription: "Deployment credentials (recommended):"; Flags: dontinheritcheck
 #ifdef IncludeSigningCertificate
-Name: "trustcertificate"; Description: "Trust the Superior Fire && Security internal code-signing certificate for this computer"; GroupDescription: "Certificate trust (recommended):"; Flags: dontinheritcheck
+Name: "trustcertificate"; Description: "Trust the AES Programmer Project code-signing certificate for this computer"; GroupDescription: "Certificate trust (optional):"; Flags: dontinheritcheck
 #endif
-
-[Dirs]
-; Technicians need to be able to update the machine-wide plaintext credential
-; file without rebuilding or reinstalling the app.
-Name: "{commonappdata}\SuperiorFire\AES Programmer"; Permissions: users-modify
 
 [Files]
 ; The original, signed FTDI SFX has no reliable silent switch. Its exact,
@@ -128,19 +112,15 @@ Name: "{commonappdata}\SuperiorFire\AES Programmer"; Permissions: users-modify
 ; These temporary files are listed first for efficient PrepareToInstall access.
 Source: "{#FtdiPayloadRoot}\*"; DestDir: "FTDI-Driver"; Flags: dontcopy noencryption recursesubdirs createallsubdirs
 #ifdef IncludeSigningCertificate
-Source: "{#SigningCertificate}"; DestName: "Superior-AES-Programmer-Code-Signing.cer"; Flags: dontcopy noencryption
+Source: "{#SigningCertificate}"; DestName: "AES-Programmer-Troubleshooter-Code-Signing.cer"; Flags: dontcopy noencryption
 #endif
 Source: "{#PublishRoot}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "{#ShieldLogo}"; DestDir: "{app}\Assets\Branding"; Flags: ignoreversion
 Source: "{#AppIcon}"; DestDir: "{app}\Assets\Branding"; Flags: ignoreversion
-Source: "{#CredentialTemplate}"; DestDir: "{app}\config"; DestName: "credentials.template.txt"; Flags: ignoreversion
-Source: "{src}\credentials.local.txt"; DestDir: "{commonappdata}\SuperiorFire\AES Programmer"; DestName: "credentials.local.txt"; Flags: external skipifsourcedoesntexist ignoreversion uninsneveruninstall; Tasks: importcredentials; Permissions: users-modify
-Source: "{#CredentialTemplate}"; DestDir: "{commonappdata}\SuperiorFire\AES Programmer"; DestName: "credentials.local.txt"; Flags: onlyifdoesntexist uninsneveruninstall; Permissions: users-modify
 ; Keep the exact vendor wrapper available after installation for provenance and
 ; manual repair, even though setup uses its verified payload silently.
 Source: "{#FtdiInstaller}"; DestDir: "{app}\Dependencies\FTDI"; DestName: "CDM2123620_Setup.exe"; Flags: ignoreversion
 #ifdef IncludeSigningCertificate
-Source: "{#SigningCertificate}"; DestDir: "{app}\Certificate"; DestName: "Superior-AES-Programmer-Code-Signing.cer"; Flags: ignoreversion
+Source: "{#SigningCertificate}"; DestDir: "{app}\Certificate"; DestName: "AES-Programmer-Troubleshooter-Code-Signing.cer"; Flags: ignoreversion
 #endif
 #ifdef CertificateInstructions
   #if FileExists(CertificateInstructions)
@@ -149,12 +129,12 @@ Source: "{#CertificateInstructions}"; DestDir: "{app}\Certificate"; DestName: "I
 #endif
 
 [Icons]
-Name: "{group}\Superior AES Programmer"; Filename: "{app}\{#AppExecutable}"; WorkingDir: "{app}"
-Name: "{group}\Uninstall Superior AES Programmer"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\Superior AES Programmer"; Filename: "{app}\{#AppExecutable}"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{group}\AES Programmer & Troubleshooter"; Filename: "{app}\{#AppExecutable}"; WorkingDir: "{app}"
+Name: "{group}\Uninstall AES Programmer & Troubleshooter"; Filename: "{uninstallexe}"
+Name: "{autodesktop}\AES Programmer & Troubleshooter"; Filename: "{app}\{#AppExecutable}"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#AppExecutable}"; Description: "Launch Superior AES Programmer"; WorkingDir: "{app}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#AppExecutable}"; Description: "Launch AES Programmer & Troubleshooter"; WorkingDir: "{app}"; Flags: nowait postinstall skipifsilent
 
 [Code]
 var
@@ -190,10 +170,10 @@ begin
     exit;
 
   WizardForm.StatusLabel.Caption :=
-    'Trusting the Superior Fire & Security code-signing certificate...';
+    'Trusting the AES Programmer Project code-signing certificate...';
   ExtractTemporaryFile('Superior-AES-Programmer-Code-Signing.cer');
   CertificatePath :=
-    ExpandConstant('{tmp}\Superior-AES-Programmer-Code-Signing.cer');
+    ExpandConstant('{tmp}\AES-Programmer-Troubleshooter-Code-Signing.cer');
 
   if not AddCertificateToStore('Root', CertificatePath, ResultCode) then
   begin
@@ -248,7 +228,7 @@ begin
     exit;
 
   WizardForm.StatusLabel.Caption :=
-    'Installing the verified FTDI VCP driver quietly before Superior AES Programmer...';
+    'Installing the verified FTDI VCP driver quietly before AES Programmer & Troubleshooter...';
   Log('Extracting the pinned, verified FTDI CDM 2.12.36.20 driver payload.');
   ExtractTemporaryFiles('FTDI-Driver\*');
   DriverPath := ExpandConstant('{tmp}\FTDI-Driver\dpinst-amd64.exe');
@@ -264,7 +244,7 @@ begin
   begin
     Result :=
       'Windows could not start the required FTDI VCP driver installer. ' +
-      'Superior AES Programmer has not been installed.';
+      'AES Programmer & Troubleshooter has not been installed.';
     exit;
   end;
 
@@ -274,7 +254,7 @@ begin
   begin
     Result := Format(
       'The required FTDI VCP driver package reported a failure ' +
-      '(DPInst result %d). Superior AES Programmer has not been installed.', [ResultCode]);
+      '(DPInst result %d). AES Programmer & Troubleshooter has not been installed.', [ResultCode]);
     exit;
   end;
 

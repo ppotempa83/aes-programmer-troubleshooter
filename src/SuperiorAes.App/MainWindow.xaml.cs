@@ -92,8 +92,8 @@ public partial class MainWindow : Window
     [
         new(
             "Contact ID — IntelliPro + IntelliTap Field Guide",
-            "Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf",
-            "Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.txt",
+            "AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf",
+            "AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.txt",
             "contact-id-guide-cover.png"),
         new(
             "AES 7794 IntelliPro Fire — Original Installation Manual",
@@ -136,8 +136,7 @@ public partial class MainWindow : Window
     {
         var templatePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "SuperiorFire",
-            "AES Programmer",
+            "AES Programmer and Troubleshooter",
             "templates.json");
         _templateStore = new ProgrammingTemplateStore(templatePath);
 
@@ -156,7 +155,6 @@ public partial class MainWindow : Window
         MeshEventsGrid.ItemsSource = _meshEvents;
         TrainingGuideCombo.ItemsSource = TrainingGuides;
         TrainingGuideCombo.DisplayMemberPath = nameof(TrainingGuide.Title);
-        GeoapifyApiKeyPasswordBox.Password = CredentialConfiguration.ReadGeoapifyApiKey();
         FullCommandItemsControl.ItemsSource = AesCommands.Guides;
         AddHandler(Button.ClickEvent, new RoutedEventHandler(LogButtonActivity), true);
         AddHandler(TextBox.LostFocusEvent, new RoutedEventHandler(LogFieldActivity), true);
@@ -502,22 +500,15 @@ public partial class MainWindow : Window
             Padding = new Thickness(9, 6, 9, 6),
             Password = GeoapifyApiKeyPasswordBox.Password
         };
-        var copyableValue = new TextBox
+        var obtainButton = new Button
         {
-            Text = $"GeoapifyApiKey={(string.IsNullOrWhiteSpace(GeoapifyApiKeyPasswordBox.Password) ? "***" : GeoapifyApiKeyPasswordBox.Password)}",
-            IsReadOnly = true,
-            FontFamily = new FontFamily("Consolas"),
-            Margin = new Thickness(0, 5, 0, 0)
+            Content = "Open Geoapify MyProjects",
+            Style = (Style)FindResource("SecondaryButton"),
+            MinWidth = 190,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            Margin = new Thickness(0, 10, 0, 0)
         };
-        var credentialPath = new TextBox
-        {
-            Text = CredentialConfiguration.PreferredLocalPath,
-            IsReadOnly = true,
-            FontFamily = new FontFamily("Consolas"),
-            FontSize = 11,
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 5, 0, 0)
-        };
+        obtainButton.Click += (_, _) => OpenExternalUrl("https://myprojects.geoapify.com/");
         var saveButton = new Button { Content = "Use for this session", MinWidth = 150 };
         var skipButton = new Button
         {
@@ -545,32 +536,12 @@ public partial class MainWindow : Window
         });
         panel.Children.Add(new TextBlock
         {
-            Text = "Paste the key below. It remains only in memory for this app session and is excluded from terminal logs and exports.",
+            Text = "Create your own Geoapify account and project, open API Keys, then copy the generated key. Paste it below; it remains only in memory for this app session and is excluded from terminal logs and exports.",
             TextWrapping = TextWrapping.Wrap,
             Margin = new Thickness(0, 8, 0, 14)
         });
         panel.Children.Add(keyBox);
-        panel.Children.Add(new TextBlock
-        {
-            Text = "Copyable credential-file entry (the value is never written to logs or reports):",
-            Foreground = (Brush)FindResource("MutedBrush"),
-            Margin = new Thickness(0, 14, 0, 0)
-        });
-        panel.Children.Add(copyableValue);
-        panel.Children.Add(new TextBlock
-        {
-            Text = "Preferred credentials.local.txt location:",
-            Foreground = (Brush)FindResource("MutedBrush"),
-            Margin = new Thickness(0, 10, 0, 0)
-        });
-        panel.Children.Add(credentialPath);
-        panel.Children.Add(new TextBlock
-        {
-            Text = "Brought to you by Pete Potempa's AuDHD",
-            Foreground = (Brush)FindResource("RedBrush"),
-            FontWeight = FontWeights.SemiBold,
-            Margin = new Thickness(0, 12, 0, 0)
-        });
+        panel.Children.Add(obtainButton);
         panel.Children.Add(buttons);
 
         var dialog = new Window
@@ -578,7 +549,7 @@ public partial class MainWindow : Window
             Title = "Geoapify setup",
             Owner = this,
             Width = 520,
-            Height = 455,
+            Height = 410,
             MinWidth = 480,
             ResizeMode = ResizeMode.NoResize,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
@@ -834,14 +805,6 @@ public partial class MainWindow : Window
             Foreground = (Brush)FindResource("NavyBrush"),
             Margin = new Thickness(22, 18, 22, 0)
         };
-        var brand = new TextBlock
-        {
-            Text = "Brought to you by Pete Potempa's AuDHD",
-            Foreground = (Brush)FindResource("RedBrush"),
-            FontWeight = FontWeights.SemiBold,
-            HorizontalAlignment = HorizontalAlignment.Right,
-            Margin = new Thickness(22, 4, 22, 0)
-        };
         var linkText = new TextBox
         {
             Text = parts[2],
@@ -865,15 +828,12 @@ public partial class MainWindow : Window
 
         var panel = new Grid { Background = Brushes.White };
         panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         panel.RowDefinitions.Add(new RowDefinition());
         panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         panel.Children.Add(title);
-        Grid.SetRow(brand, 1);
-        panel.Children.Add(brand);
-        Grid.SetRow(productImage, 2);
+        Grid.SetRow(productImage, 1);
         panel.Children.Add(productImage);
-        Grid.SetRow(footer, 3);
+        Grid.SetRow(footer, 2);
         panel.Children.Add(footer);
 
         var dialog = new Window
@@ -2385,7 +2345,7 @@ public partial class MainWindow : Window
             MessageBoxImage.Question) == MessageBoxResult.Yes;
 
     private void ShowWarning(string message) =>
-        MessageBox.Show(this, message, "Superior AES Programmer", MessageBoxButton.OK, MessageBoxImage.Warning);
+        MessageBox.Show(this, message, "AES Programmer & Troubleshooter", MessageBoxButton.OK, MessageBoxImage.Warning);
 
     private static bool IsFourDigitHex(string value) =>
         Regex.IsMatch(value, "^[0-9A-F]{4}$", RegexOptions.CultureInvariant);

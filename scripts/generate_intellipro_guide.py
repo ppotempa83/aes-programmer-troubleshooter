@@ -28,10 +28,10 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output" / "pdf"
 TRAINING = ROOT / "src" / "SuperiorAes.App" / "Assets" / "Training"
-BRANDING = ROOT / "src" / "SuperiorAes.App" / "Assets" / "Branding" / "superior-shield.png"
+BRANDING = ROOT / "src" / "SuperiorAes.App" / "Assets" / "Branding" / "superior-aes-icon.png"
 PRODUCT = ROOT / "src" / "SuperiorAes.App" / "Assets" / "Hardware" / "aes-7794-intellipro.jpg"
-PDF_PATH = OUTPUT / "Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf"
-TEXT_PATH = TRAINING / "Superior-AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.txt"
+PDF_PATH = OUTPUT / "AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.pdf"
+TEXT_PATH = TRAINING / "AES-Contact-ID-IntelliPro-IntelliTap-Field-Guide.txt"
 
 NAVY = colors.HexColor("#10253D")
 NAVY_DEEP = colors.HexColor("#091A2C")
@@ -281,11 +281,11 @@ def header_footer(canvas, doc):
     canvas.line(0.62 * inch, 0.48 * inch, 7.88 * inch, 0.48 * inch)
     canvas.setFillColor(MUTED)
     canvas.setFont("Helvetica", 7)
-    canvas.drawString(0.62 * inch, 0.28 * inch, "Superior AES Contact ID / Dialer Capture Field Guide")
+    canvas.drawString(0.62 * inch, 0.28 * inch, "AES Contact ID / Dialer Capture Field Guide")
     canvas.drawRightString(7.88 * inch, 0.28 * inch, f"Page {doc.page}")
     canvas.setFillColor(RED)
     canvas.setFont("Helvetica-Bold", 7)
-    canvas.drawCentredString(4.25 * inch, 0.28 * inch, "Brought to you by Pete Potempa's AuDHD")
+    canvas.drawCentredString(4.25 * inch, 0.28 * inch, "AES Programmer & Troubleshooter")
     canvas.restoreState()
 
 
@@ -338,11 +338,11 @@ def build_story(s):
     story.append(Spacer(1, 0.3 * inch))
     story.append(
         Paragraph(
-            "Brought to you by Pete Potempa's AuDHD",
+            "AES Programmer & Troubleshooter",
             ParagraphStyle("brand", parent=s["h2"], textColor=RED, alignment=TA_CENTER, fontSize=13),
         )
     )
-    story.append(Paragraph("Superior Fire & Security engineering field guide - Revision 1.0 - July 2026", s["small"]))
+    story.append(Paragraph("Independent field guide - Revision 1.1 - August 2026", s["small"]))
     story.append(PageBreak())
 
     story.append(Paragraph("1. What works with what", s["h1"]))
@@ -583,18 +583,18 @@ def build_story(s):
     story.append(Spacer(1, 0.22 * inch))
     story.append(
         Paragraph(
-            "Brought to you by Pete Potempa's AuDHD",
+            "AES Programmer & Troubleshooter",
             ParagraphStyle("brand2", parent=s["h2"], textColor=RED, alignment=TA_CENTER),
         )
     )
-    story.append(Paragraph("Superior Fire & Security", ParagraphStyle("sf", parent=s["body"], alignment=TA_CENTER)))
+    story.append(Paragraph("Independent field-use reference", ParagraphStyle("sf", parent=s["body"], alignment=TA_CENTER)))
     return story
 
 
 def write_text_companion():
-    content = """SUPERIOR AES CONTACT ID / DIALER CAPTURE FIELD GUIDE
+    content = """AES CONTACT ID / DIALER CAPTURE FIELD GUIDE
 7794 INTELLIPRO FIRE + 7067 INTELLITAP II
-Brought to you by Pete Potempa's AuDHD
+AES Programmer & Troubleshooter
 
 VERIFIED COMPATIBILITY
 - 7744F / 7788F legacy fire: 7794 IntelliPro Fire is the recommended Contact ID accessory.
@@ -648,8 +648,8 @@ def main():
         leftMargin=0.62 * inch,
         topMargin=0.55 * inch,
         bottomMargin=0.62 * inch,
-        title="Superior AES Contact ID / Dialer Capture Field Guide",
-        author="Superior Fire & Security",
+        title="AES Contact ID / Dialer Capture Field Guide",
+        author="AES Programmer Project",
         subject="7794 IntelliPro Fire and 7067 IntelliTap II field installation and programming companion",
     )
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="normal")

@@ -53,7 +53,7 @@ public static class TroubleshootingReportGenerator
             """);
 
         builder.AppendLine("<header><div>");
-        builder.AppendLine("<div class=\"eyebrow\">Superior Fire &amp; Security</div>");
+        builder.AppendLine("<div class=\"eyebrow\">AES PROGRAMMER &amp; TROUBLESHOOTER</div>");
         builder.AppendLine("<h1>AES Troubleshooting Report</h1>");
         builder.AppendLine("</div><div class=\"meta\">");
         builder.AppendLine($"{Encode(context.SiteName)}<br>{Encode(context.AccountNumber)}<br>{Encode(context.Technician)}<br>{DateTimeOffset.Now:yyyy-MM-dd HH:mm zzz}");

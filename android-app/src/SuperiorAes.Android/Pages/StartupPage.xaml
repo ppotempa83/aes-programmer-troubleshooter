@@ -12,22 +12,16 @@
         WidthRequest="250"
         HorizontalOptions="Center"
         Aspect="AspectFit"
-        Source="superior_shield.png" />
+        Source="aes_programmer_icon.png" />
     <Label
         Grid.Row="2"
         Margin="0,22,0,4"
-        Text="Superior AES Programmer"
+        Text="AES Programmer &amp; Troubleshooter"
         FontAttributes="Bold"
         FontSize="27"
         HorizontalTextAlignment="Center"
         TextColor="White" />
     <VerticalStackLayout Grid.Row="3" Spacing="8">
-      <Label
-          Text="Brought to you by Pete Potempa's AuDHD"
-          FontAttributes="Bold"
-          FontSize="14"
-          HorizontalTextAlignment="Center"
-          TextColor="#CBD6E2" />
       <Label
           Text="ANDROID · SIMULATION + EXPLICIT FTDI BENCH MODE"
           FontAttributes="Bold"

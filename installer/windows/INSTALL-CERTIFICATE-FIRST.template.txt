@@ -1,66 +1,28 @@
-SUPERIOR AES PROGRAMMER - INSTALL THIS CERTIFICATE FIRST
-========================================================
+AES PROGRAMMER & TROUBLESHOOTER - OPTIONAL TEST CERTIFICATE
 
-This release is signed with an internal Superior Fire & Security code-signing
-certificate. The private signing key is not included in this package.
+This package was signed with a self-signed test certificate. Public production
+releases should use a certificate issued by a trusted code-signing authority.
 
-Easiest installation
---------------------
-1. Extract the entire release ZIP to a local folder.
-2. Edit credentials.local.txt if this deployment needs a Geoapify key.
-3. Run {INSTALLER_FILE} as an administrator.
-4. Windows may show Unknown Publisher on this first launch because the computer
-   has not trusted this internal certificate yet. Confirm the setup filename and
-   the certificate thumbprint below before approving it.
-5. Leave the default Certificate Trust and Deployment Credentials choices
-   selected. Setup imports both quietly, installs the verified FTDI VCP driver
-   quietly, and then installs the app.
-
-Certificate
------------
-File: {CERTIFICATE_FILE}
+Certificate file: {CERTIFICATE_FILE}
 Subject: {CERTIFICATE_SUBJECT}
-SHA-1 thumbprint: {CERTIFICATE_THUMBPRINT}
-SHA-256 file hash: {CERTIFICATE_SHA256}
+Thumbprint: {CERTIFICATE_THUMBPRINT}
+Certificate SHA-256: {CERTIFICATE_SHA256}
 Valid from: {CERTIFICATE_NOT_BEFORE}
-Valid through: {CERTIFICATE_NOT_AFTER}
+Valid until: {CERTIFICATE_NOT_AFTER}
 
-Before trusting the certificate, compare the thumbprint and SHA-256 value above
-with the values supplied through your normal Superior Fire & Security release
-channel.
+Installer: {INSTALLER_FILE}
+FTDI dependency SHA-256: {FTDI_SHA256}
 
-Manual certificate-first alternative
-------------------------------------
-1. Extract the entire release ZIP to a local folder.
-2. Right-click {CERTIFICATE_FILE}, select Install Certificate, and approve the
-   Windows administrator prompt.
-3. Select Local Machine.
-4. Select "Place all certificates in the following store", browse to
-   "Trusted Root Certification Authorities", and finish the wizard.
-5. Run the certificate import a second time and choose "Trusted Publishers".
-6. Right-click the setup EXE, open Properties > Digital Signatures, and confirm
-   that Windows reports the digital signature as OK and shows this thumbprint:
-   {CERTIFICATE_THUMBPRINT}
-7. Run {INSTALLER_FILE} as an administrator. Setup recognizes an already
-   installed certificate.
+For a controlled test computer only:
 
-Setup order
------------
-The setup program first extracts the verified, unmodified FTDI CDM 2.12.36.20
-payload and runs its signed x64 DPInst package quietly. Superior AES Programmer
-is installed only after the driver package reports success.
+1. Right-click the `.cer` file and choose Install Certificate.
+2. Choose Local Machine and approve the administrator prompt.
+3. Place it in Trusted Root Certification Authorities and Trusted Publishers.
+4. Run the installer.
 
-Pinned FTDI package SHA-256:
-{FTDI_SHA256}
+The installer can also offer to trust this certificate when it is packaged with
+the release. Remove the certificate from both stores after testing if it should
+no longer be trusted.
 
-Security notes
---------------
-- This .cer file contains only a PUBLIC certificate. It cannot sign software.
-- Never accept a .pfx, .p12, private-key file, or certificate password in a
-  technician release package.
-- A self-signed certificate establishes trust only on computers where your
-  organization deliberately installs it. It does not create public SmartScreen
-  reputation.
-- Remove an obsolete internal certificate from Trusted Root Certification
-  Authorities and Trusted Publishers after Superior Fire & Security announces
-  a certificate rotation or revocation.
+No API key or credential file is included. Users obtain their own Geoapify key
+at https://myprojects.geoapify.com/ and enter it inside the app.

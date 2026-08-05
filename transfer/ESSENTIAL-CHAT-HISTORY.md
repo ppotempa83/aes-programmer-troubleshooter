@@ -150,8 +150,7 @@ Outcome:
 - Added simulated disconnect/reconnect and subscriber handshake behavior.
 - Terminal commands such as STAT, ROUTES, and ZONES return simulated data.
 - Kept prominent `SIMULATION ONLY` and `0 REAL TRANSMISSIONS` indicators.
-- Retained the same URL:
-  <https://superior-aes-field-simulator.ppotempa83.chatgpt.site>
+- Retained the existing Sites project and public URL.
 
 ## User request: make the web demo responsive
 

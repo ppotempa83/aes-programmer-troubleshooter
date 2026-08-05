@@ -10,7 +10,7 @@ param(
     [ValidatePattern('^https?://')]
     [string]$TimestampUrl = 'http://timestamp.digicert.com',
 
-    [string]$Description = 'Superior AES Programmer',
+    [string]$Description = 'AES Programmer & Troubleshooter',
 
     [ValidatePattern('^https?://')]
     [string]$DescriptionUrl
