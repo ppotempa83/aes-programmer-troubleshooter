@@ -1,17 +1,18 @@
+using Microsoft.Extensions.DependencyInjection;
 using SuperiorAes.Android.Pages;
 
 namespace SuperiorAes.Android;
 
 public partial class App : Application
 {
-    private readonly StartupPage _startupPage;
+    private readonly IServiceProvider _services;
 
-    public App(StartupPage startupPage)
+    public App(IServiceProvider services)
     {
         InitializeComponent();
-        _startupPage = startupPage;
+        _services = services;
     }
 
     protected override Window CreateWindow(IActivationState? activationState) =>
-        new(_startupPage);
+        new(_services.GetRequiredService<StartupPage>());
 }

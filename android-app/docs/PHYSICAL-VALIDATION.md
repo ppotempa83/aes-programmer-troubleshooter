@@ -16,6 +16,8 @@ Simulation and emulator tests do not validate a physical programming path.
 
 ## Android USB lifecycle
 
+- [ ] App starts normally with the FTDI cable attached and remains in Simulation.
+- [ ] No USB permission prompt appears until hardware mode is selected and Connect is tapped.
 - [ ] First attachment prompts for USB permission.
 - [ ] Permission denial leaves the app stable and disconnected.
 - [ ] Approved attachment opens at 4800 8-N-1 with flow control off.

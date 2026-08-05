@@ -7,6 +7,9 @@ safety boundary around unvalidated Android hardware use.
 ## Current status
 
 - **Simulation is selected at every startup.**
+- USB attachment does not auto-launch the app or request permission during
+  startup. Permission is requested only after selecting FTDI hardware mode and
+  tapping Connect.
 - An explicit **FTDI USB hardware bench** mode is available for a directly
   attached FT232-class adapter with VID/PID `0403:6001`.
 - The Android USB path is **not field-validated**. It must pass

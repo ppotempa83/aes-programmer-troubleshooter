@@ -55,6 +55,7 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
     private readonly SemaphoreSlim _writeGate = new(1, 1);
     private readonly object _stateGate = new();
     private readonly object _permissionGate = new();
+    private readonly object _receiverRegistrationGate = new();
 
     private UsbDevice? _device;
     private int? _bcdDevice;
@@ -87,7 +88,6 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
             throw new InvalidOperationException("Unable to create the Android USB permission request.");
         permissionRequest.Dispose();
 
-        RegisterUsbReceiver();
     }
 
     public event EventHandler<AesTransportDataReceivedEventArgs>? DataReceived;
@@ -152,6 +152,7 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
         CancellationToken cancellationToken = default)
     {
         ThrowIfDisposed();
+        EnsureUsbReceiverRegistered();
         var device = FindSupportedDevice() ??
             throw new InvalidOperationException(
                 "No supported FTDI USB serial adapter is attached. " +
@@ -427,26 +428,44 @@ public sealed class FtdiUsbTransport : IFtdiUsbTransport, IFtdiD2xxTransport
         _receiver.Dispose();
     }
 
-    private void RegisterUsbReceiver()
+    private void EnsureUsbReceiverRegistered()
     {
-        var filter = new IntentFilter(UsbPermissionAction);
-        filter.AddAction(UsbManager.ActionUsbDeviceDetached);
+        lock (_receiverRegistrationGate)
+        {
+            ThrowIfDisposed();
+            if (_receiverRegistered)
+            {
+                return;
+            }
 
-        if (OperatingSystem.IsAndroidVersionAtLeast(33))
-        {
-            _context.RegisterReceiver(_receiver, filter, ReceiverFlags.NotExported);
-        }
-        else
-        {
+            using var filter = new IntentFilter(UsbPermissionAction);
+            filter.AddAction(UsbManager.ActionUsbDeviceDetached);
+
+            try
+            {
+                if (OperatingSystem.IsAndroidVersionAtLeast(33))
+                {
+                    _context.RegisterReceiver(_receiver, filter, ReceiverFlags.NotExported);
+                }
+                else
+                {
 #pragma warning disable CS0618
 #pragma warning disable CA1422
-            _context.RegisterReceiver(_receiver, filter);
+                    _context.RegisterReceiver(_receiver, filter);
 #pragma warning restore CA1422
 #pragma warning restore CS0618
-        }
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new InvalidOperationException(
+                    "Android could not initialize the FTDI USB permission listener. " +
+                    "Restart the app without the FTDI cable attached, then select hardware mode and connect.",
+                    exception);
+            }
 
-        filter.Dispose();
-        _receiverRegistered = true;
+            _receiverRegistered = true;
+        }
     }
 
     private void HandleBroadcast(Intent intent)

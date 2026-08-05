@@ -11,17 +11,25 @@
 
     <ApplicationTitle>Superior AES Programmer</ApplicationTitle>
     <ApplicationId>com.superiorfirellc.superioraesprogrammer</ApplicationId>
-    <ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
 
     <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
     <AndroidPackageFormats>apk</AndroidPackageFormats>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <!-- Debug APKs are shared with technicians for device trials, so they must
+         run without Visual Studio/.NET fast-deployment files on the phone. -->
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidUseFastDeployment>false</AndroidUseFastDeployment>
+  </PropertyGroup>
+
   <ItemGroup>
-    <MauiIcon Include="Resources\AppIcon\appicon.svg"
-              ForegroundFile="Resources\AppIcon\appiconfg.svg"
-              Color="#C5202F" />
+    <MauiIcon Include="..\..\..\src\SuperiorAes.App\Assets\Branding\superior-shield.png"
+              Link="Resources\AppIcon\appshield.png"
+              Color="#0A192A"
+              BaseSize="1024,1024" />
     <MauiSplashScreen Include="Resources\Splash\superior_shield.png"
                       Color="#0A192A"
                       BaseSize="512,512" />

@@ -7,7 +7,7 @@
         MinWidth="1160"
         MinHeight="720"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Branding/superior-aes.ico"
+        Icon="/Assets/Branding/superior-shield.png"
         Background="{StaticResource CanvasBrush}"
         Closing="Window_Closing">
     <Grid>

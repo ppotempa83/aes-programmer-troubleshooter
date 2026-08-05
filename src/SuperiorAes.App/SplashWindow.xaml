@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         Topmost="True"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Branding/superior-aes.ico">
+        Icon="/Assets/Branding/superior-shield.png">
     <Border Background="#091A2C"
             BorderBrush="#C5202F"
             BorderThickness="3"
