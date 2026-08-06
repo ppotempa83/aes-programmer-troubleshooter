@@ -14,7 +14,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperiorAes.Core\SuperiorAes.Core.csproj" />
-    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.10" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Hardware\*.png" />
