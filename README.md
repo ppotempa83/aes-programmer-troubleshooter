@@ -8,6 +8,26 @@ retaining the official legacy PC command set. It includes separate hardware and
 virtual-mesh simulation paths, so training and workflow review do not require a
 connected radio.
 
+## Desktop app screenshots
+
+Screenshots of the original AES Programmer desktop application, captured with the
+app disconnected and the Geoapify setup dialog closed:
+
+| Page | Screenshot |
+| --- | --- |
+| Dashboard | ![Dashboard](docs/screenshots/01-dashboard.png) |
+| Program subscriber | ![Program subscriber](docs/screenshots/02-program-subscriber.png) |
+| Status & routes | ![Status and routes](docs/screenshots/03-status-routes.png) |
+| RF monitor | ![RF monitor](docs/screenshots/04-rf-monitor.png) |
+| Troubleshooter | ![Troubleshooter](docs/screenshots/05-troubleshooter.png) |
+| Site survey | ![Site survey](docs/screenshots/06-site-survey.png) |
+| New radio check | ![New radio check](docs/screenshots/07-new-radio-check.png) |
+| Mesh simulator | ![Mesh simulator](docs/screenshots/08-mesh-simulator.png) |
+| Contact ID capture | ![Contact ID capture](docs/screenshots/09-contact-id-capture.png) |
+| Training guides | ![Training guides](docs/screenshots/10-training-guides.png) |
+| Field report | ![Field report](docs/screenshots/11-field-report.png) |
+| Terminal | ![Terminal](docs/screenshots/12-terminal.png) |
+
 ## Included
 
 - Automatic COM-port discovery
